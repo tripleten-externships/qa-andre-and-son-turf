@@ -1,2 +1,0 @@
-Hello world!
-This is our demo file for git pull request.
