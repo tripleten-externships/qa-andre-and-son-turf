@@ -73,11 +73,11 @@ test('Send button validation with empty fields', async ({ page }) => {
     // Click the SEND button
     await sendButton.click();
 
-    // Verify the email input shows an error (aria-invalid="true")
-    // await expect(emailInput).toHaveAttribute('aria-invalid', 'true');
 
-    const msg = await emailInput.evaluate(el => (el as HTMLInputElement).validationMessage);
-    console.log('Browser says:', msg);
+    const validationMessage = await emailInput.evaluate(el => (el as HTMLInputElement).validationMessage);
+    console.log('Browser says:', validationMessage);
+
+    expect(validationMessage).not.toBe('');
 
     // Wait a few seconds before closing
     await page.waitForTimeout(3000);
@@ -108,11 +108,10 @@ test('Email field with invalid format', async ({ page }) => {
     // Click the SEND button
     await sendButton.click();
 
-    // Verify the email input shows an error (aria-invalid="true")
-    // await expect(emailInput).toHaveAttribute('aria-invalid', 'true');
+    const validationMessage = await emailInput.evaluate(el => (el as HTMLInputElement).validationMessage);
+    console.log('Browser says:', validationMessage);
 
-    const msg = await emailInput.evaluate(el => (el as HTMLInputElement).validationMessage);
-    console.log('Browser says:', msg);
+    expect(validationMessage).not.toBe('');
 
     // Wait a few seconds before closing
     await page.waitForTimeout(3000);

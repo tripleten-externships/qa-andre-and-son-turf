@@ -384,16 +384,18 @@ test('SUBMIT button validation with empty fields', async ({ page }) => {
     const emailInput = page.locator('input[name="email"]');
 
     // Verify the email input shows an error (aria-invalid="true")
-    await expect(emailInput).toHaveAttribute('aria-invalid', 'true');
+    // await expect(emailInput).toHaveAttribute('aria-invalid', 'true');
 
-    const msg = await emailInput.evaluate(el => (el as HTMLInputElement).validationMessage);
-    console.log('Browser says:', msg);
+    const validationMessage = await emailInput.evaluate(el => (el as HTMLInputElement).validationMessage);
+    console.log('Browser says:', validationMessage);
+
+    expect(validationMessage).not.toBe('');
 
     // Wait a few seconds before closing
     await page.waitForTimeout(3000);
 
     // Close the page
-    // await page.close();
+    await page.close();
 
 });
 
@@ -427,10 +429,12 @@ test('Email field with invalid format', async ({ page }) => {
     await submitButton.click();
 
     // Verify the email input shows an error (aria-invalid="true")
-    await expect(emailInput).toHaveAttribute('aria-invalid', 'true');
+    // await expect(emailInput).toHaveAttribute('aria-invalid', 'true');
 
-    const msg = await emailInput.evaluate(el => (el as HTMLInputElement).validationMessage);
-    console.log('Browser says:', msg);
+    const validationMessage = await emailInput.evaluate(el => (el as HTMLInputElement).validationMessage);
+    console.log('Browser says:', validationMessage);
+
+    expect(validationMessage).not.toBe('');
 
     // Wait a few seconds before closing
     await page.waitForTimeout(3000);
@@ -462,14 +466,14 @@ test('Email link verification', async ({ page }) => {
     // Wait until the link is visible
     await expect(emailLink).toBeVisible({ timeout: 5000 });
 
-    // // Get visible text and href
+    // Get visible text and href
     const text = (await emailLink.innerText()).trim();
     const href = await emailLink.getAttribute('href');
 
     console.log('Text:', text);
     console.log('Href:', href);
 
-    // // Assert href matches "mailto:" + text
+    // Assert href matches "mailto:" + text
     expect(href).toBe(`mailto:${text}`);
 
     // Wait a few seconds before closing
