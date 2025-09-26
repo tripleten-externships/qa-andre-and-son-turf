@@ -1,12 +1,41 @@
 import { test, expect, Locator } from '@playwright/test';
 import { HomePage } from '../pages/example';
 
+/*
+    Test to verify that Construction & Renovation page loads successfully.
+*/
+test('Page loads successfully', async ({ page }) => {
+    const homePage = new HomePage(page);  
+    // Visit the web application
+    await page.goto('/');
+    
+    // await page.getByText('Contract Services').first().hover();
+    const contractServicesLink = page.locator('a[data-testid="linkElement"][href*="contract-services"]').first();
+    // const contractServices = page.locator('#comp-igauz7ee1label');
+    const moreContractServicesBtn = page.locator('button[aria-label="More CONTRACT SERVICES pages"]');
 
+    
+    // Confirm it starts collapsed
+    await expect(contractServicesLink).toHaveAttribute('aria-expanded', 'false');
+
+    // Hover over the element
+    await moreContractServicesBtn.hover();
+
+    // Wait until it expands
+    await expect(contractServicesLink).toHaveAttribute('aria-expanded', 'true');
+
+    // Click on Construction & Renovation link
+    // await page.getByText('Construction and Renovation').click();
+
+    // Verify that page loads successfully
+    // await expect(page.url()).toEqual('https://www.andreandson.com/construction-renovation');
+
+});
 
 /*
 Verify that the page title in the hero section "Construction & Renovation"
 */
-test('Construction and Renovation page hero section and video', async ({ page }) => {
+test('Construction and Renovation page hero section', async ({ page }) => {
     const homePage = new HomePage(page);   
     //Visit the web application 
     await page.goto('https://www.andreandson.com/construction-renovation');

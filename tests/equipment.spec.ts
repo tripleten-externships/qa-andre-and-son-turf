@@ -38,6 +38,56 @@ test('Equipment page hero section and video', async ({ page }) => {
 });
 
 /*
+Verify that the video plays correctly in the Feature section (FS900 Riding Sweeper /Core Collector")
+*/
+test('Feature section video can play and pause', async ({ page }) => {
+ const homePage = new HomePage(page);   
+    //Visit the web application 
+    await page.goto('/');
+
+    // Locate the Equipment link
+    const equipmenttLink = page.locator('a[data-testid="linkElement"]', { hasText: 'EQUIPMENT' });
+    await equipmenttLink.click();
+    
+    // Optionally check URL after click
+    await expect(page).toHaveURL(/equipment/);
+
+    // Locate the video element (adjust selector as needed)
+    const video = page.locator('video'); // if there are multiple, narrow down with a specific parent section
+
+    // Ensure video is visible
+    await expect(video).toBeVisible();
+
+    // Play the video
+    await video.evaluate((v: HTMLVideoElement) => {
+        return new Promise<void>((resolve, reject) => {
+            v.oncanplay = () => resolve();
+            v.onerror = () => reject(new Error('Video failed to load'));
+        });
+    });
+    await video.evaluate((v: HTMLVideoElement) => v.play());
+
+
+    // Wait a bit to verify it started playing
+    await page.waitForTimeout(2000);
+
+    // Check if the video is playing
+    const isPlaying = await video.evaluate((v: HTMLVideoElement) => !v.paused);
+    expect(isPlaying).toBe(true);
+
+    // Pause the video
+    await video.evaluate((v: HTMLVideoElement) => v.pause());
+
+    // Verify the video is paused
+    const isPaused = await video.evaluate((v: HTMLVideoElement) => v.paused);
+    expect(isPaused).toBe(true);
+});
+
+
+
+
+
+/*
 Verify that clicking the image in the Baroness section opens the correct website as specified in the <a> element of the HTML.
 */
 test('Baroness section link', async ({ page }) => {
@@ -343,7 +393,7 @@ test('SUBMIT button validation with empty fields', async ({ page }) => {
     await page.waitForTimeout(3000);
 
     // Close the page
-    await page.close();
+    // await page.close();
 
 });
 
@@ -421,5 +471,11 @@ test('Email link verification', async ({ page }) => {
 
     // // Assert href matches "mailto:" + text
     expect(href).toBe(`mailto:${text}`);
+
+    // Wait a few seconds before closing
+    await page.waitForTimeout(3000);
+
+    // Close the page
+    await page.close();
 
 });

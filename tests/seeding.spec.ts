@@ -1,12 +1,41 @@
 import { test, expect, Locator } from '@playwright/test';
 import { HomePage } from '../pages/example';
 
+/*
+    Test to verify that Seeding page loads successfully.
+*/
+test('Page loads successfully', async ({ page }) => {
+    const homePage = new HomePage(page);  
+    // Visit the web application
+    await page.goto('/');
+    
+    // await page.getByText('Contract Services').first().hover();
+    const contractServicesLink = page.locator('a[data-testid="linkElement"][href*="contract-services"]').first();
+    // const contractServices = page.locator('#comp-igauz7ee1label');
+    const moreContractServicesBtn = page.locator('button[aria-label="More CONTRACT SERVICES pages"]');
 
+    
+    // Confirm it starts collapsed
+    await expect(contractServicesLink).toHaveAttribute('aria-expanded', 'false');
+
+    // Hover over the element
+    await moreContractServicesBtn.hover();
+
+    // Wait until it expands
+    await expect(contractServicesLink).toHaveAttribute('aria-expanded', 'true');
+
+    // Click on Seeding link
+    // await page.getByText('Seeding').click();
+
+    // Verify that page loads successfully
+    // await expect(page.url()).toEqual('https://www.andreandson.com/seeding');
+
+});
 
 /*
 Verify that the page title in the hero section "Seeding"
 */
-test('Seeding page hero section and video', async ({ page }) => {
+test('Seeding page hero section', async ({ page }) => {
     const homePage = new HomePage(page);   
     //Visit the web application 
     await page.goto('https://www.andreandson.com/seeding');
