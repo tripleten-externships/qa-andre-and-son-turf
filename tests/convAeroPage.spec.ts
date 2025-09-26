@@ -7,10 +7,10 @@ test('Page loads successfully', async ({ page }) => {
     // Visit the web application
     await page.goto('/');
      // Drag mouse to CONTRACT SERVICES
-    await page.getByText('Contract Services').hover();
+    await page.getByText('CONTRACT SERVICES').first().hover();
     //Click on Conventional Aerification 
-    await page.getByText('CONVENTIONAL AERIFICATION').click();
+    await page.getByRole('button', { name: 'CONVENTIONAL AERIFICIATION' }).click();
     //Verify that page loads successfully 
-    await expect(page.url()).toEqual('https://www.andreandson.com/conventional-aerification');
-
+    expect(await page.url()).toEqual('https://www.andreandson.com/conventional-aerification');
+    
 });
