@@ -1,10 +1,9 @@
 import { test, expect } from '@playwright/test';
 
-/* Test case 113: Verify that the description under title "Turf Chemicals" 
-    is visible and readable by user
+/* Verify clicking on Turf Chemicals from main page header Turf products takes the user to correct page
 */
 
-test('has title', async ({ page }) => {
+test('Verify clicking on Turf Chemicals from main page header Turf products takes the user to correct page', async ({ page }) => {
   // Visit the web application
     await page.goto('/');
     await page.pause();
