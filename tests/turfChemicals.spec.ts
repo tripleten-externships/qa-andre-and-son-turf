@@ -35,4 +35,30 @@ test('Verify that clicking on "Learn More" buttons takes the user to respective 
   // 6th Learn More -> NUFARM
   await turfPage.clickLearnMore(5);
   await expect(page).toHaveURL('https://www.andreandson.com/nufarm');
+  await turfPage.goBackToTurfChemicals();
+
+  // 7th Learn More -> PBI Gordon
+  await turfPage.clickLearnMore(6);
+  await expect(page).toHaveURL('https://www.andreandson.com/turf-screen');
+  await turfPage.goBackToTurfChemicals();
+
+  // 8th Learn More -> Quali Pro
+  await turfPage.clickLearnMore(7);
+  await expect(page).toHaveURL('https://www.andreandson.com/quali-pro');
+  await turfPage.goBackToTurfChemicals();
+
+  // 9th Learn More -> SePro
+  await turfPage.clickLearnMore(8);
+  await expect(page).toHaveURL('https://www.andreandson.com/sepro');
+  await turfPage.goBackToTurfChemicals();
+
+  // 10th Learn More -> Sipcam Agro
+  await turfPage.clickLearnMore(9);
+  await expect(page).toHaveURL('https://www.andreandson.com/sipcam-agro');
+  await turfPage.goBackToTurfChemicals();
+
+  // 11th Learn More -> Sipcam Agro
+  await turfPage.clickLearnMore(10);
+  await expect(page).toHaveURL('https://www.andreandson.com/syngenta-products');
+  await turfPage.goBackToTurfChemicals();
 });
