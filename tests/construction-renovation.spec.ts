@@ -1,34 +1,14 @@
 import { test, expect, Locator } from '@playwright/test';
-import { HomePage } from '../pages/example';
+import { ConstructionAndRenovationPage } from '../pages/construction-renovation';
 
 /*
     Test to verify that Construction & Renovation page loads successfully.
 */
 test('Page loads successfully', async ({ page }) => {
-    const homePage = new HomePage(page);  
-    // Visit the web application
-    await page.goto('/');
+    const constructionPage = new ConstructionAndRenovationPage(page);
     
-    // await page.getByText('Contract Services').first().hover();
-    const contractServicesLink = page.locator('a[data-testid="linkElement"][href*="contract-services"]').first();
-    // const contractServices = page.locator('#comp-igauz7ee1label');
-    const moreContractServicesBtn = page.locator('button[aria-label="More CONTRACT SERVICES pages"]');
-
-    
-    // Confirm it starts collapsed
-    await expect(contractServicesLink).toHaveAttribute('aria-expanded', 'false');
-
-    // Hover over the element
-    await moreContractServicesBtn.hover();
-
-    // Wait until it expands
-    await expect(contractServicesLink).toHaveAttribute('aria-expanded', 'true');
-
-    // Click on Construction & Renovation link
-    // await page.getByText('Construction and Renovation').click();
-
-    // Verify that page loads successfully
-    // await expect(page.url()).toEqual('https://www.andreandson.com/construction-renovation');
+    // Visit the home page
+    await constructionPage.navigate();
 
 });
 
@@ -36,10 +16,11 @@ test('Page loads successfully', async ({ page }) => {
 Verify that the page title in the hero section "Construction & Renovation"
 */
 test('Construction and Renovation page hero section', async ({ page }) => {
-    const homePage = new HomePage(page);   
+    const constructionPage = new ConstructionAndRenovationPage(page);
+    
     //Visit the web application 
-    await page.goto('https://www.andreandson.com/construction-renovation');
-
+    await constructionPage.navigate();
+    
     const heading: Locator = page.locator('span.wixui-rich-text__text', { hasText: 'Construction and Renovation' }).first();
 
     //validate text matches with the hero section 
@@ -57,20 +38,18 @@ test('Construction and Renovation page hero section', async ({ page }) => {
 Verify that clicking Send button without filling the form shows validation messages.
 */
 test('Send button validation with empty fields', async ({ page }) => {
-    const homePage = new HomePage(page);   
+    const constructionPage = new ConstructionAndRenovationPage(page);
+    
     //Visit the web application 
-    await page.goto('https://www.andreandson.com/construction-renovation');
+    await constructionPage.navigate();
 
     // Locate the email input field
     const emailInput = page.locator('input[name="email"]');
 
-    // Locate the SEND button
-    const sendButton = page.locator('button[aria-label="Send"]');
-    await expect(sendButton).toBeVisible();
-
     // Click the SEND button
-    await sendButton.click();
+    await constructionPage.sendForm();
 
+    //check validation message
     const validationMessage = await emailInput.evaluate(el => (el as HTMLInputElement).validationMessage);
     console.log('Browser says:', validationMessage);
 
@@ -89,21 +68,19 @@ Verify that when clicking Send with an invalid email in the form found in the
 Let's Work Together section, the form is not submitted and an error is shown (invalid email format)
 */
 test('Email field with invalid format', async ({ page }) => {
-    const homePage = new HomePage(page);   
-    //Visit the web application 
-    await page.goto('https://www.andreandson.com/construction-renovation');
+    const constructionPage = new ConstructionAndRenovationPage(page);
+
+    //Visit the web application
+    await constructionPage.navigate();
 
     //fill email input field with invalid email format
     const emailInput = page.locator('input[name="email"]');
     await emailInput.fill('invalidemail');
 
-    // Locate the SEND button
-    const sendButton = page.locator('button[aria-label="Send"]');
-    await expect(sendButton).toBeVisible();
-
     // Click the SEND button
-    await sendButton.click();
+    await constructionPage.sendForm();
 
+    //check validation message
     const validationMessage = await emailInput.evaluate(el => (el as HTMLInputElement).validationMessage);
     console.log('Browser says:', validationMessage);
 
@@ -122,12 +99,13 @@ test('Email field with invalid format', async ({ page }) => {
 Ensure that the visible email address displayed in the Let’s Work Together section matches the mailto: value in the HTML code.
 */
 test('Email link verification', async ({ page }) => {
-    const homePage = new HomePage(page);   
+    const constructionPage = new ConstructionAndRenovationPage(page);
+
     //Visit the web application 
-    await page.goto('https://www.andreandson.com/construction-renovation');
+    await constructionPage.navigate();
 
     // Locator for the link
-    const emailLink = page.locator('a[data-auto-recognition="true"]').first();;
+    const emailLink = page.locator('a[data-auto-recognition="true"]').first();
 
     // Wait until the link is visible
     await expect(emailLink).toBeVisible({ timeout: 5000 });
