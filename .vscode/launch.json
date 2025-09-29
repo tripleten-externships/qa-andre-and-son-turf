@@ -1,16 +1,78 @@
 {
-    // Use IntelliSense to learn about possible attributes.
-    // Hover to view descriptions of existing attributes.
-    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-    
         {
             "type": "vscode-chat-replay",
             "request": "launch",
             "name": "Debug Chat Replay",
             "program": "${file}",
             "stopOnEntry": true
+        },
+        {
+            "name": "Playwright: Run current test file",
+            "type": "node",
+            "request": "launch",
+            "cwd": "${workspaceFolder}/qa-andre-and-son-turf",
+            "runtimeExecutable": "npx",
+            "runtimeArgs": [
+                "playwright",
+                "test",
+                "${file}",
+                "--project=chromium"
+            ],
+            "console": "integratedTerminal",
+            "internalConsoleOptions": "neverOpen"
+        },
+        // VS Code-friendly launch configs (run from workspace root and use npx.cmd)
+        {
+            "name": "Playwright: Run current test (workspace-root)",
+            "type": "node",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "runtimeExecutable": "npx.cmd",
+            "runtimeArgs": [
+                "playwright",
+                "test",
+                "${file}",
+                "--project=chromium"
+            ],
+            "console": "integratedTerminal",
+            "internalConsoleOptions": "neverOpen"
+        },
+        {
+            "name": "Playwright: Debug current test (inspector)",
+            "type": "node",
+            "request": "launch",
+            "cwd": "${workspaceFolder}/qa-andre-and-son-turf",
+            "runtimeExecutable": "npx",
+            "runtimeArgs": [
+                "playwright",
+                "test",
+                "${file}",
+                "--project=chromium",
+                "--debug",
+                "--headed"
+            ],
+            "console": "integratedTerminal",
+            "internalConsoleOptions": "neverOpen"
+        }
+        ,
+        {
+            "name": "Playwright: Debug current test (workspace-root)",
+            "type": "node",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "runtimeExecutable": "npx.cmd",
+            "runtimeArgs": [
+                "playwright",
+                "test",
+                "${file}",
+                "--project=chromium",
+                "--debug",
+                "--headed"
+            ],
+            "console": "integratedTerminal",
+            "internalConsoleOptions": "neverOpen"
         }
     ]
 }
