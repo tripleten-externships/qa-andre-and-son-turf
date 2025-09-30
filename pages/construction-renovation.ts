@@ -8,12 +8,18 @@ export class ConstructionAndRenovationPage{
     readonly contractServicesLink: Locator;
     readonly constructionAndRenovationLink: Locator;
     readonly sendButton: Locator;
+    readonly headingText: Locator;
+    readonly emailInput: Locator;
+    readonly emailLink: Locator;
 
     constructor(page: Page){
         this.page = page;
         this.contractServicesLink = page.getByRole('link', { name: 'CONTRACT SERVICES' }).nth(0);
         this.constructionAndRenovationLink = page.getByRole('link', { name: 'CONSTRUCTION & RENOVATION' });
         this.sendButton = page.locator('button[aria-label="Send"]');
+        this.headingText = page.locator('span.wixui-rich-text__text', { hasText: 'Construction and Renovation' }).first();
+        this.emailInput = page.locator('input[name="email"]');
+        this.emailLink = page.locator('a[data-auto-recognition="true"]').first();
     }
 
     async navigate() {

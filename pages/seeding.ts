@@ -8,13 +8,18 @@ export class SeedingPage{
     readonly contractServicesLink: Locator;
     readonly seedingLink: Locator;
     readonly sendButton: Locator;
-
+    readonly headingText: Locator;
+    readonly emailInput: Locator;
+    readonly emailLink: Locator;
 
     constructor(page: Page){
         this.page = page;
         this.contractServicesLink = page.getByRole('link', { name: 'CONTRACT SERVICES' }).nth(0);
         this.seedingLink = page.getByRole('link', { name: 'SEEDING' });
         this.sendButton = page.locator('button[aria-label="Send"]');
+        this.headingText = page.locator('span.wixui-rich-text__text', { hasText: 'Seeding' }).first();
+        this.emailInput = page.locator('input[name="email"]');
+        this.emailLink = page.locator('a[data-auto-recognition="true"]').first();
     }
 
     async navigate() {

@@ -20,10 +20,10 @@ test('Seeding page hero section', async ({ page }) => {
     //Visit the web application 
     await seedingPage.navigate();
 
-    const heading: Locator = page.locator('span.wixui-rich-text__text', { hasText: 'Seeding' }).first();
+    // const headingText: Locator = page.locator('span.wixui-rich-text__text', { hasText: 'Seeding' }).first();
 
     //validate text matches with the hero section 
-    await expect(heading).toHaveText('Seeding');
+    await expect(seedingPage.headingText).toHaveText('Seeding');
 
     // Wait a few seconds before closing
     await page.waitForTimeout(3000);
@@ -45,13 +45,13 @@ test('Send button validation with empty fields', async ({ page }) => {
     await seedingPage.navigate();
 
     // Locate the email input field
-    const emailInput = page.locator('input[name="email"]');
+    // const emailInput = page.locator('input[name="email"]');
 
     // Click the SEND button
     await seedingPage.sendForm();
 
     //check validation message
-    const validationMessage = await emailInput.evaluate(el => (el as HTMLInputElement).validationMessage);
+    const validationMessage = await seedingPage.emailInput.evaluate(el => (el as HTMLInputElement).validationMessage);
     console.log('Browser says:', validationMessage);
 
     expect(validationMessage).not.toBe('');
@@ -76,14 +76,14 @@ test('Email field with invalid format', async ({ page }) => {
     await seedingPage.navigate();
 
     //fill email input field with invalid email format
-    const emailInput = page.locator('input[name="email"]');
-    await emailInput.fill('invalidemail');
+    // const emailInput = page.locator('input[name="email"]');
+    await seedingPage.emailInput.fill('invalidemail');
 
     // Click the SEND button
     await seedingPage.sendForm();
 
     //check validation message
-    const validationMessage = await emailInput.evaluate(el => (el as HTMLInputElement).validationMessage);
+    const validationMessage = await seedingPage.emailInput.evaluate(el => (el as HTMLInputElement).validationMessage);
     console.log('Browser says:', validationMessage);
 
     expect(validationMessage).not.toBe('');
@@ -106,14 +106,14 @@ test('Email link verification', async ({ page }) => {
     await seedingPage.navigate();
 
     // Locator for the link
-    const emailLink = page.locator('a[data-auto-recognition="true"]').first();
+    // const emailLink = page.locator('a[data-auto-recognition="true"]').first();
 
     // Wait until the link is visible
-    await expect(emailLink).toBeVisible({ timeout: 5000 });
+    await expect(seedingPage.emailLink).toBeVisible({ timeout: 5000 });
 
     // // Get visible text and href
-    const text = (await emailLink.innerText()).trim();
-    const href = await emailLink.getAttribute('href');
+    const text = (await seedingPage.emailLink.innerText()).trim();
+    const href = await seedingPage.emailLink.getAttribute('href');
 
     console.log('Text:', text);
     console.log('Href:', href);

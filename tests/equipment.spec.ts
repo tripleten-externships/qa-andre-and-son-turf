@@ -61,8 +61,6 @@ test('Feature section video can play and pause', async ({ page }) => {
 
 
 
-
-
 /*
 Verify that clicking the image in the Baroness section opens the correct website
  as specified in the <a> element of the HTML.
@@ -74,18 +72,18 @@ test('Baroness section link', async ({ page }) => {
     await equipmentPage.navigate();
     
     /// Locate the Baroness link
-    const baronessLink = page.locator('a[href="https://baroness.us/"]');
+    // const baronessLink = page.locator('a[href="https://baroness.us/"]');
 
     // Scroll it into view
-    await baronessLink.scrollIntoViewIfNeeded();
+    await equipmentPage.baronessLink.scrollIntoViewIfNeeded();
 
     // Optional: wait for it to be fully visible
-    await baronessLink.waitFor({ state: 'visible' });
+    await equipmentPage.baronessLink.waitFor({ state: 'visible' });
     
     // Click and capture the new tab
     const [newPage] = await Promise.all([
         page.context().waitForEvent('page'), // listens for the new tab
-        baronessLink.click(),                 // click normally, no force needed
+        equipmentPage.baronessLink.click(),                 // click normally, no force needed
     ]);
 
     // Wait for it to load
@@ -114,18 +112,18 @@ test('Buffallo Turnbine section link', async ({ page }) => {
     await equipmentPage.navigate();
 
     /// Locate the Buffalo Turbine link
-    const buffaloTurbineLink = page.locator('a[href="https://buffaloturbine.com/"]');
+    // const buffaloTurbineLink = page.locator('a[href="https://buffaloturbine.com/"]');
 
     // Scroll it into view
-    await buffaloTurbineLink.scrollIntoViewIfNeeded();
+    await equipmentPage.buffaloTurbineLink.scrollIntoViewIfNeeded();
 
     // Optional: wait for it to be fully visible
-    await buffaloTurbineLink.waitFor({ state: 'visible' });
+    await equipmentPage.buffaloTurbineLink.waitFor({ state: 'visible' });
 
     // Click and capture the new tab
     const [newPage] = await Promise.all([
         page.context().waitForEvent('page'), // listens for the new tab
-        buffaloTurbineLink.click(),           // click normally, no force needed
+        equipmentPage.buffaloTurbineLink.click(),           // click normally, no force needed
     ]);
 
     // Wait for it to load
@@ -154,18 +152,18 @@ test('STIHL section link', async ({ page }) => {
     await equipmentPage.navigate();
 
     /// Locate the STIHL link
-    const stihlLink = page.locator('a[href="https://andresoninc.stihldealer.net/"]');
+    // const stihlLink = page.locator('a[href="https://andresoninc.stihldealer.net/"]');
 
     // Scroll it into view
-    await stihlLink.scrollIntoViewIfNeeded();
+    await equipmentPage.stihlLink.scrollIntoViewIfNeeded();
 
     // Optional: wait for it to be fully visible
-    await stihlLink.waitFor({ state: 'visible' });
+    await equipmentPage.stihlLink.waitFor({ state: 'visible' });
 
     // Click and capture the new tab
     const [newPage] = await Promise.all([
         page.context().waitForEvent('page'), // listens for the new tab
-        stihlLink.click(),                    // click normally, no force needed
+        equipmentPage.stihlLink.click(),                    // click normally, no force needed
     ]);
 
     // Wait for it to load
@@ -183,7 +181,7 @@ test('STIHL section link', async ({ page }) => {
 
 });
 
-/*
+/* HTML MISMATCH
 Verify that clicking the image in the Greens Groomer section opens the correct website
  as specified in the <a> element of the HTML.
 */
@@ -195,19 +193,19 @@ test('Greens Groomer section link', async ({ page }) => {
 
 
     // Locate the Greens Groomer section
-    await page.getByText('Greens Groomer').first().scrollIntoViewIfNeeded();
+    await equipmentPage.greensGroomerSection.scrollIntoViewIfNeeded();
 
     // Locate the Greens Groomer link
-    const greensGroomerLink = page.getByRole('link', { name: 'natural_groomer_01.jpg' });
+    // const greensGroomerLink = page.getByRole('link', { name: 'natural_groomer_01.jpg' });
    
 
     // Optional: wait for it to be fully visible
-    await greensGroomerLink.waitFor({ state: 'visible' });
+    await equipmentPage.greensGroomerLink.waitFor({ state: 'visible' });
 
     // Click and capture the new tab
     const [newPage] = await Promise.all([
         page.context().waitForEvent('page'), // listens for the new tab
-        greensGroomerLink.click(),            // click normally, no force needed
+        equipmentPage.greensGroomerLink.click(),            // click normally, no force needed
     ]);
 
     // Wait for it to load
@@ -237,26 +235,66 @@ test('RotaDairon section link', async ({ page }) => {
 
 
     // Locate the RotaDairon section
-    await page.getByText('RotaDairon').first().scrollIntoViewIfNeeded();
+    await equipmentPage.rotaDaironSection.scrollIntoViewIfNeeded();
 
     // Locate the RotaDairon link
-    const rotaDaironLink = page.getByRole('link', { name: 'Screenshot 2021-03-01 221305.' });
+    // const rotaDaironLink = page.getByRole('link', { name: 'Screenshot 2021-03-01 221305.' });
 
 
     // Optional: wait for it to be fully visible
-    await rotaDaironLink.waitFor({ state: 'visible' });
+    await equipmentPage.rotaDaironLink.waitFor({ state: 'visible' });
 
     // Click and capture the new tab
     const [newPage] = await Promise.all([
         page.context().waitForEvent('page'), // listens for the new tab
-        rotaDaironLink.click(),        // click normally, no force needed
+        equipmentPage.rotaDaironLink.click(),        // click normally, no force needed
     ]);
 
     // Wait for it to load
     await newPage.waitForLoadState();
 
     // Verify URL
-    await expect(newPage).toHaveURL('https://www.rotadairon.fr/gb/rotadairon_smc.html/');
+    await expect(newPage).toHaveURL('https://www.rotadairon.fr/gb/rotadairon_smc.html');
+
+    // Wait a few seconds before closing
+    await page.waitForTimeout(3000);
+
+    // Close the page
+    await page.close();
+    await newPage.close();
+
+});
+
+/* HTML MISMATCH
+Verify that clicking the image in the Lely section opens the correct website
+ as specified in the <a> element of the HTML.
+*/
+test('Lely section link', async ({ page }) => {
+    const equipmentPage = new EquipmentPage(page);
+
+    // Navigate to equipment page
+    await equipmentPage.navigate();
+    
+    // Locate the Lely section
+    await equipmentPage.lelySection.scrollIntoViewIfNeeded();
+
+    // Locate the link
+    // const lelyLink = page.getByRole('link', { name: 'lely.jpg' });
+
+    // Optional: wait for it to be fully visible
+    await equipmentPage.lelyLink.waitFor({ state: 'visible' });
+
+    // Click and capture the new tab
+    const [newPage] = await Promise.all([
+        page.context().waitForEvent('page'), // listens for the new tab
+        equipmentPage.lelyLink.click(),                     // click normally, no force needed
+    ]);
+
+    // Wait for it to load
+    await newPage.waitForLoadState();
+
+    // Verify URL
+    await expect(newPage).toHaveURL('http://www.lelyturf.com/');
 
     // Wait a few seconds before closing
     await page.waitForTimeout(3000);
@@ -268,35 +306,482 @@ test('RotaDairon section link', async ({ page }) => {
 });
 
 /*
-Verify that clicking the image in the Lely section opens the correct website
+Verify that clicking the image in the EarthWay section opens the correct website
  as specified in the <a> element of the HTML.
 */
-test('Lely section link', async ({ page }) => {
+test('EarthWay section link', async ({ page }) => {
     const equipmentPage = new EquipmentPage(page);
 
     // Navigate to equipment page
     await equipmentPage.navigate();
     
     // Locate the Lely section
-    await page.getByText('Lely').first().scrollIntoViewIfNeeded();
-    
-    // Locate the lin
-    const lelyLink = page.getByRole('link', { name: 'lely.jpg' });
+    await equipmentPage.earthWaySection.scrollIntoViewIfNeeded();
+
+    // Locate the link
+    // const earthWayLink = page.getByRole('link', { name: 'Earthway.JPG' });
 
     // Optional: wait for it to be fully visible
-    await lelyLink.waitFor({ state: 'visible' });
+    await equipmentPage.earthWayLink.waitFor({ state: 'visible' });
 
     // Click and capture the new tab
     const [newPage] = await Promise.all([
         page.context().waitForEvent('page'), // listens for the new tab
-        lelyLink.click(),                     // click normally, no force needed
+        equipmentPage.earthWayLink.click(),                  // click normally, no force needed
     ]);
 
     // Wait for it to load
     await newPage.waitForLoadState();
 
     // Verify URL
-    await expect(newPage).toHaveURL('lelyturf.com/');
+    await expect(newPage).toHaveURL('https://earthway.com/');
+
+    // Wait a few seconds before closing
+    await page.waitForTimeout(3000);
+
+    // Close the page
+    await page.close();
+    await newPage.close();
+
+});
+
+
+/*
+Verify that clicking the image in the Micro Rain section opens the correct website
+ as specified in the <a> element of the HTML.
+*/
+test('Micro Rain section link', async ({ page }) => {
+    const equipmentPage = new EquipmentPage(page);
+
+    // Navigate to equipment page
+    await equipmentPage.navigate();
+
+    // Locate the Micro Rain section
+    await equipmentPage.microRainSection.scrollIntoViewIfNeeded();
+
+    // Locate the link
+    // const microRainLink = page.getByRole('link', { name: 'MR43BPP KID.jfif' });
+
+    // Optional: wait for it to be fully visible
+    await equipmentPage.microRainLink.waitFor({ state: 'visible' });
+
+    // Click and capture the new tab
+    const [newPage] = await Promise.all([
+        page.context().waitForEvent('page'), // listens for the new tab
+        equipmentPage.microRainLink.click(),                  // click normally, no force needed
+    ]);
+
+    // Wait for it to load
+    await newPage.waitForLoadState();
+
+    // Verify URL
+    await expect(newPage).toHaveURL('https://www.microrain.net/applications/sports-fields-grounds');
+
+    // Wait a few seconds before closing
+    await page.waitForTimeout(3000);
+
+    // Close the page
+    await page.close();
+    await newPage.close();
+
+});
+
+
+/*
+Verify that clicking the image in the Ferris section opens the correct website
+ as specified in the <a> element of the HTML.
+*/
+test('Ferris section link', async ({ page }) => {
+    const equipmentPage = new EquipmentPage(page);
+
+    // Navigate to equipment page
+    await equipmentPage.navigate();
+
+    // Locate the Ferris section
+    await equipmentPage.ferrisSection.scrollIntoViewIfNeeded();
+
+    // Locate the link
+    // const ferrisLink = page.getByRole('link', { name: 'Ferris.JPG' });
+
+    // Optional: wait for it to be fully visible
+    await equipmentPage.ferrisLink.waitFor({ state: 'visible' });
+
+    // Click and capture the new tab
+    const [newPage] = await Promise.all([
+        page.context().waitForEvent('page'), // listens for the new tab
+        equipmentPage.ferrisLink.click(),                  // click normally, no force needed
+    ]);
+
+    // Wait for it to load
+    await newPage.waitForLoadState();
+
+    // Verify URL
+    await expect(newPage).toHaveURL('https://www.ferrismowers.com/na/en_us/home.html');
+
+    // Wait a few seconds before closing
+    await page.waitForTimeout(3000);
+
+    // Close the page
+    await page.close();
+    await newPage.close();
+
+});
+
+
+/* Link leads to a 404 page
+Verify that clicking the image in the Broyhill section opens the correct website
+ as specified in the <a> element of the HTML.
+*/
+test('Broyhill section link', async ({ page }) => {
+    const equipmentPage = new EquipmentPage(page);
+
+    // Navigate to equipment page
+    await equipmentPage.navigate();
+
+    // Locate the Broyhill section
+    await equipmentPage.broyhillSection.scrollIntoViewIfNeeded();
+
+    // Locate the link
+    // const broyhillLink = page.getByRole('link', { name: 'Broyhill.JPG' });
+
+    // Optional: wait for it to be fully visible
+    await equipmentPage.broyhillLink.waitFor({ state: 'visible' });
+
+    // Click and capture the new tab
+    const [newPage] = await Promise.all([
+        page.context().waitForEvent('page'), // listens for the new tab
+        equipmentPage.broyhillLink.click(),                  // click normally, no force needed
+    ]);
+
+    // Wait for it to load
+    await newPage.waitForLoadState();
+
+    // Verify URL
+    await expect(newPage).toHaveURL('https://broyhill.com/golf-sports-turf-care/grooming/trailers/silhouette-i-sports-turf/');
+
+    // Wait a few seconds before closing
+    await page.waitForTimeout(3000);
+
+    // Close the page
+    await page.close();
+    await newPage.close();
+
+});
+
+
+/*
+Verify that clicking the image in the Dream Turf Equipment section opens the correct website
+ as specified in the <a> element of the HTML.
+*/
+test('Dream Turf Equipment section link', async ({ page }) => {
+    const equipmentPage = new EquipmentPage(page);
+
+    // Navigate to equipment page
+    await equipmentPage.navigate();
+
+    // Locate the Dream Turf Equipment section
+    await equipmentPage.dreamTurfSection.scrollIntoViewIfNeeded();
+
+    // Locate the link
+    // const dreamTurfLink = page.getByRole('link', { name: 'Dream Turf Equipment.JPG' });
+
+    // Optional: wait for it to be fully visible
+    await equipmentPage.dreamTurfLink.waitFor({ state: 'visible' });
+
+    // Click and capture the new tab
+    const [newPage] = await Promise.all([
+        page.context().waitForEvent('page'), // listens for the new tab
+        equipmentPage.dreamTurfLink.click(),                  // click normally, no force needed
+    ]);
+
+    // Wait for it to load
+    await newPage.waitForLoadState();
+
+    // Verify URL
+    await expect(newPage).toHaveURL('https://www.dreamturfequipment.com/');
+
+    // Wait a few seconds before closing
+    await page.waitForTimeout(3000);
+
+    // Close the page
+    await page.close();
+    await newPage.close();
+
+});
+
+
+/*
+Verify that clicking the image in the TurfTime Equipment section opens the correct website
+ as specified in the <a> element of the HTML.
+*/
+test('TurfTime Equipment section link', async ({ page }) => {
+    const equipmentPage = new EquipmentPage(page);
+
+    // Navigate to equipment page
+    await equipmentPage.navigate();
+
+    // Locate the TurfTime Equipment section
+    await equipmentPage.turfTimeSection.scrollIntoViewIfNeeded();
+
+    // Locate the link
+    // const turfTimeLink = page.getByRole('link', { name: 'TurfTime.JPG' });
+
+    // Optional: wait for it to be fully visible
+    await equipmentPage.turfTimeLink.waitFor({ state: 'visible' });
+
+    // Click and capture the new tab
+    const [newPage] = await Promise.all([
+        page.context().waitForEvent('page'), // listens for the new tab
+        equipmentPage.turfTimeLink.click(),                  // click normally, no force needed
+    ]);
+
+    // Wait for it to load
+    await newPage.waitForLoadState();
+
+    // Verify URL
+    await expect(newPage).toHaveURL('https://www.turftimeeq.com/');
+
+    // Wait a few seconds before closing
+    await page.waitForTimeout(3000);
+
+    // Close the page
+    await page.close();
+    await newPage.close();
+
+});
+
+
+/*
+Verify that clicking the image in the Bluebird section opens the correct website
+ as specified in the <a> element of the HTML.
+*/
+test('Bluebird section link', async ({ page }) => {
+    const equipmentPage = new EquipmentPage(page);
+
+    // Navigate to equipment page
+    await equipmentPage.navigate();
+
+    // Locate the Bluebird section
+    await equipmentPage.bluebirdSection.scrollIntoViewIfNeeded();
+
+    // Locate the link
+    // const bluebirdLink = page.getByRole('link', { name: 'Bluebird.JPG' });
+
+    // Optional: wait for it to be fully visible
+    await equipmentPage.bluebirdLink.waitFor({ state: 'visible' });
+
+    // Click and capture the new tab
+    const [newPage] = await Promise.all([
+        page.context().waitForEvent('page'), // listens for the new tab
+        equipmentPage.bluebirdLink.click(),                  // click normally, no force needed
+    ]);
+
+    // Wait for it to load
+    await newPage.waitForLoadState();
+
+    // Verify URL
+    await expect(newPage).toHaveURL('https://bluebirdturf.com/');
+
+    // Wait a few seconds before closing
+    await page.waitForTimeout(3000);
+
+    // Close the page
+    await page.close();
+    await newPage.close();
+
+});
+
+
+/* HTML MISMATCH
+Verify that clicking the image in the Ryan section opens the correct website
+ as specified in the <a> element of the HTML.
+*/
+test('Ryan section link', async ({ page }) => {
+    const equipmentPage = new EquipmentPage(page);
+
+    // Navigate to equipment page
+    await equipmentPage.navigate();
+
+    // Locate the Ryan section
+    await equipmentPage.ryanSection.scrollIntoViewIfNeeded();
+
+    // Locate the link
+    // const ryanLink = page.getByRole('link', { name: 'Ryan.JPG' });
+
+    // Optional: wait for it to be fully visible
+    await equipmentPage.ryanLink.waitFor({ state: 'visible' });
+
+    // Click and capture the new tab
+    const [newPage] = await Promise.all([
+        page.context().waitForEvent('page'), // listens for the new tab
+        equipmentPage.ryanLink.click(),                  // click normally, no force needed
+    ]);
+
+    // Wait for it to load
+    await newPage.waitForLoadState();
+
+    // Verify URL
+    await expect(newPage).toHaveURL('https://www.ryanturf.com/');
+
+    // Wait a few seconds before closing
+    await page.waitForTimeout(3000);
+
+    // Close the page
+    await page.close();
+    await newPage.close();
+
+});
+
+/* 
+Verify that clicking the image in the Spectrum Technologies section opens the correct website
+ as specified in the <a> element of the HTML.
+*/
+test('Spectrum Technologies section link', async ({ page }) => {
+    const equipmentPage = new EquipmentPage(page);
+
+    // Navigate to equipment page
+    await equipmentPage.navigate();
+
+    // Locate the Spectrum Technologies section
+    await equipmentPage.spectrumSection.scrollIntoViewIfNeeded();
+
+    // Locate the link
+    // const spectrumLink = page.getByRole('link', { name: 'Sprectrum technologies.JPG' });
+
+    // Optional: wait for it to be fully visible
+    await equipmentPage.spectrumLink.waitFor({ state: 'visible' });
+
+    // Click and capture the new tab
+    const [newPage] = await Promise.all([
+        page.context().waitForEvent('page'), // listens for the new tab
+        equipmentPage.spectrumLink.click(),                  // click normally, no force needed
+    ]);
+
+    // Wait for it to load
+    await newPage.waitForLoadState();
+
+    // Verify URL
+    await expect(newPage).toHaveURL('https://www.specmeters.com/');
+
+    // Wait a few seconds before closing
+    await page.waitForTimeout(3000);
+
+    // Close the page
+    await page.close();
+    await newPage.close();
+
+});
+
+/* HTML MISMATCH
+Verify that clicking the image in the The Andersons section opens the correct website
+ as specified in the <a> element of the HTML.
+*/
+test('The Andersons section link', async ({ page }) => {
+    const equipmentPage = new EquipmentPage(page);
+
+    // Navigate to equipment page
+    await equipmentPage.navigate();
+
+    // Locate the The Andersons section
+    await equipmentPage.andersonsSection.scrollIntoViewIfNeeded();
+
+    // Locate the link
+    // const andersonsLink = page.getByRole('link', { name: 'the andersons.JPG' });
+
+    // Optional: wait for it to be fully visible
+    await equipmentPage.andersonsLink.waitFor({ state: 'visible' });
+
+    // Click and capture the new tab
+    const [newPage] = await Promise.all([
+        page.context().waitForEvent('page'), // listens for the new tab
+        equipmentPage.andersonsLink.click(),                  // click normally, no force needed
+    ]);
+
+    // Wait for it to load
+    await newPage.waitForLoadState();
+
+    // Verify URL
+    await expect(newPage).toHaveURL('https://intl.andersonspro.com/products/turf/agolf/spreaders');
+
+    // Wait a few seconds before closing
+    await page.waitForTimeout(3000);
+
+    // Close the page
+    await page.close();
+    await newPage.close();
+
+});
+
+/*
+Verify that clicking the image in the Standard Golf section opens the correct website
+ as specified in the <a> element of the HTML.
+*/
+test('Standard Golf section link', async ({ page }) => {
+    const equipmentPage = new EquipmentPage(page);
+
+    // Navigate to equipment page
+    await equipmentPage.navigate();
+
+    // Locate the Standard Golf section
+    await equipmentPage.standardGolfSection.scrollIntoViewIfNeeded();
+
+    // Locate the link
+    // const standardGolfLink = page.getByRole('link', { name: 'standard golf.JPG' });
+
+    // Optional: wait for it to be fully visible
+    await equipmentPage.standardGolfLink.waitFor({ state: 'visible' });
+
+    // Click and capture the new tab
+    const [newPage] = await Promise.all([
+        page.context().waitForEvent('page'), // listens for the new tab
+        equipmentPage.standardGolfLink.click(),                  // click normally, no force needed
+    ]);
+
+    // Wait for it to load
+    await newPage.waitForLoadState();
+
+    // Verify URL
+    await expect(newPage).toHaveURL('https://www.standardgolf.com/');
+
+    // Wait a few seconds before closing
+    await page.waitForTimeout(3000);
+
+    // Close the page
+    await page.close();
+    await newPage.close();
+
+});
+
+/*
+Verify that clicking the image in the Linemark International section opens the correct website
+ as specified in the <a> element of the HTML.
+*/
+test('Linemark International section link', async ({ page }) => {
+    const equipmentPage = new EquipmentPage(page);
+
+    // Navigate to equipment page
+    await equipmentPage.navigate();
+
+    // Locate the Linemark International section
+    await equipmentPage.linemarkInternationalSection.scrollIntoViewIfNeeded();
+
+    // Locate the link
+    // const linemarkInternationalLink = page.getByRole('link', { name: 'Linemark.JPG' });
+
+    // Optional: wait for it to be fully visible
+    await equipmentPage.linemarkInternationalLink.waitFor({ state: 'visible' });
+
+    // Click and capture the new tab
+    const [newPage] = await Promise.all([
+        page.context().waitForEvent('page'), // listens for the new tab
+        equipmentPage.linemarkInternationalLink.click(),                  // click normally, no force needed
+    ]);
+
+    // Wait for it to load
+    await newPage.waitForLoadState();
+
+    // Verify URL
+    await expect(newPage).toHaveURL('https://www.linemarkinternational.com/');
 
     // Wait a few seconds before closing
     await page.waitForTimeout(3000);
@@ -318,18 +803,18 @@ test('Gandy section link', async ({ page }) => {
     await equipmentPage.navigate();
 
     // Locate the Gandy section
-    await page.getByText('Gandy').first().scrollIntoViewIfNeeded();
+    await equipmentPage.gandySection.scrollIntoViewIfNeeded();
 
     // Locate the link
-    const gandyLink = page.getByRole('link', { name: 'Gandy.JPG' });
+    // const gandyLink = page.getByRole('link', { name: 'Gandy.JPG' });
 
     // Optional: wait for it to be fully visible
-    await gandyLink.waitFor({ state: 'visible' });
+    await equipmentPage.gandyLink.waitFor({ state: 'visible' });
 
     // Click and capture the new tab
     const [newPage] = await Promise.all([
         page.context().waitForEvent('page'), // listens for the new tab
-        gandyLink.click(),                     // click normally, no force needed
+        equipmentPage.gandyLink.click(),                     // click normally, no force needed
     ]);
 
     // Wait for it to load
@@ -337,6 +822,87 @@ test('Gandy section link', async ({ page }) => {
 
     // Verify URL
     await expect(newPage).toHaveURL('https://gandy.net/');
+
+    // Wait a few seconds before closing
+    await page.waitForTimeout(3000);
+
+    // Close the page
+    await page.close();
+    await newPage.close();
+
+});
+
+
+/* HTML MISMATCH
+Verify that clicking the image in the SnowEx section opens the correct website
+ as specified in the <a> element of the HTML.
+*/
+test('SnowEx section link', async ({ page }) => {
+    const equipmentPage = new EquipmentPage(page);
+
+    // Navigate to equipment page
+    await equipmentPage.navigate();
+
+    // Locate the SnowEx section
+    await equipmentPage.snowExSection.scrollIntoViewIfNeeded();
+
+    // Locate the link
+    // const snowExLink = page.getByRole('link', { name: 'SnowEx.JPG' });
+
+    // Optional: wait for it to be fully visible
+    await equipmentPage.snowExLink.waitFor({ state: 'visible' });
+
+    // Click and capture the new tab
+    const [newPage] = await Promise.all([
+        page.context().waitForEvent('page'), // listens for the new tab
+        equipmentPage.snowExLink.click(),                  // click normally, no force needed
+    ]);
+
+    // Wait for it to load
+    await newPage.waitForLoadState();
+
+    // Verify URL
+    await expect(newPage).toHaveURL('https://www.snowexproducts.com/');
+
+    // Wait a few seconds before closing
+    await page.waitForTimeout(3000);
+
+    // Close the page
+    await page.close();
+    await newPage.close();
+
+});
+
+/* HTML MISMATCH
+Verify that clicking the image in the TurfEx section opens the correct website
+ as specified in the <a> element of the HTML.
+*/
+test('TurfEx section link', async ({ page }) => {
+    const equipmentPage = new EquipmentPage(page);
+
+    // Navigate to equipment page
+    await equipmentPage.navigate();
+
+    // Locate the TurfEx section
+    await equipmentPage.turfExSection.scrollIntoViewIfNeeded();
+
+    // Locate the link
+    // const turfExLink = page.getByRole('link', { name: 'Turf Ex.JPG' });
+
+    // Optional: wait for it to be fully visible
+    await equipmentPage.turfExLink.waitFor({ state: 'visible' });
+
+    // Click and capture the new tab
+    const [newPage] = await Promise.all([
+        page.context().waitForEvent('page'), // listens for the new tab
+        equipmentPage.turfExLink.click(),                  // click normally, no force needed
+    ]);
+
+    // Wait for it to load
+    await newPage.waitForLoadState();
+
+    // Verify URL
+    await expect(newPage).toHaveURL('https://www.turfexproducts.com/');
 
     // Wait a few seconds before closing
     await page.waitForTimeout(3000);
@@ -358,7 +924,7 @@ test('SUBMIT button validation with empty fields', async ({ page }) => {
     await equipmentPage.navigate();
 
     //Locate the email input field
-    const emailInput = page.locator('input[name="email"]');
+    // const emailInput = page.locator('input[name="email"]');
 
     // Locate the SUBMIT form
     await equipmentPage.submitForm();
@@ -366,7 +932,7 @@ test('SUBMIT button validation with empty fields', async ({ page }) => {
     // Verify the email input shows an error (aria-invalid="true")
     // await expect(emailInput).toHaveAttribute('aria-invalid', 'true');
 
-    const validationMessage = await emailInput.evaluate(el => (el as HTMLInputElement).validationMessage);
+    const validationMessage = await equipmentPage.emailInput.evaluate(el => (el as HTMLInputElement).validationMessage);
     console.log('Browser says:', validationMessage);
 
     expect(validationMessage).not.toBe('');
@@ -380,7 +946,6 @@ test('SUBMIT button validation with empty fields', async ({ page }) => {
 });
 
 
-
 /*
 Verify that when clicking Submit with an invalid email in the form found in the 
 Let's Work Together section, the form is not submitted and an error is shown (invalid email format)
@@ -392,8 +957,8 @@ test('Email field with invalid format', async ({ page }) => {
     await equipmentPage.navigate();
 
     //fill email input field with invalid email format
-    const emailInput = page.locator('input[name="email"]');
-    await emailInput.fill('invalidemail');
+    // const emailInput = page.locator('input[name="email"]');
+    await equipmentPage.emailInput.fill('invalidemail');
 
     // Locate the SUBMIT form
     await equipmentPage.submitForm();
@@ -401,7 +966,7 @@ test('Email field with invalid format', async ({ page }) => {
     // Verify the email input shows an error (aria-invalid="true")
     // await expect(emailInput).toHaveAttribute('aria-invalid', 'true');
 
-    const validationMessage = await emailInput.evaluate(el => (el as HTMLInputElement).validationMessage);
+    const validationMessage = await equipmentPage.emailInput.evaluate(el => (el as HTMLInputElement).validationMessage);
     console.log('Browser says:', validationMessage);
 
     expect(validationMessage).not.toBe('');
@@ -425,14 +990,14 @@ test('Email link verification', async ({ page }) => {
     await equipmentPage.navigate();
 
     // Locator for the link
-    const emailLink = page.locator('text=turf@andreandson.com').first();
+    // const emailLink = page.locator('text=turf@andreandson.com').first();
 
     // Wait until the link is visible
-    await expect(emailLink).toBeVisible({ timeout: 5000 });
+    await expect(equipmentPage.emailLink).toBeVisible({ timeout: 5000 });
 
     // Get visible text and href
-    const text = (await emailLink.innerText()).trim();
-    const href = await emailLink.getAttribute('href');
+    const text = (await equipmentPage.emailLink.innerText()).trim();
+    const href = await equipmentPage.emailLink.getAttribute('href');
 
     console.log('Text:', text);
     console.log('Href:', href);

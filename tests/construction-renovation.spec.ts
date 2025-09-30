@@ -21,10 +21,10 @@ test('Construction and Renovation page hero section', async ({ page }) => {
     //Visit the web application 
     await constructionPage.navigate();
     
-    const heading: Locator = page.locator('span.wixui-rich-text__text', { hasText: 'Construction and Renovation' }).first();
+    // const headingText: Locator = page.locator('span.wixui-rich-text__text', { hasText: 'Construction and Renovation' }).first();
 
     //validate text matches with the hero section 
-    await expect(heading).toHaveText('Construction and Renovation');
+    await expect(constructionPage.headingText).toHaveText('Construction and Renovation');
 
     // Wait a few seconds before closing
     await page.waitForTimeout(3000);
@@ -44,13 +44,13 @@ test('Send button validation with empty fields', async ({ page }) => {
     await constructionPage.navigate();
 
     // Locate the email input field
-    const emailInput = page.locator('input[name="email"]');
+    // const emailInput = page.locator('input[name="email"]');
 
     // Click the SEND button
     await constructionPage.sendForm();
 
     //check validation message
-    const validationMessage = await emailInput.evaluate(el => (el as HTMLInputElement).validationMessage);
+    const validationMessage = await constructionPage.emailInput.evaluate(el => (el as HTMLInputElement).validationMessage);
     console.log('Browser says:', validationMessage);
 
     expect(validationMessage).not.toBe('');
@@ -74,14 +74,14 @@ test('Email field with invalid format', async ({ page }) => {
     await constructionPage.navigate();
 
     //fill email input field with invalid email format
-    const emailInput = page.locator('input[name="email"]');
-    await emailInput.fill('invalidemail');
+    // const emailInput = page.locator('input[name="email"]');
+    await constructionPage.emailInput.fill('invalidemail');
 
     // Click the SEND button
     await constructionPage.sendForm();
 
     //check validation message
-    const validationMessage = await emailInput.evaluate(el => (el as HTMLInputElement).validationMessage);
+    const validationMessage = await constructionPage.emailInput.evaluate(el => (el as HTMLInputElement).validationMessage);
     console.log('Browser says:', validationMessage);
 
     expect(validationMessage).not.toBe('');
@@ -105,14 +105,14 @@ test('Email link verification', async ({ page }) => {
     await constructionPage.navigate();
 
     // Locator for the link
-    const emailLink = page.locator('a[data-auto-recognition="true"]').first();
+    // const emailLink = page.locator('a[data-auto-recognition="true"]').first();
 
     // Wait until the link is visible
-    await expect(emailLink).toBeVisible({ timeout: 5000 });
+    await expect(constructionPage.emailLink).toBeVisible({ timeout: 5000 });
 
     // // Get visible text and href
-    const text = (await emailLink.innerText()).trim();
-    const href = await emailLink.getAttribute('href');
+    const text = (await constructionPage.emailLink.innerText()).trim();
+    const href = await constructionPage.emailLink.getAttribute('href');
 
     console.log('Text:', text);
     console.log('Href:', href);
