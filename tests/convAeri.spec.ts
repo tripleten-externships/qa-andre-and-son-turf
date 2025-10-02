@@ -40,3 +40,29 @@ test('page loads', async ({ page }) => {
   ).toBeVisible();  
 
   }});});
+
+  /*
+Verify top navigation menu links work (andreandson logo)
+Verify top navigation menu links work correctly
+Verify top navigation menu links work (Turf Products)
+Verify top navigation menu links work (Equiment)
+Verify top navigation menu links work (About)
+Verify top navigation menu links work (More)
+Verify top navigation menu links work (True Value)
+  */
+  test.describe('Test', () => {
+    test('top navigation menu links work', async ({ page }) => {
+      const convAero = new ConvAero(page);
+      //visit the home page
+      await page.goto('/');
+      //hover over to CONTRACT SERVICES
+      await convAero.hoverContractServices();
+      //click on CONVENTIONAL AERIFICATION
+      //click on andreandson logo
+      //click on Turf Products
+      //click on Equiment
+      //click on About
+      //click on More
+      //click on True Value
+
+  
