@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { homePage } from '../pages/homePage';
 
 /* Verify text title 'Turf King Fertilizer Products' is visible and matches. */
 
@@ -25,7 +26,7 @@ test('Turf King Fertilizer Products text matches', async ({ page }) => {
 //});
 
 
-/* Verify 'Learn More' links are visible under each sub-title. */
+/*verify subtext exists and matches*/
 
 test('verify subtext exists and matches', async ({ page }) => {  
  // visit the website 
@@ -39,5 +40,23 @@ test('verify subtext exists and matches', async ({ page }) => {
 
 /* verify subtext exists and matches */
     await expect(page.getByText('We are the Turf King for a reason.')).toHaveText('We are the Turf King for a reason.'); 
+
+})
+
+/* verify 'Turf King Fertilizer' image is visible */
+test('verify Turf King Fertilizer image is visible', async ({ page })=>{
+
+ // visit the website 
+    await page.goto('/');
+
+//hover over 'Turf Products' in the header.
+    await page.getByRole('link', { name: 'TURF PRODUCTS' }).first().hover();
+ 
+// click on 'Turf King Fertilizer'
+    await page.getByText('Turf King Fertilizer').nth(1).click();
+    
+//verify image is visible//
+    await expect(page.getByTestId('img_comp-klzdqziy1')).toBeVisible();
+    
 
 })
