@@ -8,6 +8,7 @@ export class EquipmentPage {
     readonly heroVideoContainer: Locator;
     readonly heroVideo: Locator;
     readonly submitButton: Locator;
+    readonly featureVideo: Locator;
     readonly baronessLink: Locator;
     readonly buffaloTurbineLink: Locator;
     readonly stihlLink: Locator;
@@ -49,6 +50,8 @@ export class EquipmentPage {
     readonly turfExLink: Locator;
     readonly emailInput: Locator;
     readonly emailLink: Locator;
+    initialTime: number = 0;
+    laterTime: number = 0;
 
     constructor(page: Page) {
         this.page = page;
@@ -57,6 +60,7 @@ export class EquipmentPage {
         this.heroVideoContainer = page.locator('#videoContainer_comp-klspq2qr');
         this.heroVideo = this.heroVideoContainer.locator('video');
         this.submitButton = page.locator('button[aria-label="Submit"]').first();
+        this.featureVideo = page.locator('[data-testid="playable"] video');
         this.baronessLink = page.locator('a[href="https://baroness.us/"]');
         this.buffaloTurbineLink = page.locator('a[href="https://buffaloturbine.com/"]');
         this.stihlLink = page.locator('a[href="https://andresoninc.stihldealer.net/"]');
@@ -117,6 +121,23 @@ export class EquipmentPage {
 
         const isPaused = await this.heroVideo.evaluate(video => (video as HTMLVideoElement).paused);
         return isPaused;
+    }
+
+    async playFeatureVideo() {
+        // Scroll the video into view
+        await this.featureVideo.scrollIntoViewIfNeeded();
+
+        // Wait for the video to be visible
+        await this.featureVideo.waitFor({ state: 'visible' });
+
+        // Play the video
+        await this.page.waitForTimeout(2000);
+
+
+        // Get the initial and later time
+        this.initialTime = await this.featureVideo.evaluate((v: HTMLVideoElement) => v.currentTime);
+        await this.page.waitForTimeout(1000);
+        this.laterTime = await this.featureVideo.evaluate((v: HTMLVideoElement) => v.currentTime);
     }
 
     async submitForm() {
