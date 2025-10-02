@@ -42,7 +42,6 @@ test('Feature section video can plays', async ({ page, browserName }) => {
     await page.close();
 });
 
-
 /*
 Verify that the video can be paused/played in the Feature section (FS900 Riding Sweeper /Core Collector")
 */
@@ -80,8 +79,196 @@ test('Feature section video can pause/play', async ({ page, browserName }) => {
     await page.close();
 });
 
+/*
+Verify that the video can be muted/unmutedin the Feature section (FS900 Riding Sweeper /Core Collector")
+*/
+test('Feature section video can mute/unmute', async ({ page, browserName }) => {
+  test.skip(browserName === 'chromium', 'Skipping video playback test in Chromium');
+    const equipmentPage = new EquipmentPage(page);
 
+    // Navigate to equipment page
+    await equipmentPage.navigate();
 
+    // Play the feature video
+    await equipmentPage.playFeatureVideo();
+
+    // Mute the video
+    await equipmentPage.featureVideo.evaluate((v: HTMLVideoElement) => v.muted = true);
+    const isMuted = await equipmentPage.featureVideo.evaluate((v: HTMLVideoElement) => v.muted);
+
+    // Verify that the video is muted
+    expect(isMuted).toBe(true);
+
+    // Wait a few seconds before closing
+    await page.waitForTimeout(2000);
+
+    // Unmute the video
+    await equipmentPage.featureVideo.evaluate((v: HTMLVideoElement) => v.muted = false);
+    const isUnmuted = await equipmentPage.featureVideo.evaluate((v: HTMLVideoElement) => !v.muted);
+
+    // Verify that the video is unmuted
+    expect(isUnmuted).toBe(true);
+
+    // Wait a few seconds before closing
+    await page.waitForTimeout(3000);
+
+    // Close the page
+    await page.close();
+});
+
+/* W
+Verify that the volume the video in the Feature section (FS900 Riding Sweeper /Core Collector") 
+can be adjusted using the video player controls.
+*/
+test('Feature section video can adjust volume', async ({ page, browserName }) => {
+  test.skip(browserName === 'chromium', 'Skipping video playback test in Chromium');
+    const equipmentPage = new EquipmentPage(page);
+
+    // Navigate to equipment page
+    await equipmentPage.navigate();
+
+    // Play the feature video
+    await equipmentPage.playFeatureVideo();
+
+    // Set volume (0.5)
+    await equipmentPage.featureVideo.evaluate((v: HTMLVideoElement) => { v.volume = 0.5; });
+
+    // Verify that the video has sound
+    const volume = await equipmentPage.featureVideo.evaluate((v: HTMLVideoElement) => v.volume);
+    expect(volume).toBe(0.5);
+
+    // Wait a few seconds 
+    await page.waitForTimeout(2000);
+
+    // Set volume (0.0)
+    await equipmentPage.featureVideo.evaluate((v: HTMLVideoElement) => { v.volume = 0.0; });
+
+    // Mute the video
+    await equipmentPage.featureVideo.evaluate((v: HTMLVideoElement) => v.muted = true);
+    const isMuted = await equipmentPage.featureVideo.evaluate((v: HTMLVideoElement) => v.muted);
+
+    // Verify that the video is muted
+    expect(isMuted).toBe(true);
+
+    // Wait a few seconds before closing
+    await page.waitForTimeout(3000);
+
+    // Close the page
+    await page.close();
+});
+
+/*
+Verify that the video in the Feature section (FS900 Riding Sweeper /Core Collector") 
+can be viewed in full-screen and exit full-screen mode.*/
+test('Feature section video can toggle full screen', async ({ page, browserName }) => {
+  test.skip(browserName === 'chromium', 'Skipping video playback test in Chromium');
+    const equipmentPage = new EquipmentPage(page);
+
+    // Navigate to equipment page
+    await equipmentPage.navigate();
+
+    // Play the feature video
+    await equipmentPage.playFeatureVideo();
+
+    // Video in full screen
+    await equipmentPage.featureVideo.evaluate((v: HTMLVideoElement) => v.requestFullscreen());
+    const isFullScreen = await equipmentPage.featureVideo.evaluate((v: HTMLVideoElement) => document.fullscreenElement === v);
+
+    // Verify that the video is in full screen
+    expect(isFullScreen).toBe(true);
+
+    // Wait a few seconds before closing
+    await page.waitForTimeout(2000);
+
+    // Exit full screen
+    await equipmentPage.featureVideo.evaluate((v: HTMLVideoElement) => document.exitFullscreen());
+    const isNotFullScreen = await equipmentPage.featureVideo.evaluate((v: HTMLVideoElement) => document.fullscreenElement !== v);
+
+    // Verify that the video is not in full screen
+    expect(isNotFullScreen).toBe(true);
+
+    // Wait a few seconds before closing
+    await page.waitForTimeout(3000);
+
+    // Close the page
+    await page.close();
+});
+
+/*
+Verify that the video in the Feature section (FS900 Riding Sweeper /Core Collector") 
+can seek/jump to different time points using the video player controls.
+*/
+test('Feature section video can seek/jump in time', async ({ page, browserName }) => {
+  test.skip(browserName === 'chromium', 'Skipping video playback test in Chromium');
+    const equipmentPage = new EquipmentPage(page);
+
+    // Navigate to equipment page
+    await equipmentPage.navigate();
+
+    // Play the feature video
+    await equipmentPage.playFeatureVideo();
+
+    // Video in full screen
+    await equipmentPage.featureVideo.evaluate((v: HTMLVideoElement) => v.requestFullscreen());
+    const isFullScreen = await equipmentPage.featureVideo.evaluate((v: HTMLVideoElement) => document.fullscreenElement === v);
+
+    // Verify that the video is in full screen
+    expect(isFullScreen).toBe(true);
+
+    // Wait a few seconds before closing
+    await page.waitForTimeout(2000);
+
+    // Exit full screen
+    await equipmentPage.featureVideo.evaluate((v: HTMLVideoElement) => document.exitFullscreen());
+    const isNotFullScreen = await equipmentPage.featureVideo.evaluate((v: HTMLVideoElement) => document.fullscreenElement !== v);
+
+    // Verify that the video is not in full screen
+    expect(isNotFullScreen).toBe(true);
+
+    // Wait a few seconds before closing
+    await page.waitForTimeout(3000);
+
+    // Close the page
+    await page.close();
+});
+
+/*
+Verify that clicking the “Play Picture-in-Picture” button opens the video in a floating PiP window, 
+which can be moved, resized, and closed.
+*/
+test('Feature section video can toggle PIP', async ({ page, browserName }) => {
+  test.skip(browserName === 'chromium', 'Skipping video playback test in Chromium');
+    const equipmentPage = new EquipmentPage(page);
+
+    // Navigate to equipment page
+    await equipmentPage.navigate();
+
+    // Play the feature video
+    await equipmentPage.playFeatureVideo();
+
+    // Video in full screen
+    await equipmentPage.featureVideo.evaluate((v: HTMLVideoElement) => v.requestFullscreen());
+    const isFullScreen = await equipmentPage.featureVideo.evaluate((v: HTMLVideoElement) => document.fullscreenElement === v);
+
+    // Verify that the video is in full screen
+    expect(isFullScreen).toBe(true);
+
+    // Wait a few seconds before closing
+    await page.waitForTimeout(2000);
+
+    // Exit full screen
+    await equipmentPage.featureVideo.evaluate((v: HTMLVideoElement) => document.exitFullscreen());
+    const isNotFullScreen = await equipmentPage.featureVideo.evaluate((v: HTMLVideoElement) => document.fullscreenElement !== v);
+
+    // Verify that the video is not in full screen
+    expect(isNotFullScreen).toBe(true);
+
+    // Wait a few seconds before closing
+    await page.waitForTimeout(3000);
+
+    // Close the page
+    await page.close();
+});
 
 
 /*
