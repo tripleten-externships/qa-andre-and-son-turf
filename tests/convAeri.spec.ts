@@ -1,8 +1,11 @@
 import { test, expect } from '@playwright/test';
-import { ConvAero } from '../pages/convAeroPage';
+import { ConvAero } from '../pages/convAeriPage';
 
 
 /*Verify page loads successfully
+  Verify that at least one image exists in the "main content" region
+  Verify specific images by their accessible names
+  Verify page description text displays correctly
 */
 test.describe('Test', () => {
 test('page loads', async ({ page }) => {
@@ -29,6 +32,11 @@ test('page loads', async ({ page }) => {
   await expect(
     page.getByRole('img', { name: 'Conventional Aercore Greens 2' })
   ).toBeVisible();
+  //Verify page description text displays correctly
+  await expect(
+    page.getByText(
+      'Conventional aerification is the process of removing small cores of soil from the turf and soil profile to reduce compaction, improve water infiltration, and enhance overall turf health. This method is commonly used on golf courses, sports fields, and other high-traffic turf areas.'
+    )
+  ).toBeVisible();  
 
-  }
-});
+  }});});
