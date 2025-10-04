@@ -1,7 +1,7 @@
 import { test, Locator, expect } from '@playwright/test';
 import { TurfKingFertilizerPage } from '../pages/turfKingFertilizer.page';
 
-test('Turf King Standard SGN 220 is visible', async ({ page }) => { 
+test('Turf King Standard SGN 220 title and text are visible', async ({ page }) => { 
     const turfKingFertilizerPage=new TurfKingFertilizerPage(page);
 
     
@@ -19,7 +19,8 @@ test('Turf King Standard SGN 220 is visible', async ({ page }) => {
 
 
 //Turf King Standard SGN 220 text is visible
-    //await expect(turfKingFertilizerPage.turfKingStandardSGN220Text).toHaveText('Turf King SGN 220 is the ideal fertilizer for golf course rough,');
+    //await expect(turfKingFertilizerPage.turfKingStandardSGN220Text).toBeVisible();
+
 })
 
 test('Turf King Standard SGN 220 learn more link', async ({ page }) => { 

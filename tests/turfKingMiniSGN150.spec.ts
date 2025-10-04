@@ -1,7 +1,7 @@
 import { test, Locator, expect } from '@playwright/test';
 import { TurfKingFertilizerPage } from '../pages/turfKingFertilizer.page';
 
-test('Turf King Enhanced SGN 220 title and text are visible', async ({ page }) => { 
+test('Turf King Mini SGN 150 title and text are visible', async ({ page }) => { 
     const turfKingFertilizerPage=new TurfKingFertilizerPage(page);
 
     
@@ -14,15 +14,18 @@ test('Turf King Enhanced SGN 220 title and text are visible', async ({ page }) =
 // click on 'Turf King Fertilizer'
     await page.getByText('Turf King Fertilizer').nth(1).click();
 
-// turf king enhanced title to be visible
-   await expect(turfKingFertilizerPage.turfKingEnhancedSGN220Title).toBeVisible();
+//title is visible
+    await expect(turfKingFertilizerPage.turfKingMini150Title).toBeVisible();
 
-//verify 'Turf King Enhanced SGN 220' text is visible and matches
- await expect(turfKingFertilizerPage.turfKingEnhancedSGN220Text).toBeVisible();
- 
+//text is visible
+    await expect(turfKingFertilizerPage.turfKingMiniText).toBeVisible();
+
+
 })
 
-test('Turf King Enhanced SGN 220 learn more link', async ({ page }) => { 
+//learn more link
+
+test('Turf King Mini SGN 150 learn more link', async ({ page }) => { 
     const turfKingFertilizerPage=new TurfKingFertilizerPage(page);
 // visit the website 
     await page.goto('/');
@@ -33,11 +36,10 @@ test('Turf King Enhanced SGN 220 learn more link', async ({ page }) => {
 // click on 'Turf King Fertilizer'
     await page.getByText('Turf King Fertilizer').nth(1).click();
 
-//learn more link is visible
-   await expect(turfKingFertilizerPage.turfKingEnhancedLearnMoreLink).toBeVisible();
-
+//learn more is visible
+    await expect(turfKingFertilizerPage.turfkingMiniLearnMoreLink).toBeVisible();
 
 //click on learn more, verify it takes you to the proper page
-    await page.getByRole("link", {name: 'Learn More'}).nth(1).click();
+    await page.getByRole("link", {name: 'Learn More'}).nth(2).click();
 
 })
