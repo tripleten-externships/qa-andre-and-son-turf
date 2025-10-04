@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { homePage } from '../pages/homePage';
+import { TurfKingFertilizerPage } from '../pages/turfKingFertilizer.page';
 
 /* Verify text title 'Turf King Fertilizer Products' is visible and matches. */
 
@@ -18,17 +18,12 @@ test('Turf King Fertilizer Products text matches', async ({ page }) => {
 
 });
 
-//test('Learn More button', async ({ page }) => {  
-//click on 'Learn More'
-    //await expect(page.getByText('Learn More')).toBeVisible();
-    //await page.locator('#comp-klzdqzkr1__item1').getByTestId('linkElement').click();
-
-//});
 
 
 /*verify subtext exists and matches*/
 
-test('verify subtext exists and matches', async ({ page }) => {  
+test('verify subtext exists and matches', async ({ page }) => { 
+     
  // visit the website 
     await page.goto('/');
 
@@ -45,8 +40,11 @@ test('verify subtext exists and matches', async ({ page }) => {
 
 /* verify 'Turf King Fertilizer' image is visible */
 test('verify Turf King Fertilizer image is visible', async ({ page })=>{
+  
+//instance of page object
+   const turfKingFertilizerPage = new TurfKingFertilizerPage(page);
 
- // visit the website 
+// visit the website 
     await page.goto('/');
 
 //hover over 'Turf Products' in the header.
@@ -56,7 +54,29 @@ test('verify Turf King Fertilizer image is visible', async ({ page })=>{
     await page.getByText('Turf King Fertilizer').nth(1).click();
     
 //verify image is visible//
-    await expect(page.getByTestId('img_comp-klzdqziy1')).toBeVisible();
+    await expect(turfKingFertilizerPage.turfKingFertImg).toBeVisible();
     
+})
+
+
+/* verify 'Turf King Fertilizer' bag image is visible */
+test('verify Turf King Fertilizer bag image is visible', async ({ page })=>{
+
+//instance of page object
+  const turfKingFertilizerPage = new TurfKingFertilizerPage(page);
+
+// visit the website 
+    await page.goto('/');
+
+//hover over 'Turf Products' in the header.
+    await page.getByRole('link', { name: 'TURF PRODUCTS' }).first().hover();
+ 
+// click on 'Turf King Fertilizer'
+    await page.getByText('Turf King Fertilizer').nth(1).click();
+
+// verify image is visible
+
+  // verify image is visible
+   await expect(turfKingFertilizerPage.turfKingFertImgBag).toBeVisible();
 
 })

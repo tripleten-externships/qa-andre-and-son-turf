@@ -1,8 +1,9 @@
-import { Locator, Page} from "@playwright/test";
+import { Locator, Page, expect} from "@playwright/test";
 
-export class homePage{
+export class TurfKingFertilizerPage{
 
 readonly page: Page;
+
 readonly turfPoductsMenu: Locator;
 readonly turfKingFertilizer: Locator;
 readonly turfKingFertilizerProductsTitle: Locator;
@@ -36,14 +37,15 @@ readonly theAndersonsText: Locator;
 readonly theAndersonsLearnMoreLink: Locator;
 
 
+
 constructor(page: Page){
     this.page=page;
     this.turfPoductsMenu=page.getByRole('link', { name: 'TURF PRODUCTS' }).nth(0);
     this.turfKingFertilizer=page.getByRole('link', {name:'Turf King Fertilizer'}).nth(1);
     this.turfKingFertilizerProductsTitle=page.getByText('Turf King Fertilizer Products');
     this.heroSubtitleText=page.getByText('We are the Turf King for a reason.');
-    this.turfKingFertImg=page.getByTestId('img_comp-klzdqziy1');
-    this.turfKingFertImgBag=page.getByTestId('img_comp-klzdqzj31');
+    this.turfKingFertImg=page.getByAltText('turf_king_fert.png');
+    this.turfKingFertImgBag=page.getByAltText('New Bag Template.jpg');
     this.contractServicesMenu=page.getByText('CONTRACT SERVICES');
     this.equipmentMenu=page.getByTestId('comp-igauz7ee2label');
     this.aboutMenu=page.getByTestId('comp-igauz7ee3label');
@@ -60,7 +62,7 @@ constructor(page: Page){
     this.turfKingMini150Title=page.getByText('Turf King Mini SGN 150', {exact: true});
     this.turfKingMiniText=page.getByText('Fairways, tees, and turf areas');
     this.turfkingMiniLearnMoreLink=page.getByRole("link", {name: 'Learn More'}).nth(2); 
-    this.turfKingMicro90Title=page.getByText('Turf King Micro SGN 90' {exact: true});
+    this.turfKingMicro90Title=page.getByText('Turf King Micro SGN 90', {exact: true});
     this.turfKingMicro90Text=page.getByText('Turf King SGN 90 is the smallest granular fertilizer');
     this.turfKingMicro90LearnMoreLink=page.getByRole("link", {name: 'Learn More'}).nth(3);
     this.natureSafeTitle=page.getByTestId('comp-klzdqzkh__item-klpolwaj');
@@ -70,13 +72,22 @@ constructor(page: Page){
     this.theAndersonsText=page.getByText('We offer a full range of fertilizers,');
     this.theAndersonsLearnMoreLink=page.getByRole("link", {name: 'Learn More'}).last();
 
-
-
-
 }
 
 
+async navigate(){
 
+// visit the website 
+    await this.page.goto('/');
+
+//hover over 'Turf Products' in the header.
+    await this.turfPoductsMenu.hover();
+
+// Wait until the link is visible
+    await this.turfKingFertilizer.waitFor({ state: 'visible' });
+ 
+// click on 'Turf King Fertilizer'
+    await this.turfKingFertilizer.click();
 }
 
-await page.goto('https://www.andreandson.com/');
+}
