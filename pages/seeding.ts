@@ -15,7 +15,7 @@ export class SeedingPage{
     constructor(page: Page){
         this.page = page;
         this.contractServicesLink = page.getByRole('link', { name: 'CONTRACT SERVICES' }).nth(0);
-        this.seedingLink = page.getByRole('link', { name: 'SEEDING' });
+        this.seedingLink = page.getByRole('link', { name: 'SEEDING' }).nth(0);
         this.sendButton = page.locator('button[aria-label="Send"]');
         this.headingText = page.locator('span.wixui-rich-text__text', { hasText: 'Seeding' }).first();
         this.emailInput = page.locator('input[name="email"]');

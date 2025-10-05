@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect, APIRequestContext, Page } from '@playwright/test';
 import { EquipmentPage } from '../pages/equipment';
 
 /*
@@ -116,7 +116,7 @@ test('Feature section video can mute/unmute', async ({ page, browserName }) => {
     await page.close();
 });
 
-/* W
+/* 
 Verify that the volume the video in the Feature section (FS900 Riding Sweeper /Core Collector") 
 can be adjusted using the video player controls.
 */
@@ -194,7 +194,7 @@ test('Feature section video can toggle full screen', async ({ page, browserName 
     await page.close();
 });
 
-/*
+/* 
 Verify that the video in the Feature section (FS900 Riding Sweeper /Core Collector") 
 can seek/jump to different time points using the video player controls.
 */
@@ -208,22 +208,21 @@ test('Feature section video can seek/jump in time', async ({ page, browserName }
     // Play the feature video
     await equipmentPage.playFeatureVideo();
 
-    // Video in full screen
-    await equipmentPage.featureVideo.evaluate((v: HTMLVideoElement) => v.requestFullscreen());
-    const isFullScreen = await equipmentPage.featureVideo.evaluate((v: HTMLVideoElement) => document.fullscreenElement === v);
+    // Jump to 20 seconds
+    await equipmentPage.featureVideo.evaluate((v: HTMLVideoElement) => { v.currentTime = 20; });
 
-    // Verify that the video is in full screen
-    expect(isFullScreen).toBe(true);
+    // Verify that the video jumped to approximately 20seconds
+    let time = await equipmentPage.featureVideo.evaluate((v: HTMLVideoElement) => v.currentTime);
+    expect(time).toBeGreaterThanOrEqual(20);
 
     // Wait a few seconds before closing
     await page.waitForTimeout(2000);
 
-    // Exit full screen
-    await equipmentPage.featureVideo.evaluate((v: HTMLVideoElement) => document.exitFullscreen());
-    const isNotFullScreen = await equipmentPage.featureVideo.evaluate((v: HTMLVideoElement) => document.fullscreenElement !== v);
-
-    // Verify that the video is not in full screen
-    expect(isNotFullScreen).toBe(true);
+    // Jump back to 5s
+    await equipmentPage.featureVideo.evaluate(v => { (v as HTMLVideoElement).currentTime = 5; });
+    time = await equipmentPage.featureVideo.evaluate(v => (v as HTMLVideoElement).currentTime);
+    expect(time).toBeLessThan(20);
+    expect(time).toBeGreaterThanOrEqual(5);
 
     // Wait a few seconds before closing
     await page.waitForTimeout(3000);
@@ -232,7 +231,7 @@ test('Feature section video can seek/jump in time', async ({ page, browserName }
     await page.close();
 });
 
-/*
+/* NOT WORKING - NEEDS FIX
 Verify that clicking the “Play Picture-in-Picture” button opens the video in a floating PiP window, 
 which can be moved, resized, and closed.
 */
@@ -246,22 +245,35 @@ test('Feature section video can toggle PIP', async ({ page, browserName }) => {
     // Play the feature video
     await equipmentPage.playFeatureVideo();
 
-    // Video in full screen
-    await equipmentPage.featureVideo.evaluate((v: HTMLVideoElement) => v.requestFullscreen());
-    const isFullScreen = await equipmentPage.featureVideo.evaluate((v: HTMLVideoElement) => document.fullscreenElement === v);
+    // Wait until video metadata is loaded
+    await equipmentPage.featureVideo.evaluate((v: HTMLVideoElement) => {
+        return new Promise<void>((resolve) => {
+            if (v.readyState >= 1) {
+                // HAVE_METADATA
+                resolve();
+            } else {
+                v.addEventListener('loadedmetadata', () => resolve(), { once: true });
+            }
+        });
+    });
 
-    // Verify that the video is in full screen
-    expect(isFullScreen).toBe(true);
+    
+    // Request Picture-in-Picture
+    // await equipmentPage.featureVideo.evaluate(async ((v: HTMLVideoElement) => {v.requestPictureInPicture();
+    await equipmentPage.featureVideo.evaluate((v: HTMLVideoElement) => v.requestPictureInPicture());
+    const isPiP = await equipmentPage.featureVideo.evaluate((v: HTMLVideoElement) => document.pictureInPictureElement !== null);
+    
 
-    // Wait a few seconds before closing
-    await page.waitForTimeout(2000);
+    // Assert video is in PiP   
+    // const isPiP = await page.evaluate(() => document.pictureInPictureElement !== null);
+    expect(isPiP).toBe(true);
 
-    // Exit full screen
-    await equipmentPage.featureVideo.evaluate((v: HTMLVideoElement) => document.exitFullscreen());
-    const isNotFullScreen = await equipmentPage.featureVideo.evaluate((v: HTMLVideoElement) => document.fullscreenElement !== v);
+    // Exit PiP
+    await page.evaluate(() => document.exitPictureInPicture());
 
-    // Verify that the video is not in full screen
-    expect(isNotFullScreen).toBe(true);
+    // Assert PiP is closed
+    const isPiPClosed = await page.evaluate(() => document.pictureInPictureElement === null);
+    expect(isPiPClosed).toBe(true);
 
     // Wait a few seconds before closing
     await page.waitForTimeout(3000);
@@ -269,7 +281,6 @@ test('Feature section video can toggle PIP', async ({ page, browserName }) => {
     // Close the page
     await page.close();
 });
-
 
 /*
 Verify that clicking the image in the Baroness section opens the correct website
@@ -293,7 +304,7 @@ test('Baroness section link', async ({ page }) => {
     // Click and capture the new tab
     const [newPage] = await Promise.all([
         page.context().waitForEvent('page'), // listens for the new tab
-        equipmentPage.baronessLink.click(),                 // click normally, no force needed
+        equipmentPage.baronessLink.click(),  // click normally, no force needed
     ]);
 
     // Wait for it to load
@@ -333,7 +344,7 @@ test('Buffallo Turnbine section link', async ({ page }) => {
     // Click and capture the new tab
     const [newPage] = await Promise.all([
         page.context().waitForEvent('page'), // listens for the new tab
-        equipmentPage.buffaloTurbineLink.click(),           // click normally, no force needed
+        equipmentPage.buffaloTurbineLink.click(),  // click normally, no force needed
     ]);
 
     // Wait for it to load
@@ -373,7 +384,7 @@ test('STIHL section link', async ({ page }) => {
     // Click and capture the new tab
     const [newPage] = await Promise.all([
         page.context().waitForEvent('page'), // listens for the new tab
-        equipmentPage.stihlLink.click(),                    // click normally, no force needed
+        equipmentPage.stihlLink.click(),   // click normally, no force needed
     ]);
 
     // Wait for it to load
@@ -457,7 +468,7 @@ test('RotaDairon section link', async ({ page }) => {
     // Click and capture the new tab
     const [newPage] = await Promise.all([
         page.context().waitForEvent('page'), // listens for the new tab
-        equipmentPage.rotaDaironLink.click(),        // click normally, no force needed
+        equipmentPage.rotaDaironLink.click(),  // click normally, no force needed
     ]);
 
     // Wait for it to load
@@ -497,7 +508,7 @@ test('Lely section link', async ({ page }) => {
     // Click and capture the new tab
     const [newPage] = await Promise.all([
         page.context().waitForEvent('page'), // listens for the new tab
-        equipmentPage.lelyLink.click(),                     // click normally, no force needed
+        equipmentPage.lelyLink.click(),    // click normally, no force needed
     ]);
 
     // Wait for it to load
@@ -537,7 +548,7 @@ test('EarthWay section link', async ({ page }) => {
     // Click and capture the new tab
     const [newPage] = await Promise.all([
         page.context().waitForEvent('page'), // listens for the new tab
-        equipmentPage.earthWayLink.click(),                  // click normally, no force needed
+        equipmentPage.earthWayLink.click(),   // click normally, no force needed
     ]);
 
     // Wait for it to load
@@ -554,7 +565,6 @@ test('EarthWay section link', async ({ page }) => {
     await newPage.close();
 
 });
-
 
 /*
 Verify that clicking the image in the Micro Rain section opens the correct website
@@ -578,7 +588,7 @@ test('Micro Rain section link', async ({ page }) => {
     // Click and capture the new tab
     const [newPage] = await Promise.all([
         page.context().waitForEvent('page'), // listens for the new tab
-        equipmentPage.microRainLink.click(),                  // click normally, no force needed
+        equipmentPage.microRainLink.click(),  // click normally, no force needed
     ]);
 
     // Wait for it to load
@@ -595,7 +605,6 @@ test('Micro Rain section link', async ({ page }) => {
     await newPage.close();
 
 });
-
 
 /*
 Verify that clicking the image in the Ferris section opens the correct website
@@ -619,7 +628,7 @@ test('Ferris section link', async ({ page }) => {
     // Click and capture the new tab
     const [newPage] = await Promise.all([
         page.context().waitForEvent('page'), // listens for the new tab
-        equipmentPage.ferrisLink.click(),                  // click normally, no force needed
+        equipmentPage.ferrisLink.click(),   // click normally, no force needed
     ]);
 
     // Wait for it to load
@@ -637,12 +646,11 @@ test('Ferris section link', async ({ page }) => {
 
 });
 
-
-/* Link leads to a 404 PAGE
+/* LINK LEADS TO A 404 PAGE
 Verify that clicking the image in the Broyhill section opens the correct website
  as specified in the <a> element of the HTML.
 */
-test('Broyhill section link', async ({ page }) => {
+test.fail('Broyhill section link', async ({ page, request }) => {
     const equipmentPage = new EquipmentPage(page);
 
     // Navigate to equipment page
@@ -657,27 +665,34 @@ test('Broyhill section link', async ({ page }) => {
     // Optional: wait for it to be fully visible
     await equipmentPage.broyhillLink.waitFor({ state: 'visible' });
 
+    // Capture the target URL (this is what we expect)
+    const expectedUrl = 'https://broyhill.com/golf-sports-turf-care/grooming/trailers/silhouette-i-sports-turf/';
+
+    // Backend check BEFORE clicking
+    const response = await request.get(expectedUrl);
+    expect(response.status(), `Backend returned ${response.status()} for ${expectedUrl}`).toBe(200);
+
+    
     // Click and capture the new tab
     const [newPage] = await Promise.all([
         page.context().waitForEvent('page'), // listens for the new tab
-        equipmentPage.broyhillLink.click(),                  // click normally, no force needed
+        equipmentPage.broyhillLink.click(),  // click normally, no force needed
     ]);
 
     // Wait for it to load
     await newPage.waitForLoadState();
 
-    // Verify URL
-    await expect(newPage).toHaveURL('https://broyhill.com/golf-sports-turf-care/grooming/trailers/silhouette-i-sports-turf/');
+    // // Verify URL
+    // await expect(newPage).toHaveURL('https://broyhill.com/golf-sports-turf-care/grooming/trailers/silhouette-i-sports-turf/');
 
     // Wait a few seconds before closing
-    await page.waitForTimeout(3000);
+    await newPage.waitForTimeout(3000);
 
     // Close the page
     await page.close();
     await newPage.close();
 
 });
-
 
 /*
 Verify that clicking the image in the Dream Turf Equipment section opens the correct website
@@ -701,7 +716,7 @@ test('Dream Turf Equipment section link', async ({ page }) => {
     // Click and capture the new tab
     const [newPage] = await Promise.all([
         page.context().waitForEvent('page'), // listens for the new tab
-        equipmentPage.dreamTurfLink.click(),                  // click normally, no force needed
+        equipmentPage.dreamTurfLink.click(),  // click normally, no force needed
     ]);
 
     // Wait for it to load
@@ -718,7 +733,6 @@ test('Dream Turf Equipment section link', async ({ page }) => {
     await newPage.close();
 
 });
-
 
 /*
 Verify that clicking the image in the TurfTime Equipment section opens the correct website
@@ -742,7 +756,7 @@ test('TurfTime Equipment section link', async ({ page }) => {
     // Click and capture the new tab
     const [newPage] = await Promise.all([
         page.context().waitForEvent('page'), // listens for the new tab
-        equipmentPage.turfTimeLink.click(),                  // click normally, no force needed
+        equipmentPage.turfTimeLink.click(), // click normally, no force needed
     ]);
 
     // Wait for it to load
@@ -759,7 +773,6 @@ test('TurfTime Equipment section link', async ({ page }) => {
     await newPage.close();
 
 });
-
 
 /*
 Verify that clicking the image in the Bluebird section opens the correct website
@@ -783,7 +796,7 @@ test('Bluebird section link', async ({ page }) => {
     // Click and capture the new tab
     const [newPage] = await Promise.all([
         page.context().waitForEvent('page'), // listens for the new tab
-        equipmentPage.bluebirdLink.click(),                  // click normally, no force needed
+        equipmentPage.bluebirdLink.click(), // click normally, no force needed
     ]);
 
     // Wait for it to load
@@ -801,12 +814,11 @@ test('Bluebird section link', async ({ page }) => {
 
 });
 
-
 /* URL MISMATCH -- REDIRECTS TO ANOTHER PAGE
 Verify that clicking the image in the Ryan section opens the correct website
  as specified in the <a> element of the HTML.
 */
-test('Ryan section link', async ({ page }) => {
+test.fail('Ryan section link', async ({ page }) => {
     const equipmentPage = new EquipmentPage(page);
 
     // Navigate to equipment page
@@ -864,7 +876,7 @@ test('Spectrum Technologies section link', async ({ page }) => {
     // Click and capture the new tab
     const [newPage] = await Promise.all([
         page.context().waitForEvent('page'), // listens for the new tab
-        equipmentPage.spectrumLink.click(),                  // click normally, no force needed
+        equipmentPage.spectrumLink.click(),   // click normally, no force needed
     ]);
 
     // Wait for it to load
@@ -886,7 +898,7 @@ test('Spectrum Technologies section link', async ({ page }) => {
 Verify that clicking the image in the The Andersons section opens the correct website
  as specified in the <a> element of the HTML.
 */
-test('The Andersons section link', async ({ page }) => {
+test.fail('The Andersons section link', async ({ page }) => {
     const equipmentPage = new EquipmentPage(page);
 
     // Navigate to equipment page
@@ -904,7 +916,7 @@ test('The Andersons section link', async ({ page }) => {
     // Click and capture the new tab
     const [newPage] = await Promise.all([
         page.context().waitForEvent('page'), // listens for the new tab
-        equipmentPage.andersonsLink.click(),                  // click normally, no force needed
+        equipmentPage.andersonsLink.click(), // click normally, no force needed
     ]);
 
     // Wait for it to load
@@ -944,7 +956,7 @@ test('Standard Golf section link', async ({ page }) => {
     // Click and capture the new tab
     const [newPage] = await Promise.all([
         page.context().waitForEvent('page'), // listens for the new tab
-        equipmentPage.standardGolfLink.click(),                  // click normally, no force needed
+        equipmentPage.standardGolfLink.click(), // click normally, no force needed
     ]);
 
     // Wait for it to load
@@ -984,7 +996,7 @@ test('Linemark International section link', async ({ page }) => {
     // Click and capture the new tab
     const [newPage] = await Promise.all([
         page.context().waitForEvent('page'), // listens for the new tab
-        equipmentPage.linemarkInternationalLink.click(),                  // click normally, no force needed
+        equipmentPage.linemarkInternationalLink.click(),      // click normally, no force needed
     ]);
 
     // Wait for it to load
@@ -1024,7 +1036,7 @@ test('Gandy section link', async ({ page }) => {
     // Click and capture the new tab
     const [newPage] = await Promise.all([
         page.context().waitForEvent('page'), // listens for the new tab
-        equipmentPage.gandyLink.click(),                     // click normally, no force needed
+        equipmentPage.gandyLink.click(),  // click normally, no force needed
     ]);
 
     // Wait for it to load
@@ -1041,7 +1053,6 @@ test('Gandy section link', async ({ page }) => {
     await newPage.close();
 
 });
-
 
 /* 
 Verify that clicking the image in the SnowEx section opens the correct website
@@ -1065,7 +1076,7 @@ test('SnowEx section link', async ({ page }) => {
     // Click and capture the new tab
     const [newPage] = await Promise.all([
         page.context().waitForEvent('page'), // listens for the new tab
-        equipmentPage.snowExLink.click(),                  // click normally, no force needed
+        equipmentPage.snowExLink.click(),  // click normally, no force needed
     ]);
 
     // Wait for it to load
@@ -1191,7 +1202,8 @@ test('Email field with invalid format', async ({ page }) => {
 
 
 /*
-Ensure that the visible email address displayed in the Let’s Work Together section matches the mailto: value in the HTML code.
+Ensure that the visible email address displayed in the Let’s Work Together section matches
+ the mailto: value in the HTML code.
 */
 test.fail('Email link verification', async ({ page }) => {
     const equipmentPage = new EquipmentPage(page);
