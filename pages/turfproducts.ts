@@ -47,6 +47,7 @@ export class TuftProductsPage{
     readonly iceMeltText: Locator;
     readonly iceMeltImageAltText: Locator;
     readonly imLearnMoreButton: Locator;
+    readonly liquidFertilizerLink: Locator;
 
     constructor(page: Page){
         this.page=page;
@@ -95,6 +96,7 @@ export class TuftProductsPage{
         this.iceMeltText=page.getByRole('paragraph').filter({ hasText: 'Ice melt is designed to make' });
         this.iceMeltImageAltText=page.getByAltText('ice melt.jpg');
         this.imLearnMoreButton=page.getByRole('link', { name: 'Learn More', exact: true }).nth(7);
+        this.liquidFertilizerLink=page.getByRole('link', { name: 'LIQUID FERTILIZER' });
         }
     async clickTurfProductsTitle(){
         await this.turfProductsTitle.click();
@@ -129,5 +131,10 @@ export class TuftProductsPage{
     async clickIMLearnMoreButton(){
         await this.imLearnMoreButton.click();
     }
-
+    async hoverTurfProductsTitle(){
+        await this.turfProductsTitle.hover();
+    }
+    async clickLiquidFertilizerLink(){
+        await this.liquidFertilizerLink.click();
+    }
 }
