@@ -1,9 +1,9 @@
 import { test, expect } from '@playwright/test';
 
-/* Verify clicking on Turf Chemicals from main page header Turf products takes the user to correct page
+/* TC 116:Verify clicking on Turf Chemicals from main page header Turf products takes the user to correct page
 */
 
-test('Verify clicking on Turf Chemicals from main page header Turf products takes the user to correct page', async ({ page }) => {
+test('TC 116: Verify clicking on Turf Chemicals from main page header Turf products takes the user to correct page', async ({ page }) => {
   // Visit the web application
     await page.goto('/');
     await page.pause();
