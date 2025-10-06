@@ -4,7 +4,7 @@ export class TurfKingFertilizerPage{
 
 readonly page: Page;
 
-readonly turfPoductsMenu: Locator;
+readonly turfProductsMenu: Locator;
 readonly turfKingFertilizer: Locator;
 readonly turfKingFertilizerProductsTitle: Locator;
 readonly heroSubtitleText: Locator;
@@ -38,12 +38,15 @@ readonly theAndersonsLearnMoreLink: Locator;
 
 readonly contractServicesHeader: Locator;
 readonly aboutHeader: Locator;
+readonly moreHeaderMenu: Locator;
+readonly equipmentHeader: Locator;
+readonly andreAndSonLogoHeader: Locator;
 
 
 
 constructor(page: Page){
     this.page=page;
-    this.turfPoductsMenu=page.getByRole('link', { name: 'TURF PRODUCTS' }).nth(0);
+    this.turfProductsMenu=page.getByRole('link', { name: 'TURF PRODUCTS' }).nth(0);
     this.turfKingFertilizer=page.getByRole('link', {name:'Turf King Fertilizer'}).nth(1);
     this.turfKingFertilizerProductsTitle=page.getByText('Turf King Fertilizer Products');
     this.heroSubtitleText=page.getByText('We are the Turf King for a reason.');
@@ -55,7 +58,7 @@ constructor(page: Page){
     this.moreMenu=page.getByTestId('comp-igauz7ee__more__label');
     this.contactHeader=page.getByTestId('comp-igauz7eemoreContainer');
     this.itemHeader=page.getByTestId('comp-igauz7eemoreContainer');
-    this.trueValueLogoHeader=page.getByTestId('img_comp-klwsebuo');
+    this.trueValueLogoHeader=page.getByAltText('1280px-True_Value_logo.svg.png').nth(0);
     this.turfKingStandardSGN220Title=page.getByText('Turf King Standard SGN 220', {exact: true});
     this.turfKingStandardSGN220Text=page.getByText('the ideal fertilizer for golf course rough,');
     this.turfKingStandardLearnMoreLink=page.getByRole("link", {name: 'Learn More'}).nth(0);
@@ -76,8 +79,12 @@ constructor(page: Page){
     this.theAndersonsLearnMoreLink=page.getByRole("link", {name: 'Learn More'}).last();
 
     this.contractServicesHeader=page.getByRole("link", {name: 'CONTRACT SERVICES'}).nth(0);
-    //this.aboutHeader=page.getByRole('link', {name: 'ABOUT'}).nth(0);
-    this.aboutHeader=page.getByRole("link", {name: 'ABOUT'}).nth(0);
+    this.aboutHeader=page.getByRole('button', { name: 'ABOUT', exact: true }).nth(0);
+    this.moreHeaderMenu=page.getByText('More', { exact: true });
+    this.equipmentHeader=page.getByRole('link', {name: 'EQUIPMENT'}).nth(0);
+    this.andreAndSonLogoHeader=page.getByAltText('logo_edited_edited.png').nth(0);
+    
+
 
 }
 
