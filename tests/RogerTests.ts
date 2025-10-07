@@ -1,5 +1,6 @@
 // practice writing notes
 import {test, expect} from '@playwright/test';
+import { HomePage } from '../pages/Locator';
 
 
 // Rotary Deompaction test image
@@ -23,6 +24,7 @@ test('Links in footer are correct', async ({page}) => {
 const Turf = page.getByTestId('linkElement-0')
 // sub links for Turf Products tsublink1-8  
 
+/* All URLS before I switched to the POM and used different locators
 // Turf King Combo Products
 const Tsublink1 = page.goto('https://www.andreandson.com/turf-king-combo-products')
 
@@ -97,7 +99,7 @@ const Asublink4 = page.goto('https://www.andreandson.com/careers')
 const Contact = page.getByTestId('linkElement-4')
 
 const Items = page.getByTestId('linkElement-5')
-
+*/
 
 
 
