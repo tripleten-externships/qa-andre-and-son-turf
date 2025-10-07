@@ -34,6 +34,17 @@ test('Ice Melt Regular MSDS Button', async ({ page }) => {
   await page.getByRole('listitem').filter({ hasText: 'Ice Melt Regular Ice Melt' }).getByTestId('linkElement').click();
   const page1 = await page1Promise;
 });
+
+/*
+Verify that after clicking "MSDS" button it opens the correct Ice Melt Regular Safety Data PDF
+*/
+
+test('Ice Melt Regular Safety Data PDF', async ({ page }) => {
+
+
+
+});
+
 /*
 Verify that "MSDS" button will open PDF for Ice Melt Plus
 */
@@ -51,6 +62,16 @@ test('Ice Melt Plus MSDS Button', async ({ page }) => {
   const page1Promise = page.waitForEvent('popup');
   await page.locator('#comp-kym0q5gu__item-kes5qvaj').getByTestId('linkElement').click();
   const page1 = await page1Promise;
+});
+
+/*
+Verify that after clicking "MSDS" button it opens the correct Ice Melt Plus Safety Data PDF
+*/
+
+test('Ice Melt Plus Safety Data PDF', async ({ page }) => {
+
+
+
 });
 
 /*
@@ -73,10 +94,10 @@ test('Ice Melt Hi Vis MSDS Button', async ({ page }) => {
 });
 
 /*
-Verify that after clicking "MSDS" button it opens the correct Ice Melt Regular Safety Data PDF
+Verify that after clicking "MSDS" button it opens the correct Ice Melt Hi Vis Safety Data PDF
 */
 
-test('Ice Melt Regular Safety Data PDF', async ({ page }) => {
+test('Ice Melt Hi Vis Safety Data PDF', async ({ page }) => {
 
 
 
