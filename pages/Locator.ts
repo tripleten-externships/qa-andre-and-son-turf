@@ -130,8 +130,7 @@ export class NavigationPage {
 
 async verifyRotaryDecompaction() {
     await this.page
-    await this.contractLink.contractservices.hover()
-    await this.contractLink.contractrotary.click()
+    const contractServicesButton = this.page.getByRole('link', { name: 'CONTRACT SERVICES' });
     const Header = this.page.locator('h1')
     await expect(Header).toContainText('Rotarty Decompaction')
 }
