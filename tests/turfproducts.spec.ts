@@ -1,23 +1,21 @@
 import { test, expect } from '@playwright/test';
 import { TuftProductsPage } from '../pages/turfproducts';
-//import { beforeEach } from 'node:test';
 
-//beforeEach(async ({ page }) => {
+test.beforeEach(async ({ page }) => {
     //Go to home page
-    //await page.goto('/');
+    await page.goto('/');
     //click on "Turf Products" title
-    //const turfProductsPage = new TuftProductsPage(page);
-    //await turfProductsPage.clickTurfProductsTitle();
-//}
-
+    const turfProductsPage = new TuftProductsPage(page);
+    await turfProductsPage.clickTurfProductsTitle();
+});
 //* Verify that the description under title "There's a Reason We're the Turf King" is visible and readable by user
 //* Verify that clicking the logo "Andre & Son" would take the user back to the homepage
 test('verify TuftProducts Hero text and logo', async ({ page }) => {
     const turfProductsPage = new TuftProductsPage(page);
     //go to home page
-    await page.goto('/');
+    //await page.goto('/');
     //click on "Turf Products" title
-    await turfProductsPage.clickTurfProductsTitle();
+    //await turfProductsPage.clickTurfProductsTitle();
     //assert that the hero title and description is visible
     await expect(turfProductsPage.turfProductsHeroTitle).toBeVisible();
     await expect(turfProductsPage.turfProductsHeroText1).toBeVisible();
@@ -36,9 +34,9 @@ test('verify TuftProducts Hero text and logo', async ({ page }) => {
 test('verify "TURF PRODUCT CATALOG"', async ({ page }) => {
     const turfProductsPage = new TuftProductsPage(page);
     //go to home page
-    await page.goto('/');
+    //await page.goto('/');
     //click on "Turf Products" title
-    await turfProductsPage.clickTurfProductsTitle();
+    //await turfProductsPage.clickTurfProductsTitle();
     //assert that "TURF PRODUCT CATALOG" title and description is visible
     await expect(turfProductsPage.turfProductsCatalogTitle).toBeVisible();
     await expect(turfProductsPage.turfProductsCatalogText1).toBeVisible();
@@ -54,30 +52,26 @@ test('verify "TURF PRODUCT CATALOG"', async ({ page }) => {
 //* Verify that the title "Combination Products" and description under is visible and readable by user
 //* Verify the image under "Combination Products" has Alt text in Devtools. 
 //* Verify that clicking on "combination products" hyperlink in the "Combination Products" description takes the user to "Turf King Combination Products" page
+//* Verify that clicking on "Learn More" button under "Combination Products" takes the user to "Turf King Combination Products" page
 test('verify "Combination Products"', async ({ page }) => {
     const turfProductsPage = new TuftProductsPage(page);
     //go to home page
-    await page.goto('/');
+    //await page.goto('/');
     //click on "Turf Products" title
-    await turfProductsPage.clickTurfProductsTitle();
+    //await turfProductsPage.clickTurfProductsTitle();
     //assert that "Combination Products" title and description is visible
     await expect(turfProductsPage.combinationProductsTitle).toBeVisible();
     await expect(turfProductsPage.combinationProductsText).toBeVisible();
     //assert that the "Combination Products" image has alt text
     await expect(turfProductsPage.combinationProductsImageAltText).toBeVisible();
+    const [newTab]= await Promise.all([
+        page.waitForEvent('popup'),
     //click on "combination products" link in the text
-    await turfProductsPage.combinationProductsLink.click();
+        await turfProductsPage.combinationProductsLink.click()]);
+    console.log(newTab.url());
+    await newTab.waitForLoadState();
     //assert that the url is correct
-    await expect(page).toHaveURL("https://www.andreandson.com/turf-king-combo-products");
-});
-
-//* Verify that clicking on "Learn More" button under "Combination Products" takes the user to "Turf King Combination Products" page
-test('verify Learn more button in combination products', async ({ page }) => {
-    const turfProductsPage = new TuftProductsPage(page);
-    //go to home page
-    await page.goto('/');
-    //click on "Turf Products" title
-    await turfProductsPage.clickTurfProductsTitle();
+    expect(await newTab).toHaveURL("https://www.andreandson.com/turf-king-combo-products");
     //click on "Learn More" button under "Combination Products"
     await turfProductsPage.clickCPLearnMoreButton();
     //assert that the url is correct
@@ -90,9 +84,9 @@ test('verify Learn more button in combination products', async ({ page }) => {
 test('verify "Turf King Fertilizer" section', async ({ page }) => {
     const turfProductsPage = new TuftProductsPage(page);
     //go to home page
-    await page.goto('/');
+    //await page.goto('/');
     //click on "Turf Products" title
-    await turfProductsPage.clickTurfProductsTitle();
+    //await turfProductsPage.clickTurfProductsTitle();
     //assert that "Turf King Fertilizer" title and description is visible
     await expect(turfProductsPage.turfKingFertilizerTitle).toBeVisible();
     await expect(turfProductsPage.turfKingFetilizerText).toBeVisible();
@@ -110,9 +104,9 @@ test('verify "Turf King Fertilizer" section', async ({ page }) => {
 test('verify "Control Agents" section', async ({ page }) => {
     const turfProductsPage = new TuftProductsPage(page);
     //go to home page
-    await page.goto('/');
+    //await page.goto('/');
     //click on "Turf Products" title
-    await turfProductsPage.clickTurfProductsTitle();
+    //await turfProductsPage.clickTurfProductsTitle();
     //assert that "Control Agents" title and description is visible
     await expect(turfProductsPage.controlAgentsTitle).toBeVisible();
     await expect(turfProductsPage.controlAgentsText).toBeVisible();
@@ -130,9 +124,9 @@ test('verify "Control Agents" section', async ({ page }) => {
 test('verify "Liquid Fertilizer" section', async ({ page }) => {
     const turfProductsPage = new TuftProductsPage(page);
     //go to home page
-    await page.goto('/');
+    //await page.goto('/');
     //click on "Turf Products" title
-    await turfProductsPage.clickTurfProductsTitle();
+    //await turfProductsPage.clickTurfProductsTitle();
     //assert that "Liquid Fertilizer" title and description is visible
     await expect(turfProductsPage.liquidFertilizerTitle).toBeVisible();
     await expect(turfProductsPage.liquidFertilizerText).toBeVisible();
@@ -147,9 +141,9 @@ test('verify "Liquid Fertilizer" section', async ({ page }) => {
 test('verify "Seed" section', async ({ page }) => {
     const turfProductsPage = new TuftProductsPage(page);
     //go to home page
-    await page.goto('/');
+    //await page.goto('/');
     //click on "Turf Products" title
-    await turfProductsPage.clickTurfProductsTitle();
+    //await turfProductsPage.clickTurfProductsTitle();
     //assert that "Seed" title and description is visible
     await expect(turfProductsPage.seedTitle).toBeVisible();
     await expect(turfProductsPage.seedText).toBeVisible();
@@ -164,9 +158,9 @@ test('verify "Seed" section', async ({ page }) => {
 test('verify "Amendments & Conditioners" section', async ({ page }) => {
     const turfProductsPage = new TuftProductsPage(page);
     //go to home page
-    await page.goto('/');
+    //await page.goto('/');
     //click on "Turf Products" title
-    await turfProductsPage.clickTurfProductsTitle();
+    //await turfProductsPage.clickTurfProductsTitle();
     //assert that "Amendments & Conditioners" title and description is visible
     await expect(turfProductsPage.amendmentsConditionersTitle).toBeVisible();
     await expect(turfProductsPage.amendmentsConditionersText).toBeVisible();
@@ -181,9 +175,9 @@ test('verify "Amendments & Conditioners" section', async ({ page }) => {
 test('verify "Top Dressing & Bunker Sand" section', async ({ page }) => {
     const turfProductsPage = new TuftProductsPage(page);
     //go to home page
-    await page.goto('/');
+    //await page.goto('/');
     //click on "Turf Products" title
-    await turfProductsPage.clickTurfProductsTitle();
+    //await turfProductsPage.clickTurfProductsTitle();
     //assert that "Top Dressing & Bunker Sand" title and description is visible
     await expect(turfProductsPage.topDressingBunkerSandTitle).toBeVisible();
     await expect(turfProductsPage.topDressingBunkerSandText).toBeVisible();
@@ -198,9 +192,9 @@ test('verify "Top Dressing & Bunker Sand" section', async ({ page }) => {
 test('verify "Ice Melt" section', async ({ page }) => {
     const turfProductsPage = new TuftProductsPage(page);
     //go to home page
-    await page.goto('/');
+    //await page.goto('/');
     //click on "Turf Products" title
-    await turfProductsPage.clickTurfProductsTitle();
+    //await turfProductsPage.clickTurfProductsTitle();
     //assert that "Ice Melt" title and description is visible
     await expect(turfProductsPage.iceMeltTitle).toBeVisible();
     await expect(turfProductsPage.iceMeltText).toBeVisible();
