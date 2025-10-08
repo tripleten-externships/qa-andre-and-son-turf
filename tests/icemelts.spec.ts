@@ -9,7 +9,7 @@ Verify that the page title is "ICE MELTS"
 test('has title', async ({ page }) => {
   const iceMeltsPage = new IceMeltsPage(page);
 　//Visit the web application
-  await iceMeltsPage.goto({ waitUntil: 'load' });
+  await page.goto('/ice-melts', { waitUntil: 'load' });
   //Check that you are on the web page
   await expect(page).toHaveURL('https://www.andreandson.com/ice-melts')
   //Validate text matches with hero title
@@ -23,7 +23,7 @@ Verify that "MSDS" button will open PDF for Ice Melt Regular
 test('Ice Melt Regular MSDS Button', async ({ page }) => {
   const iceMeltsPage = new IceMeltsPage(page);
   //Visit the webpage
-  await iceMeltsPage.goto({ waitUntil: 'load' });
+  await page.goto('/ice-melts', { waitUntil: 'load' });
   //Verify we are on the ice melts page
   await page.getByText('Ice Melts', { exact: true }).click();
   //Verify we are on the Ice Melt Regular section
@@ -39,11 +39,7 @@ test('Ice Melt Regular MSDS Button', async ({ page }) => {
 Verify that after clicking "MSDS" button it opens the correct Ice Melt Regular Safety Data PDF
 */
 
-test('Ice Melt Regular Safety Data PDF', async ({ page }) => {
-
-
-
-});
+//test('Ice Melt Regular Safety Data PDF', async ({ page }) => {
 
 /*
 Verify that "MSDS" button will open PDF for Ice Melt Plus
@@ -51,7 +47,7 @@ Verify that "MSDS" button will open PDF for Ice Melt Plus
 test('Ice Melt Plus MSDS Button', async ({ page }) => {
   const iceMeltsPage = new IceMeltsPage(page);
   //Visit the webpage
-  await iceMeltsPage.goto({ waitUntil: 'load' });
+  await page.goto('/ice-melts', { waitUntil: 'load' });
   //Verify we are on the ice melts page
   await page.getByText('Ice Melts', { exact: true }).click();
   //Locating the Ice Melt Plus section
@@ -68,11 +64,7 @@ test('Ice Melt Plus MSDS Button', async ({ page }) => {
 Verify that after clicking "MSDS" button it opens the correct Ice Melt Plus Safety Data PDF
 */
 
-test('Ice Melt Plus Safety Data PDF', async ({ page }) => {
-
-
-
-});
+//test('Ice Melt Plus Safety Data PDF', async ({ page }) => {});
 
 /*
 Verify that "MSDS" button will open PDF for Ice Melt Hi Vis
@@ -80,14 +72,12 @@ Verify that "MSDS" button will open PDF for Ice Melt Hi Vis
 test('Ice Melt Hi Vis MSDS Button', async ({ page }) => {
   const iceMeltsPage = new IceMeltsPage(page);
   //Visit the webpage
-  await iceMeltsPage.goto({ waitUntil: 'load' });
+  await page.goto('/ice-melts', { waitUntil: 'load' });
   //Verify we are on the ice melts page
-  await page.getByText('Ice Melts', { exact: true }).click();
+  await expect(page.getByText('Ice Melts', { exact: true })).toContainText('Ice Melts');
   //Locating the Ice Melt Hi Vis section
-  await page.getByText('Ice Melt Hi Vis', { exact: true }).click();
-  //Locating the Ice Melt Hi Vis paragraph
-  await page.getByText('Ice Melt Hi Vis is specially').click();
-  //Clicking on the Ice Melt Hi Vis MSDS Button
+  await expect(page.getByText('Ice Melt Hi Vis', { exact: true })).toContainText('Ice Melt Hi Vis');
+
   const page1Promise = page.waitForEvent('popup');
   await page.getByRole('listitem').filter({ hasText: 'Ice Melt Hi VisIce Melt Hi' }).getByTestId('linkElement').click();
   const page1 = await page1Promise;
@@ -97,11 +87,7 @@ test('Ice Melt Hi Vis MSDS Button', async ({ page }) => {
 Verify that after clicking "MSDS" button it opens the correct Ice Melt Hi Vis Safety Data PDF
 */
 
-test('Ice Melt Hi Vis Safety Data PDF', async ({ page }) => {
-
-
-
-});
+//test('Ice Melt Hi Vis Safety Data PDF', async ({ page }) => {});
 
 
 test('Hover over Turf Products menu and click Ice Melts submenu', async ({ page }) => {

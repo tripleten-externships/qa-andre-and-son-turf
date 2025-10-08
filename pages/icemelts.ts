@@ -14,8 +14,4 @@ export class IceMeltsPage{
         this.turfProductsMenu = page.locator('a', { hasText: 'Turf Products' });
         this.iceMeltsMenu = page.locator('a', { hasText: 'Ice Melts' });
     }
-
-    async goto(p0: { waitUntil: string; }) {
-        await this.page.goto('https://www.andreandson.com/ice-melts');
-    }
 }

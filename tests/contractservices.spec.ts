@@ -16,8 +16,9 @@ test('Verify the page title in the hero section "Contract Services"', async ({ p
     await expect(contractServicesPage.contractServicesTitle).toContainText('CONTRACT SERVICES');
 });
 
-/*Verify that the video plays in the hero when user land on Contract Services page*/
-test.only('Verify that the video plays in the hero when user land on Contract Services page', async ({ page }) => {
+/* Verify that the video plays in the hero when user land on Contract Services page */
+
+test('Verify that the video plays in the hero when user land on Contract Services page', async ({ page }) => {
     const contractServicesPage = new ContractServicesPage(page);
     await expect(contractServicesPage.contractServicesTitle).toContainText('CONTRACT SERVICES');
     await expect(contractServicesPage.contractServicesVideo).toBeVisible();
@@ -30,4 +31,20 @@ await videoLocator.evaluate(el => {
 });
 await expect(contractServicesPage.contractServicesVideo).toHaveJSProperty('paused', false);
 await expect(contractServicesPage.contractServicesVideo).toHaveJSProperty('ended', false);
+});
+
+/*Verify that the "Conventional Aerification" link element is clickable and navigates to the correct page*/
+test.only('Verify that the "Conventional Aerification" link element is clickable and navigates to the correct page', async ({ page }) => {
+    const contractServicesPage = new ContractServicesPage(page);
+    await contractServicesPage.conventionalAerificationelement.scrollIntoViewIfNeeded();
+    await contractServicesPage.conventionalAerificationelement.click({ force: true });
+    await expect(page).toHaveURL('/conventional-aerification');
+});
+
+/*Verify that the "Conventional Aerification" link element is clickable and navigates to the correct page*/
+
+/*Verify that the "Deep Tine Aerification" link element is clickable and navigates to the correct page*/
+test('Verify that the "Deep Tine Aerification" link element is clickable and navigates to the correct page', async ({ page }) => {
+    const contractServicesPage = new ContractServicesPage(page);
+    
 });
