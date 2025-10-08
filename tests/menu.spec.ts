@@ -1,7 +1,11 @@
 import { test, expect } from '@playwright/test';
 import { IceMeltsPage } from '../pages/icemelts';
 import { MenuPage } from '../pages/menu';
+import { ContractServicesPage } from '../pages/contractservices';
 
+test.beforeEach(async ({ page }) => {
+    await page.goto('/ ', { waitUntil: 'load' });
+});
 /*
 Verify that hovering over "Turf Products" menu reveals "Ice Melts" submenu and clicking it navigates to Ice Melts page
 */
@@ -9,10 +13,8 @@ Verify that hovering over "Turf Products" menu reveals "Ice Melts" submenu and c
 test('Hover over Turf Products menu and click Ice Melts submenu', async ({ page }) => {
   const iceMeltsPage = new IceMeltsPage(page);
   const menuPage = new MenuPage(page);
-  await page.goto('/', { waitUntil: 'load' });
 
   // Hover over the visible Turf Products section
-
   await menuPage.turfProductsMenu.isVisible();
   
   await menuPage.turfProductsMenu.hover();
@@ -37,4 +39,15 @@ test('Hover over Turf Products menu and click Ice Melts submenu', async ({ page 
 });
 
 
+test('Click Contract Services menu and verify navigation to Contract Services page', async ({ page }) => {
+  const menuPage = new MenuPage(page);
+  const contractServicesPage = new ContractServicesPage(page);
 
+  // Click the Contract Services menu
+  await menuPage.contractServicesMenu.click();
+  // Verify navigation to Contract Services page
+  await expect(page).toHaveURL('https://www.andreandson.com/contract-services');  
+  // Verify the presence of key elements on the Contract Services page
+  await expect(contractServicesPage.contractServicesTitle).toHaveText('CONTRACT SERVICES');
+
+});
