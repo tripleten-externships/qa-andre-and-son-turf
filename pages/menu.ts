@@ -1,21 +1,15 @@
-import { Locator, Page} from "@playwright/test";
+import { Locator, Page } from "@playwright/test";
 
-export class MenuPage{
+export class MenuPage {
+  // variables
+  readonly turfProductsMenu: Locator;
+  readonly iceMeltsMenu: Locator;
+  readonly contractServicesMenu: Locator;
 
-     //variables
-    readonly page: Page;
-    readonly turfProductsMenu: Locator;
-    readonly iceMeltsMenu: Locator;
-    readonly contractServicesMenu: Locator;
- 
-
-    constructor(page:Page){
-        this.page=page;
-        this.turfProductsMenu = page.locator('p:has-text("TURF PRODUCTS")').nth(0);
-        this.iceMeltsMenu = page.locator('a', { hasText: 'Ice Melts' });
-        this.contractServicesMenu = page.locator('p:has-text("CONTRACT SERVICES")').nth(0);
-    }
-
-
+  constructor(page: Page) {
+    this.turfProductsMenu = page.locator('a:has-text("TURF PRODUCTS")').nth(0);
+    this.iceMeltsMenu = page.locator('a:has-text("ICE MELTS")').nth(0);
+    this.contractServicesMenu = page.locator('a:has-text("CONTRACT SERVICES")').nth(0);
+  }
 }
 
