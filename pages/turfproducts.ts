@@ -57,7 +57,8 @@ export class TuftProductsPage{
         this.turfProductsHeroTitle=page.getByText("There's a Reason We're the Turf King");
         this.turfProductsHeroText1=page.getByText('Our Turf King line of fertilizers is a top of the line, proven winner.')
         this.turfProductsHeroText2=page.getByText("We're the Turf King because we're the experts.");
-        this.turfProductsHeroText3=page.getByText("You've got a turf problem? We'll tell you the product to solve it. Between our knowledgeable sales team, and our position as an authorized dealer of hundreds of turf products, our team will work hand-in -hand with you to get you optimal results while sharing knowledge for you to use in the future!");
+        this.turfProductsHeroText3=page.locator('//*[@id="comp-km6svaqf"]/p[3]')
+        //this.turfProductsHeroText3=page.getByText("You've got a turf problem? We'll tell you the product to solve it. Between our knowledgeable sales team, and our position as an authorized dealer of hundreds of turf products, our team will work hand-in -hand with you to get you optimal results while sharing knowledge for you to use in the future!");
         this.turfProductsCatalogTitle=page.getByText('TURF PRODUCT CATALOG');
         this.turfProductsCatalogText1=page.getByText('Browse our product catalog of');
         this.turfProductsCatalogText2=page.getByText('. Have a question?');

@@ -1,6 +1,6 @@
 import { Locator, Page } from "@playwright/test";
 
-export class PlantFoodPage{
+export class AquaAidPage {
     readonly page: Page;
     readonly aquaaidBackGroundImageAltText: Locator;
     readonly aquaaidTitle: Locator;
@@ -69,43 +69,43 @@ export class PlantFoodPage{
         this.aquaaidAquiferText=page.locator('(//p[normalize-space()="Hydration"])[1]');
         this.aaAquiferSalesSheetButton=page.getByRole('link', { name: 'Sales Sheet' }).nth(2);
         this.aquaaidAquaRootTitle=page.getByText('Aqua-Root').first();
-        this.aquaaidAquaRootText=page.getByText('');
+        this.aquaaidAquaRootText=page.locator('//p[normalize-space()="Humic Acid Nutrient Chelation pellet"]');
         this.aaAquaRootSalesSheetButton=page.getByRole('link', { name: 'Sales Sheet' }).nth(3);
         this.aquaaidOarsTitle=page.getByText('Oars', { exact: true });
         this.aquaaidOarsText=page.locator('(//p[normalize-space()="Hydration"])[2]');
         this.aaOarsSalesSheetButton=page.getByRole('link', { name: 'Sales Sheet' }).nth(4);
         this.aquaaidAQMTitle=page.getByText('AQM');
-        this.aquaaidAQMText=page.getByText('');
+        this.aquaaidAQMText=page.locator('//p[normalize-space()="Root producing enhanced kelp pellet"]');
         this.aaAQMSalesSheetButton=page.getByRole('link', { name: 'Sales Sheet' }).nth(5);
         this.aquaaidAQAACTitle=page.getByText('AQAAC');
         this.aquaaidAQAACText=page.locator('(//p[normalize-space()="Hydration"])[3]');
         this.aaAQAACSalesSheetButton=page.getByRole('link', { name: 'Sales Sheet' }).nth(6);
-        this.aquaaidConduit90Title=page.getByRole('heading', {name: 'Conduit 90®'});
+        this.aquaaidConduit90Title=page.getByText('Conduit 90', { exact: true });
         this.aquaaidConduit90Text=page.locator('(//p[normalize-space()="Hydration"])[4]');
         this.aaConduit90SalesSheetButton=page.getByRole('link', { name: 'Sales Sheet' }).nth(7);
-        this.aquaaidFWYISPTitle=page.getByRole('heading', {name: 'FWY ISP®'});
+        this.aquaaidFWYISPTitle=page.getByText('FWY-ISP', { exact: true });
         this.aquaaidFWYISPText=page.locator('(//p[normalize-space()="Penetration"])[2]');
         this.aaFWYISPSalesSheetButton=page.getByRole('link', { name: 'Sales Sheet' }).nth(8);
-        this.aquaaidOARSPsTitle=page.getByRole('heading', {name: 'OARS Ps®'});
-        this.aquaaidOARSPsText=page.getByText('');
+        this.aquaaidOARSPsTitle=page.getByText('OARS-Ps', { exact: true });
+        this.aquaaidOARSPsText=page.locator('(//p[normalize-space()="Branched Corrective"])[1]');
         this.aaOARSPsSalesSheetButton=page.getByRole('link', { name: 'Sales Sheet' }).nth(9);
-        this.aquaaidOARSHsTitle=page.getByRole('heading', {name: 'OARS Hs®'});
-        this.aquaaidOARSHsText=page.getByText('');
+        this.aquaaidOARSHsTitle=page.getByText('OARS -Hs', { exact: true });
+        this.aquaaidOARSHsText=page.locator('(//p[normalize-space()="Branched Corrective"])[2]');
         this.aaOARSHsSalesSheetButton=page.getByRole('link', { name: 'Sales Sheet' }).nth(10);
         this.aquaaidAquaRoot2Title=page.getByText('Aqua-Root').nth(1);
-        this.aquaaidAquaRoot2Text=page.getByText('');
+        this.aquaaidAquaRoot2Text=page.locator('(//p[normalize-space()="Repair & Root"])[1]');
         this.aaAquaRoot2SalesSheetButton=page.getByRole('link', { name: 'Sales Sheet' }).nth(11);
-        this.aquaaidRecoverTitle=page.getByRole('heading', {name: 'Recover®'});
-        this.aquaaidRecoverText=page.getByText('');
+        this.aquaaidRecoverTitle=page.getByText('Recover', { exact: true });
+        this.aquaaidRecoverText=page.locator('(//p[normalize-space()="Repair & Root"])[2]');
         this.aaRecoverSalesSheetButton=page.getByRole('link', { name: 'Sales Sheet' }).nth(12);
-        this.aquaaidHydra30PlusTitle=page.getByRole('heading', {name: 'Hydra 30 Plus®'});
-        this.aquaaidHydra30PlusText=page.getByText('');
+        this.aquaaidHydra30PlusTitle=page.getByText('Hydra-30 Plus', { exact: true });
+        this.aquaaidHydra30PlusText=page.locator('(//p[normalize-space()="Branched Hydration"])[1]');
         this.aaHydra30PlusSalesSheetButton=page.getByRole('link', { name: 'Sales Sheet' }).nth(13);
-        this.aquaaidPBS150Title=page.getByRole('heading', {name: 'PBS 150®'});
-        this.aquaaidPBS150Text=page.getByText('');
+        this.aquaaidPBS150Title=page.getByText('PBS 150', { exact: true });
+        this.aquaaidPBS150Text=page.locator('(//p[normalize-space()="Branched Hydration"])[2]');
         this.aaPBS150SalesSheetButton=page.getByRole('link', { name: 'Sales Sheet' }).nth(14);
-        this.aquaaidReDEWceTitle=page.getByRole('heading', {name: 'ReDEW ce®'});
-        this.aquaaidReDEWceText=page.getByText('');
+        this.aquaaidReDEWceTitle=page.getByText('ReDEWce', { exact: true });
+        this.aquaaidReDEWceText=page.locator('//p[normalize-space()="Specialty"]');
         this.aaReDEWceSalesSheetButton=page.getByRole('link', { name: 'Sales Sheet' }).nth(15);
     }
 
