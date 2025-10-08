@@ -13,16 +13,20 @@ test('Top Dressing and Bunker Sand page title test', async ({ page }) => {
     //go to homepage
     await page.goto('/');
 
-    //click on Turf Products
-    await homePage.navigateToTurfProducts();
-
-    //click on Top Dressing Learn More
-    await turfProducts.navigatetoTopDressing();
+    //if Turf Products sub menu is visible, click Amendments and Conditioners in sub menu 
+    if (await homePage.AmendmentsConditionersSubMenu.isVisible()){
+        await homePage.navigateToTopDressingBunkerSandViaHover();
+    }
+    //else navigate to Turf Products page, click Amendments and Conditioners Learn More
+    else{
+        await homePage.navigateToTurfProducts();
+        await turfProducts.navigatetoTopDressing();
+        }
 
     //verify "Top Dressing and Bunker Sand" text in header
     await expect(topDressing.pageHeaderText).toContainText('Top Dressing & Bunker Sand');
 
-})
+});
 
 //Verify that "Learn More" button is clickable for Top Dressing
 

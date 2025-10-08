@@ -9,26 +9,30 @@ import { TopDressingPage } from "../pages/topDressingPage";
 test('Top Dressing page contains text Top Dressing in header', async ({ page }) => {
 
     const homePage = new HomePage(page);
-    const turfProductsPage = new TurfProducts(page);
-    const topDressingBunkerSandPage = new TopDressingBunkerSand(page);
-    const topDressingPage = new TopDressingPage(page);
+    const turfProducts = new TurfProducts(page);
+    const topDressingBunkerSand = new TopDressingBunkerSand(page);
+    const topDressing = new TopDressingPage(page);
 
     //go to home page
     await page.goto('/');
 
-    //click on Turf Products
-    //await homePage.navigateToTopDressingBunkerSand();
-
-    //click on Turf Products
-    await homePage.navigateToTurfProducts();
-
-    //Click on Top Dressing Learn More
-    await turfProductsPage.navigatetoTopDressing();
+    //if Turf Products sub menu is visible 
+    if (await homePage.AmendmentsConditionersSubMenu.isVisible()){
+        // click Amendments and Conditioners in sub menu
+        await homePage.navigateToTopDressingBunkerSandViaHover();
+    }
+    //else
+    else{
+        //click Turf Products
+        await homePage.navigateToTurfProducts();
+        //Click Amendments and Conditioners Learn More
+        await turfProducts.navigatetoTopDressing();
+        }
 
     //click Learn More button under Sand
-    await topDressingBunkerSandPage.clickTopDressingLearnMore();
+    await topDressingBunkerSand.clickTopDressingLearnMore();
 
     //verify header contains Top Dressing
-    await expect (topDressingPage.topDressingHeader).toContainText('Top Dressing');
+    await expect (topDressing.topDressingHeader).toContainText('Top Dressing');
 
-})
+});

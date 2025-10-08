@@ -16,14 +16,18 @@ test('Verify precisionorganics.com ...', async ({ page }) => {
     //go to homepage
     await page.goto('/', { waitUntil: 'domcontentloaded' });
 
-    //click on Turf Products
-    await homePage.navigateToTurfProducts();
-
-    //click on Amendments and Conditioners Learn More
-    await turfProducts.navigatetoAmendments();
-
-    //click on Amendments and Conditioners in Turf Products sub menu
-    //await homePage.navigateToAmendmentsConditioners();
+    //if Turf Products sub menu is visible 
+    if (await homePage.AmendmentsConditionersSubMenu.isVisible()){
+        // click Amendments and Conditioners in sub menu
+        await homePage.navigateToAmendmentsConditionersViaHover();
+    }
+    //else
+    else{
+        //click Turf Products
+        await homePage.navigateToTurfProducts();
+        //Click Amendments and Conditioners Learn More
+        await turfProducts.navigatetoAmendments();
+        }
 
     //click on C2O Soil Builders Learn More link
     await amendmentsConditionersPage.navigateToC2O();
@@ -38,4 +42,4 @@ test('Verify precisionorganics.com ...', async ({ page }) => {
     //verify precisionorganics.com url
     await expect(newTab).toHaveURL('https://www.precisionorganics.com/');
 
-})
+});

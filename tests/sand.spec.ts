@@ -8,23 +8,30 @@ import { SandPage } from "../pages/sandPage";
 test('Learn More button is clickable for Sand', async ({ page }) => {
 
     const homePage = new HomePage(page);
-    const turfProductsPage = new TurfProducts(page);
-    const topDressingPage = new TopDressingBunkerSand(page);
+    const turfProducts = new TurfProducts(page);
+    const topDressing = new TopDressingBunkerSand(page);
     const sandPage = new SandPage(page);
 
     //go to home page
     await page.goto('/');
 
-    //click on Turf Products
-    await homePage.navigateToTurfProducts();
-
-    //click Top Dressing and Bunker Sand Learn More
-    await turfProductsPage.navigatetoTopDressing();
+        //if Turf Products sub menu is visible 
+    if (await homePage.AmendmentsConditionersSubMenu.isVisible()){
+        // click Amendments and Conditioners in sub menu
+        await homePage.navigateToTopDressingBunkerSandViaHover();
+    }
+    //else
+    else{
+        //click Turf Products
+        await homePage.navigateToTurfProducts();
+        //Click Amendments and Conditioners Learn More
+        await turfProducts.navigatetoTopDressing();
+        }
 
     //click Learn More button under Sand
-    await topDressingPage.clickSandLearnMore();
+    await topDressing.clickSandLearnMore();
 
     //verify header contains Sand
     await expect (sandPage.sandHeader).toContainText('Sand');
 
-})
+});

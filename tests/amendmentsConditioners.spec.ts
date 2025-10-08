@@ -13,13 +13,20 @@ test('Verify that page title includes Ammendments and Conditioners', async ({ pa
     //go to home page
     await page.goto('/');
 
-    //click Turf Products in header
-    await homePage.navigateToTurfProducts();
-
-    //Click Learn More under Amendments and Conditioners
-    await turfProducts.navigatetoAmendments();
-
-    //verify header
+    //if Turf Products sub menu is visible 
+    if (await homePage.AmendmentsConditionersSubMenu.isVisible()){
+        // click Amendments and Conditioners in sub menu
+        await homePage.navigateToAmendmentsConditionersViaHover();
+    }
+    //else
+    else{
+        //click Turf Products
+        await homePage.navigateToTurfProducts();
+        //Click Amendments and Conditioners Learn More
+        await turfProducts.navigatetoAmendments();
+        }
+    
+    //verify Amendments and Conditioners in header
     await expect(amendmentsConditionersPage.AmendmentsConditionersHeader).toContainText('Amendments & Conditioners');
 
-})
+});
