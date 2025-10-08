@@ -80,7 +80,7 @@ test('Feature section video can pause/play', async ({ page, browserName }) => {
 });
 
 /*
-Verify that the video can be muted/unmutedin the Feature section (FS900 Riding Sweeper /Core Collector")
+Verify that the video can be muted/unmuted in the Feature section (FS900 Riding Sweeper /Core Collector")
 */
 test('Feature section video can mute/unmute', async ({ page, browserName }) => {
   test.skip(browserName === 'chromium', 'Skipping video playback test in Chromium');
@@ -244,19 +244,6 @@ test('Feature section video can toggle PIP', async ({ page, browserName }) => {
 
     // Play the feature video
     await equipmentPage.playFeatureVideo();
-
-    // Wait until video metadata is loaded
-    await equipmentPage.featureVideo.evaluate((v: HTMLVideoElement) => {
-        return new Promise<void>((resolve) => {
-            if (v.readyState >= 1) {
-                // HAVE_METADATA
-                resolve();
-            } else {
-                v.addEventListener('loadedmetadata', () => resolve(), { once: true });
-            }
-        });
-    });
-
     
     // Request Picture-in-Picture
     // await equipmentPage.featureVideo.evaluate(async ((v: HTMLVideoElement) => {v.requestPictureInPicture();

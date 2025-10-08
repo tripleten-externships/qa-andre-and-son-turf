@@ -45,7 +45,7 @@ test('Send button validation with empty fields', async ({ page }) => {
     await seedingPage.navigate();
 
     // Locate the email input field
-    // const emailInput = page.locator('input[name="email"]');
+    const emailInput = page.locator('input[name="email"]');
 
     // Click the SEND button
     await seedingPage.sendForm();

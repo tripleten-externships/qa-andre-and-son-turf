@@ -133,7 +133,6 @@ export class EquipmentPage {
         // Play the video
         await this.page.waitForTimeout(2000);
 
-
         // Get the initial and later time
         this.initialTime = await this.featureVideo.evaluate((v: HTMLVideoElement) => v.currentTime);
         await this.page.waitForTimeout(1000);

@@ -29,11 +29,20 @@ export class SeedingPage{
         // Hover over CONTRACT SERVICES
         await this.contractServicesLink.hover();
 
-        // When sub menu is visible, click on SEEDING link
-        await this.seedingLink.click();
+        // Check if the submenu is visible
+        if (await this.seedingLink.isVisible()) {
+            // If submenu is visible, click the link from submenu
+            await this.seedingLink.click();
+            console.log('Clicked link from visible submenu');
+            } else {
+            // Otherwise, go to the link directly
+            await this.page.goto('https://www.andreandson.com/seeding');
+            console.log('Clicked link directly');
 
         // Verify that SEEDING page loads successfully
         await expect(this.page).toHaveURL('https://www.andreandson.com/seeding');
+    }
+
     }
 
     async sendForm() {

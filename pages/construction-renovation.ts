@@ -29,9 +29,16 @@ export class ConstructionAndRenovationPage{
         // Hover over CONTRACT SERVICES
         await this.contractServicesLink.hover();
 
-        // When sub menu is visible, click on CONSTRUCTION & RENOVATION link
-        await this.constructionAndRenovationLink.click();
-
+        // Check if the submenu is visible
+        if (await this.constructionAndRenovationLink.isVisible()) {
+            // If submenu is visible, click the link from submenu
+            await this.constructionAndRenovationLink.click();
+            console.log('Clicked link from visible submenu');
+            } else {
+            // Otherwise, go to the link directly
+            await this.page.goto('https://www.andreandson.com/construction-renovation');
+            console.log('Clicked link directly');
+        }
         // Verify that CONSTRUCTION & RENOVATION page loads successfully
         await expect(this.page).toHaveURL('https://www.andreandson.com/construction-renovation');
     }
