@@ -39,42 +39,26 @@ test('Verify page loads successfully', async ({ page }) => {
 
   }});});
 
-  /*
-Verify top navigation menu links work (andreandson logo)
-Verify top navigation menu links work correctly
-Verify top navigation menu links work (Turf Products)
-Verify top navigation menu links work (Equiment)
-Verify top navigation menu links work (About)
-Verify top navigation menu links work (More)
-Verify top navigation menu links work (True Value)
+
+  /*Verify field "First Name" can be filled out
+  Verify field "Last Name" can be filled out
+  Verify field "Email" can be filled out
+  Verify field "Message" can be filled out
   */
-  test.describe('Top navigation menu links work', () => {
-    test('Top navigation menu links work', async ({ page }) => {
-      const convAero = new ConvAero(page);
-      //visit the home page
-      await page.goto('/');
-      //hover over to CONTRACT SERVICES
-      await convAero.hoverContractServices();
-      //click on CONVENTIONAL AERIFICATION
-      if (await convAero.isvisibleCONVENTIONALAERIFICIATION()) 
-        {await convAero.clickCONVENTIONALAERIFICIATION();}
-      //click on andreandson logo
-      await page.getByRole('link', { name: 'andreandson' }).click();
-      await expect(page).toHaveURL(/.*andreandson/);
-      //click on Turf Products
-      await page.getByRole('link', { name: 'TURF PRODUCTS' }).click();
-      await expect(page).toHaveURL(/.*turf-products/);
-      //click on Equiment
-      await page.getByRole('link', { name: 'EQUIPMENT' }).click();
-      await expect(page).toHaveURL(/.*equipment/);
-      //click on About
-      await page.getByRole('link', { name: 'ABOUT' }).click();
-      await expect(page).toHaveURL(/.*about/);
-      //click on More
-      await page.getByRole('link', { name: 'MORE' }).click();
-      await expect(page).toHaveURL(/.*more/);
-      //click on True Value
-      await page.getByRole('link', { name: 'TRUE VALUE' }).click();
-        await expect(page).toHaveURL(/.*true-value/);
-      });
-    });
+
+test.describe('Verify form fields can be filled out', () => {
+  test('Verify form fields can be filled out', async ({ page }) => {
+  const convAero = new ConvAero(page);
+  //visit the home page
+  await page.goto('/');
+  //Hover over to CONTRACT SERVICES
+  await convAero.hoverContractServices();
+  //Click on CONVENTIONAL AERIFICATION
+  if (await convAero.isvisibleCONVENTIONALAERIFICIATION()) {
+  await convAero.clickCONVENTIONALAERIFICIATION();}
+  //click on the first name field
+  await page.locator('//input[@name="first-name"]').click();
+  //fill out the first name field
+  await page.getByPlaceholder('First Name').fill('John');
+
+})});

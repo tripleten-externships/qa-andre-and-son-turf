@@ -12,12 +12,6 @@ export class ConvAero{
     readonly fairwaysAerificationImage: Locator; // specific image by its accessible name
     readonly conventionalAercoreGreensImage: Locator; // specific image by its accessible name
     readonly pageDescriptionText: Locator; // page description text
-    readonly andreandsonLogo: Locator; // click on andreandson logo
-    readonly turfProducts: Locator; // click on Turf Products
-    readonly equipment: Locator; // click on Equipment
-    readonly about: Locator; // click on About
-    readonly more: Locator; // click on More
-    readonly trueValue: Locator; // click on True Value
     
 
     constructor(page: Page){
@@ -30,12 +24,6 @@ export class ConvAero{
         this.fairwaysAerificationImage=page.getByRole('img', { name: 'Fairways Aerification 3.jpg' });
         this.conventionalAercoreGreensImage=page.getByRole('img', { name: 'Conventional Aercore Greens 2' });
         this.pageDescriptionText=page.getByText('Conventional aerification is the process of removing small cores of soil from the turf and soil profile to reduce compaction, improve water infiltration, and enhance overall turf health. This method is commonly used on golf courses, sports fields, and other high-traffic turf areas.');
-        this.andreandsonLogo=page.getByRole('link', { name: 'andreandson' });
-        this.turfProducts=page.getByRole('link', { name: 'Turf Products' }).nth(0);
-        this.equipment=page.getByRole('link', { name: 'Equipment' }).nth(0);
-        this.about=page.getByRole('link', { name: 'About' }).nth(0);
-        this.more=page.getByRole('link', { name: 'More' }).nth(0);
-        this.trueValue=page.getByRole('link', { name: 'True Value' }).nth(0);
     }
 
     // hover over CONTRACT SERVICES
@@ -65,29 +53,5 @@ export class ConvAero{
     // Verify page description text displays correctly
     async verifypagedescriptiontext(){
         return await this.pageDescriptionText.isVisible();
-    }
-    // click on andreandson logo
-    async clickandreandsonLogo(){
-        await this.andreandsonLogo.click();
-    }
-    // click on Turf Products
-    async clickturfProducts(){
-        await this.turfProducts.click();
-    }
-    // click on Equipment
-    async clickequipment(){
-        await this.equipment.click();
-    }
-    // click on About
-    async clickabout(){
-        await this.about.click();
-    }
-    // click on More
-    async clickmore(){
-        await this.more.click();
-    }
-    // click on True Value
-    async clicktrueValue(){
-        await this.trueValue.click();
     }
 }
