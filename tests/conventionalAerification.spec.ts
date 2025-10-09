@@ -39,26 +39,47 @@ test('Verify page loads successfully', async ({ page }) => {
 
   }});});
 
-
   /*Verify field "First Name" can be filled out
   Verify field "Last Name" can be filled out
   Verify field "Email" can be filled out
   Verify field "Message" can be filled out
   */
-
-test.describe('Verify form fields can be filled out', () => {
-  test('Verify form fields can be filled out', async ({ page }) => {
+test('Verify form fields can be filled out', async ({ page }) => {
   const convAero = new ConvAero(page);
-  //visit the home page
+  //visit the home page 
   await page.goto('/');
   //Hover over to CONTRACT SERVICES
   await convAero.hoverContractServices();
   //Click on CONVENTIONAL AERIFICATION
   if (await convAero.isvisibleCONVENTIONALAERIFICIATION()) {
   await convAero.clickCONVENTIONALAERIFICIATION();}
+  else {
+    await page.goto('https://www.andreandson.com/conventional-aerification');
+  }
   //click on the first name field
-  await page.locator('//input[@name="first-name"]').click();
+  //await page.getByLabel('First Name').click();
+  await convAero.clickfirstNameField();
   //fill out the first name field
-  await page.getByPlaceholder('First Name').fill('John');
+  //await page.getByLabel('First Name').fill('Ignacio');
+  await convAero.fillfirstNameField('Ignacio');
+  //click on the last name field
+  //await page.getByLabel('Last Name').click(); 
+  await convAero.clicklastNameField();
+  //fill out the last name field
+  //await page.getByLabel('Last Name').fill('Robles');
+  await convAero.filllastNameField('Robles');
+  //click on the email field
+  //await page.getByLabel('Email').click();
+  await convAero.clickemailField();
+  //fill out the email field
+  //await page.getByLabel('Email').fill('ignacio@gmail.com)');
+  await convAero.fillemailField('ignacio@gmail.com');
+  //click on the message field
+  //await page.getByLabel('Message').click();
+  await convAero.clickmessageField();
+  //fill out the message field
+  //await page.getByLabel('Message').fill('This is a test message.');
+  await convAero.fillmessageField('This is a test message.');
 
-})});
+  
+});
