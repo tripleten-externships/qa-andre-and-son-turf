@@ -13,7 +13,7 @@ export class ConvAero{
     readonly conventionalAercoreGreensImage: Locator; // specific image by its accessible name
     readonly pageDescriptionText: Locator; // page description text
     readonly clickfirstName: Locator; // first name field
-    readonly fillfirstname: Locator; // fill out first name field
+    readonly fillfirstName: Locator; // fill out first name field
     readonly clicklastName: Locator; // last name field
     readonly filllastname: Locator; // fill out last name field
     readonly clickemail: Locator; // email field
@@ -33,13 +33,13 @@ export class ConvAero{
         this.conventionalAercoreGreensImage=page.getByRole('img', { name: 'Conventional Aercore Greens 2' });
         this.pageDescriptionText=page.getByText('Conventional aerification is the process of removing small cores of soil from the turf and soil profile to reduce compaction, improve water infiltration, and enhance overall turf health. This method is commonly used on golf courses, sports fields, and other high-traffic turf areas.');
         this.clickfirstName=page.getByLabel('First Name');
-        this.fillfirstname=page.getByRole('textbox', { name: 'First Name *' });
+        this.fillfirstName=page.getByLabel('First Name');
         this.clicklastName=page.getByLabel('Last Name');
-        this.filllastname=page.getByRole('textbox', { name: 'Last Name *' });
+        this.filllastname=page.getByLabel('Last Name');
         this.clickemail=page.getByLabel('Email');
         this.fillemail=page.getByRole('textbox', { name: 'Email *' });
         this.clickmessage=page.getByLabel('Message');
-        this.fillmessage=page.getByRole('textbox', { name: 'Message *' });
+        this.fillmessage=page.getByLabel('Message');
     
     }
 
@@ -76,7 +76,7 @@ export class ConvAero{
         await this.clickfirstName.click();
     }
     async fillfirstNameField(name: string){
-        await this.fillfirstname.fill(name);
+        await this.fillfirstName.fill(name);
     }
     // Verify field "Last Name" can be filled out
     async clicklastNameField(){
