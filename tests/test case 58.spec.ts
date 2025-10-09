@@ -27,7 +27,7 @@ test('waybackunderline', async ({ page }, testInfo) => {
 
   try {
     await withTimeout((async () => {
-  const aboutButton = page.getByRole('button', { name: 'ABOUT', exact: true });
+      const aboutButton = page.getByRole('button', { name: 'ABOUT', exact: true });
       await aboutButton.waitFor({ state: 'visible', timeout: 5000 });
       await aboutButton.click();
 

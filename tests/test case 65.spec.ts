@@ -27,17 +27,17 @@ test('waybackunderline', async ({ page }, testInfo) => {
 
   try {
     await withTimeout((async () => {
-  const aboutButton = page.getByRole('button', { name: 'ABOUT', exact: true });
+      const aboutButton = page.getByRole('button', { name: 'ABOUT', exact: true });
       await aboutButton.waitFor({ state: 'visible', timeout: 5000 });
       await aboutButton.click();
 
-  // click the SALES TEAM link under the ABOUT menu
-  const salesTeamLink = page.getByRole('link', { name: 'SALES TEAM' });
-  await salesTeamLink.waitFor({ state: 'visible', timeout: 5000 });
-  await salesTeamLink.click();
+      // click the SALES TEAM link under the ABOUT menu
+      const salesTeamLink = page.getByRole('link', { name: 'SALES TEAM' });
+      await salesTeamLink.waitFor({ state: 'visible', timeout: 5000 });
+      await salesTeamLink.click();
 
-  // optionally assert we're on the Sales Team page by checking the URL or a known text
-  await page.waitForURL('**/sales-team', { timeout: 5000 }).catch(() => {});
+      // optionally assert we're on the Sales Team page by checking the URL or a known text
+      await page.waitForURL('**/sales-team', { timeout: 5000 }).catch(() => {});
     })(), 10_000);
   } catch (err) {
     console.log('Interaction sequence timed out or failed:', String(err));
