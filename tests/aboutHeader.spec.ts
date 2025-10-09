@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { TurfKingFertilizerPage } from '../pages/turfKingFertilizer.page';
+import { TurfKingFertilizerPage } from '../pages/turfKingFertilizer';
 
 test('when hovering over ABOUT in the header, it shows menu', async ({ page }) => { 
     const turfKingFertilizerPage = new TurfKingFertilizerPage(page);

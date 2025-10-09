@@ -88,6 +88,9 @@ constructor(page: Page){
 
 }
 
+async clickOnLogo(){
+    this.andreAndSonLogoHeader.click();
+}
 
 async navigate(){
 
@@ -95,7 +98,7 @@ async navigate(){
     await this.page.goto('/');
 
 //hover over 'Turf Products' in the header.
-    await this.turfPoductsMenu.hover();
+    await this.turfProductsMenu.hover();
 
 // Wait until the link is visible
     await this.turfKingFertilizer.waitFor({ state: 'visible' });
