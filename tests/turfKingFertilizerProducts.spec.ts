@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { TurfKingFertilizerPage } from '../pages/turfKingFertilizer.page';
+import { TurfKingFertilizerPage } from '../pages/turfKingFertilizer';
 
 /* Verify text title 'Turf King Fertilizer Products' is visible and matches. */
 

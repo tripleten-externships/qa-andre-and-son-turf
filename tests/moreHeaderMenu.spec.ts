@@ -1,5 +1,5 @@
 import { test, Locator, expect } from '@playwright/test';
-import { TurfKingFertilizerPage } from '../pages/turfKingFertilizer.page';
+import { TurfKingFertilizerPage } from '../pages/turfKingFertilizer';
 
 test('More menu in header', async ({ page }) => { 
     const turfKingFertilizerPage=new TurfKingFertilizerPage(page);

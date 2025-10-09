@@ -17,8 +17,6 @@ test('TURF PRODUCTS in header is visible and takes you to designated page', asyn
     const turfKingFertilizerPage=new TurfKingFertilizerPage(page);
 
    // await turfKingFertilizerPage.navigate();
- 
-
 
 //turf products in header is visible and takes you to the designated page when clicked
     await turfKingFertilizerPage.turfProductsMenu.isVisible();

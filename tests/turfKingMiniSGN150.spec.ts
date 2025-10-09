@@ -1,5 +1,5 @@
 import { test, Locator, expect } from '@playwright/test';
-import { TurfKingFertilizerPage } from '../pages/turfKingFertilizer.page';
+import { TurfKingFertilizerPage } from '../pages/turfKingFertilizer';
 
 test('Turf King Mini SGN 150 title and text are visible', async ({ page }) => { 
     const turfKingFertilizerPage=new TurfKingFertilizerPage(page);

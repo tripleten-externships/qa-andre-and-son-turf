@@ -42,6 +42,10 @@ readonly moreHeaderMenu: Locator;
 readonly equipmentHeader: Locator;
 readonly andreAndSonLogoHeader: Locator;
 
+readonly natureSafeCourseLabelLink: Locator;
+readonly natureSafeCourseSpecSheetLink: Locator;
+readonly natureSafeFineLabelLink: Locator;
+readonly natureSafeFineSpecSheetLink: Locator;
 
 
 constructor(page: Page){
@@ -84,8 +88,10 @@ constructor(page: Page){
     this.equipmentHeader=page.getByRole('link', {name: 'EQUIPMENT'}).nth(0);
     this.andreAndSonLogoHeader=page.getByAltText('logo_edited_edited.png').nth(0);
     
-
-
+    this.natureSafeCourseLabelLink=page.getByRole("link", {name: 'Label'}).nth(0);
+    this.natureSafeCourseSpecSheetLink=page.getByRole("link", {name: 'Spec Sheet'}).nth(0);
+    this.natureSafeFineLabelLink=page.getByRole("link",{name: 'Label'}).nth(1);
+    this.natureSafeFineSpecSheetLink=page.getByRole('link',{name: 'Spec Sheet'}).nth(1);
 }
 
 async clickOnLogo(){
