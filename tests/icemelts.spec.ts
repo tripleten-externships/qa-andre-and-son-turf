@@ -1,14 +1,13 @@
 import { test, expect } from '@playwright/test';
 import { IceMeltsPage } from '../pages/icemelts';
 
-
 /*
 Verify that the page title is "ICE MELTS"
 */
 
 test('has title', async ({ page }) => {
   const iceMeltsPage = new IceMeltsPage(page);
-　//Visit the web application
+  //Visit the web application
   await page.goto('/ice-melts', { waitUntil: 'load' });
   //Check that you are on the web page
   await expect(page).toHaveURL('https://www.andreandson.com/ice-melts')
@@ -38,8 +37,23 @@ test('Ice Melt Regular MSDS Button', async ({ page }) => {
 /*
 Verify that after clicking "MSDS" button it opens the correct Ice Melt Regular Safety Data PDF
 */
+test('after clicking "MSDS" button it opens the correct Ice Melt Regular Safety Data PDF', async ({ page }) => {
+  const iceMeltsPage = new IceMeltsPage(page);
+  await page.goto('/ice-melts', { waitUntil: 'load' });
 
-//test('Ice Melt Regular Safety Data PDF', async ({ page }) => {
+  // Find the MSDS link for Ice Melt Regular and verify its href attribute
+  await iceMeltsPage.regularMsdsLink.waitFor({ state: 'visible', timeout: 5000 });
+
+  // Assert the href is correct before clicking
+  await expect(iceMeltsPage.regularMsdsLink).toHaveAttribute('href', 'https://www.andreandson.com/_files/ugd/3bd49b_3f413d0995044470b8cbbaf8a9267e7a.pdf');
+
+  // Optionally, click and ensure popup opens (but don't check its URL)
+  const [popup] = await Promise.all([
+    page.waitForEvent('popup'),
+    iceMeltsPage.regularMsdsLink.click({ force: true }),
+  ]);
+  expect(popup).toBeTruthy();
+});
 
 /*
 Verify that "MSDS" button will open PDF for Ice Melt Plus
@@ -63,8 +77,23 @@ test('Ice Melt Plus MSDS Button', async ({ page }) => {
 /*
 Verify that after clicking "MSDS" button it opens the correct Ice Melt Plus Safety Data PDF
 */
+test('after clicking "MSDS" button it opens the correct Ice Melt Plus Safety Data PDF', async ({ page }) => {
+  const iceMeltsPage = new IceMeltsPage(page);
+  await page.goto('/ice-melts', { waitUntil: 'load' });
 
-//test('Ice Melt Plus Safety Data PDF', async ({ page }) => {});
+  // Find the MSDS link for Ice Melt Regular and verify its href attribute
+  await iceMeltsPage.plusMsdsLink.waitFor({ state: 'visible', timeout: 5000 });
+
+  // Assert the href is correct before clicking
+  await expect(iceMeltsPage.plusMsdsLink).toHaveAttribute('href', 'https://www.andreandson.com/_files/ugd/3bd49b_3a9ad6b2c254474c976e80ab6b3b5afe.pdf');
+
+  // Optionally, click and ensure popup opens (but don't check its URL)
+  const [popup] = await Promise.all([
+    page.waitForEvent('popup'),
+    iceMeltsPage.plusMsdsLink.click({ force: true }),
+  ]);
+  expect(popup).toBeTruthy();
+});
 
 /*
 Verify that "MSDS" button will open PDF for Ice Melt Hi Vis
@@ -86,8 +115,23 @@ test('Ice Melt Hi Vis MSDS Button', async ({ page }) => {
 /*
 Verify that after clicking "MSDS" button it opens the correct Ice Melt Hi Vis Safety Data PDF
 */
+test('after clicking "MSDS" button it opens the correct Ice Melt Hi Vis Safety Data PDF', async ({ page }) => {
+  const iceMeltsPage = new IceMeltsPage(page);
+  await page.goto('/ice-melts', { waitUntil: 'load' });
 
-//test('Ice Melt Hi Vis Safety Data PDF', async ({ page }) => {});
+  // Find the MSDS link for Ice Melt Regular and verify its href attribute
+  await iceMeltsPage.hiVisMsdsLink.waitFor({ state: 'visible', timeout: 5000 });
+
+  // Assert the href is correct before clicking
+  await expect(iceMeltsPage.hiVisMsdsLink).toHaveAttribute('href', 'https://www.andreandson.com/_files/ugd/3bd49b_2888424fe70246cb9dd41427cad1f8a6.pdf');
+
+  // Optionally, click and ensure popup opens (but don't check its URL)
+  const [popup] = await Promise.all([
+    page.waitForEvent('popup'),
+    iceMeltsPage.hiVisMsdsLink.click({ force: true }),
+  ]);
+  expect(popup).toBeTruthy();
+});
 
 
 test('Hover over Turf Products menu and click Ice Melts submenu', async ({ page }) => {

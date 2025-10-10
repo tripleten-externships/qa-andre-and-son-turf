@@ -8,10 +8,11 @@ export class ContractServicesPage{
    readonly contractServicesVideo: Locator;
    readonly conventionalAerificationelement: Locator;
 
-   constructor(page:Page){
+   constructor(page:Page) {
         this.page=page;
         this.contractServicesTitle = page.locator('h1, h2, [role="heading"]').first();
         this.contractServicesVideo = page.getByRole('region', { name: 'main content' }).locator('img');
         this.conventionalAerificationelement = page.getByRole('link', { name: 'Conventional Aerification' });
+    
+    }
 }
-

@@ -12,4 +12,3 @@ export class MenuPage {
     this.contractServicesMenu = page.locator('a:has-text("CONTRACT SERVICES")').nth(0);
   }
 }
-

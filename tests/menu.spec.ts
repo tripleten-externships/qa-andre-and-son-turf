@@ -3,14 +3,13 @@ import { IceMeltsPage } from '../pages/icemelts';
 import { MenuPage } from '../pages/menu';
 import { ContractServicesPage } from '../pages/contractservices';
 
-test.beforeEach(async ({ page }) => {
-    await page.goto('/ ', { waitUntil: 'load' });
-});
 /*
 Verify that hovering over "Turf Products" menu reveals "Ice Melts" submenu and clicking it navigates to Ice Melts page
 */
 
 test('Hover over Turf Products menu and click Ice Melts submenu', async ({ page }) => {
+  await page.goto('/ ', { waitUntil: 'load' });
+  
   const iceMeltsPage = new IceMeltsPage(page);
   const menuPage = new MenuPage(page);
 
@@ -40,6 +39,8 @@ test('Hover over Turf Products menu and click Ice Melts submenu', async ({ page 
 
 
 test('Click Contract Services menu and verify navigation to Contract Services page', async ({ page }) => {
+  await page.goto('/ ', { waitUntil: 'load' });
+
   const menuPage = new MenuPage(page);
   const contractServicesPage = new ContractServicesPage(page);
 
