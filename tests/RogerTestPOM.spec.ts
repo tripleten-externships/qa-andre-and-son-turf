@@ -6,8 +6,16 @@ import { NavigationPage } from '../pages/Locator';
 
 //Rotary Decompaction
 test('Verify Rotary Decompaction web page', async ({ page }) => {
-    const nav = new NavigationPage(page)
-    await nav.verifyRotaryDecompaction()
+    await page.goto('/');
+    const nav = new NavigationPage(page);
+    await nav.verifyRotaryDecompaction();
+    //go to andre and son website 
+
+    //hover over contract services
+
+    //click on rotary decompaction
+
+    //verify the page title
 });
 
 /*
@@ -21,8 +29,8 @@ test('Verify you can hover and click and that page is accurate', async ({ page }
 // Footer Tests
 // start of Turf Prodcuts
 test('Verify Truf Product is clickable and correct', async ({ page }) => {
-    const nav = new NavigationPage(page)
-    await nav.clickTurfProducts
+    const nav = new NavigationPage(page);
+    await nav.clickTurfProducts();
 });
 
 test('Verify you can hover and click Turf King Combo Products and that page is accurate', async ({ page }) => {

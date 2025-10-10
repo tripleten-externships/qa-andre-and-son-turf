@@ -137,7 +137,6 @@ async verifyRotaryDecompaction() {
 
 // Hover Turf Products and click on turf king combo products
  async clickTurfProducts(){
-    await this.page
     await this.turfLink.turfpoduct.click()
     const Header = this.page.locator('h1')
     await expect(Header).toContainText('Turf Product Catalog')
