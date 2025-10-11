@@ -7,7 +7,7 @@ export class FertlSoil {
 
     constructor (page: Page){
         this.page = page;
-        this.fertlSoilHeader = page.locator("(//h1[normalize-space()='Fertl Soil'])[1])");
+        this.fertlSoilHeader = page.getByRole('heading', { name: 'Fertl Soil' });
     }
 
 }
