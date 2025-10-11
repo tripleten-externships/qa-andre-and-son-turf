@@ -42,10 +42,16 @@ readonly moreHeaderMenu: Locator;
 readonly equipmentHeader: Locator;
 readonly andreAndSonLogoHeader: Locator;
 
-readonly natureSafeCourseLabelLink: Locator;
-readonly natureSafeCourseSpecSheetLink: Locator;
-readonly natureSafeFineLabelLink: Locator;
-readonly natureSafeFineSpecSheetLink: Locator;
+readonly natureSafe21CourseLabelLink: Locator;
+readonly natureSafe21CourseSpecSheetLink: Locator;
+readonly natureSafe18FineLabelLink: Locator;
+readonly natureSafe18FineSpecSheetLink: Locator;
+readonly natureSafe16CourseLabelLink: Locator;
+readonly natureSafe16CourseSpecSheetLink: Locator;
+readonly natureSafe13SuperLabelLink: Locator;
+readonly natureSafe13SuperSpecSheetLink: Locator;
+readonly natureSafe12CourseLabelLink: Locator;
+readonly natureSafe12CourseSpecSheetLink: Locator;
 
 
 constructor(page: Page){
@@ -88,10 +94,16 @@ constructor(page: Page){
     this.equipmentHeader=page.getByRole('link', {name: 'EQUIPMENT'}).nth(0);
     this.andreAndSonLogoHeader=page.getByAltText('logo_edited_edited.png').nth(0);
     
-    this.natureSafeCourseLabelLink=page.getByRole("link", {name: 'Label'}).nth(0);
-    this.natureSafeCourseSpecSheetLink=page.getByRole("link", {name: 'Spec Sheet'}).nth(0);
-    this.natureSafeFineLabelLink=page.getByRole("link",{name: 'Label'}).nth(1);
-    this.natureSafeFineSpecSheetLink=page.getByRole('link',{name: 'Spec Sheet'}).nth(1);
+    this.natureSafe21CourseLabelLink=page.getByRole("link", {name: 'Label'}).nth(0);
+    this.natureSafe21CourseSpecSheetLink=page.getByRole("link", {name: 'Spec Sheet'}).nth(0);
+    this.natureSafe18FineLabelLink=page.getByRole("link",{name: 'Label'}).nth(1);
+    this.natureSafe18FineSpecSheetLink=page.getByRole('link',{name: 'Spec Sheet'}).nth(1);
+    this.natureSafe16CourseLabelLink=page.getByRole("link",{name: 'Label'}).nth(2);
+    this.natureSafe16CourseSpecSheetLink=page.getByRole("link",{name: 'Spec Sheet'}).nth(2);
+    this.natureSafe13SuperLabelLink=page.getByRole("link",{name: 'Label'}).nth(3);
+    this.natureSafe13SuperSpecSheetLink=page.getByRole("link",{name: 'Spec Sheet'}).nth(3);
+    this.natureSafe21CourseLabelLink=page.getByRole("link",{name: 'Label'}).nth(4);
+    this.natureSafe12CourseSpecSheetLink=page.getByRole("link",{name: 'Spec Sheet'}).nth(4);
 }
 
 async clickOnLogo(){
