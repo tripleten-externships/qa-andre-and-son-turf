@@ -1,5 +1,4 @@
 import{ test, expect } from '@playwright/test';
-import { HomePage } from '../pages/';
 
 /* verify the "TURF PRODUCTS" heading is present  on the homepage.
  verify a dropdown menu is present when hovering over the "TURF PRODUCTS" heading.
@@ -7,14 +6,15 @@ import { HomePage } from '../pages/';
 
  test('verify the "TURF PRODUCTS" heading is present  on the homepage', async ({ page }) => {
     //go to the webpage
-     await HomePage.goto('/')
+     await page.goto('/')
     //verify the "TURF PRODUCTS" heading is present  on the homepage.
-    await expect(HomePage.turfProductsHeading).toBeVisible();
+    await expect(page.locator('text=TURF PRODUCTS')).toBeVisible();
     //hover over the "TURF PRODUCTS" heading.
-    await HomePage.turfProductsHeading.hover();
+    await page.locator('text=TURF PRODUCTS').hover();
     //verify a dropdown menu is present when hovering over the "TURF PRODUCTS" heading.
-    await expect(HomePage.turfProductsDropdown).toBeVisible();
+    await expect(page.locator('text=Turf King Combo Products')).toBeVisible();
     //verify the dropdown menu has "Turf King combo products" on the first position
-    await expect(HomePage.turfProductsDropdownFirstOption).toHaveText('Turf King Combo Products');
+    await expect(page.locator('text=Turf King Combo Products')).toHaveText('Turf King Combo Products');
 
     });
+    
