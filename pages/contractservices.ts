@@ -12,7 +12,7 @@ export class ContractServicesPage{
         this.page=page;
         this.contractServicesTitle = page.locator('h1, h2, [role="heading"]').first();
         this.contractServicesVideo = page.getByRole('region', { name: 'main content' }).locator('img');
-        this.conventionalAerificationelement = page.getByRole('link', { name: 'Conventional Aerification' });
-    
-    }
+        this.conventionalAerificationelement = page.getByText('Conventional Aerification');
+
+}
 }
