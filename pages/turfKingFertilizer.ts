@@ -52,6 +52,16 @@ readonly natureSafe13SuperLabelLink: Locator;
 readonly natureSafe13SuperSpecSheetLink: Locator;
 readonly natureSafe12CourseLabelLink: Locator;
 readonly natureSafe12CourseSpecSheetLink: Locator;
+readonly natureSafe9CourseLabelLink: Locator;
+readonly natureSafe9CourseSpecSheetLink: Locator;
+readonly natureSafe855PelletedLabelLink: Locator;
+readonly natureSafe855PelletedSpecSheetLink: Locator;
+readonly natureSafe7CourseLabelLink: Locator;
+readonly natureSafe7CourseSpecSheetLink: Locator;
+readonly natureSafe8SuperLabelLink: Locator;
+readonly natureSafe8SuperSpecSheetLink: Locator;
+readonly natureSafe566FineLabelLink: Locator;
+readonly natureSafe566FineSpecSheetLink: Locator;
 
 
 constructor(page: Page){
@@ -102,8 +112,19 @@ constructor(page: Page){
     this.natureSafe16CourseSpecSheetLink=page.getByRole("link",{name: 'Spec Sheet'}).nth(2);
     this.natureSafe13SuperLabelLink=page.getByRole("link",{name: 'Label'}).nth(3);
     this.natureSafe13SuperSpecSheetLink=page.getByRole("link",{name: 'Spec Sheet'}).nth(3);
-    this.natureSafe21CourseLabelLink=page.getByRole("link",{name: 'Label'}).nth(4);
+    this.natureSafe12CourseLabelLink=page.getByRole("link",{name: 'Label'}).nth(4);
     this.natureSafe12CourseSpecSheetLink=page.getByRole("link",{name: 'Spec Sheet'}).nth(4);
+    this.natureSafe9CourseLabelLink=page.getByRole("link",{name: 'Label'}).nth(5);
+    this.natureSafe9CourseSpecSheetLink=page.getByRole("link",{name: 'Spec Sheet'}).nth(5);
+    this.natureSafe855PelletedLabelLink=page.getByRole("link",{name: 'Label'}).nth(6);
+    this.natureSafe855PelletedSpecSheetLink=page.getByRole("link",{name: 'Spec Sheet'}).nth(6);
+    this.natureSafe7CourseLabelLink=page.getByRole("link",{name: 'Label'}).nth(7);
+    this.natureSafe7CourseSpecSheetLink=page.getByRole("link",{name: 'Spec Sheet'}).nth(7);
+    this.natureSafe8SuperLabelLink=page.getByRole("link",{name: 'Label'}).nth(8);
+    this.natureSafe8SuperSpecSheetLink=page.getByRole("link",{name: 'Spec Sheet'}).nth(8);
+    this.natureSafe566FineLabelLink=page.getByRole("link",{name: 'Label'}).nth(9);
+    this.natureSafe566FineSpecSheetLink=page.getByRole("link",{name: 'Spec Sheet'}).nth(9);
+
 }
 
 async clickOnLogo(){
