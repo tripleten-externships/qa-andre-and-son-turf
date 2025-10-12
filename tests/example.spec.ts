@@ -4,5 +4,3 @@ test('has title', async ({ page }) => {
   
 });
 
-
-await page.locator('#comp-igauz7ee0').getByRole('link', { name: 'TURF PRODUCTS' }).click();
