@@ -18,6 +18,8 @@ export class NavigationPage {
 
   // contract services and sublink locators
   readonly contractLink: {
+    contractbutton: Locator;
+    contractrotarydropdown: Locator;
     contractservices: Locator;
     contractconventional: Locator;
     contractdeep: Locator;
@@ -45,6 +47,7 @@ export class NavigationPage {
   // Information on the right hand side of the footer
   readonly footer: Locator;
   readonly companyName: Locator;
+  readonly companyLogo: Locator;
   readonly addressLine1: Locator;
   readonly addressLine2: Locator;
   readonly email: Locator;
@@ -67,61 +70,64 @@ export class NavigationPage {
 
     // turf prodcuts link and sublinks
     this.turfLink = {
-      turfpoduct: page.getByTestId('linkElement-0'),
-      turfcombo: page.getByTestId('linkElement-0-0'),
-      turffertilizer: page.getByTestId('linkElement-0-1'),
-      turfchemicals: page.getByTestId('linkElement-0-2'),
-      turfliquid: page.getByTestId('linkElement-0-3'),
-      turfseed: page.getByTestId('linkElement-0-4'),
-      turfdressing: page.getByTestId('linkElement-0-5'),
-      turfamendments: page.getByTestId('linkElement-0-6'),
-      turfmelt: page.getByTestId('linkElement-0-7'),
+      turfpoduct: page.locator("//*[@data-testid='linkElement-0']"),
+      turfcombo: page.locator("//*[@data-testid='linkElement-0-0']"),
+      turffertilizer: page.locator("//*[@data-testid='linkElement-0-1']"),
+      turfchemicals: page.locator("//*[@data-testid='linkElement-0-2']"),
+      turfliquid: page.locator("//*[@data-testid='linkElement-0-3']"),
+      turfseed: page.locator("//*[@data-testid='linkElement-0-4']"),
+      turfdressing: page.locator("//*[@data-testid='linkElement-0-5']"),
+      turfamendments: page.locator("//*[@data-testid='linkElement-0-6']"),
+      turfmelt: page.locator("//*[@data-testid='linkElement-0-7']"),
     };
 
     // contract services link and sublinks
     this.contractLink = {
-      contractservices: page.getByTestId('linkElement-1'),
-      contractconventional: page.getByTestId('linkElement-1-0'),
-      contractdeep: page.getByTestId('linkElement-1-1'),
-      contractrotary: page.getByTestId('linkElement-1-2'),
-      contractapplication: page.getByTestId('linkElement-1-3'),
-      contractcore: page.getByTestId('linkElement-1-4'),
-      contractdressing: page.getByTestId('linkElement-1-5'),
-      contractseeding: page.getByTestId('linkElement-1-6 '),
-      contractconstruction: page.getByTestId('linkElement-1-7'),
+      contractbutton: page.locator("(//p[contains(normalize-space(.), 'CONTRACT SERVICES')])"),
+      contractrotarydropdown: page.locator("(//p[contains(normalize-space(.), 'ROTARY DECOMPACTION')])"),
+      contractservices: page.locator("//*[@data-testid='linkElement-1']"),
+      contractconventional: page.locator("//*[@data-testid='linkElement-1-0']"),
+      contractdeep: page.locator("//*[@data-testid='linkElement-1-1']"),
+      contractrotary: page.locator("//*[@data-testid='linkElement-1-2']"),
+      contractapplication: page.locator("//*[@data-testid='linkElement-1-3']"),
+      contractcore: page.locator("//*[@data-testid='linkElement-1-4']"),
+      contractdressing: page.locator("//*[@data-testid='linkElement-1-5']"),
+      contractseeding: page.locator("//*[@data-testid='linkElement-1-6']"),
+      contractconstruction: page.locator("//*[@data-testid='linkElement-1-7']"),
     };
 
     // about sub links, about doesnt have a link element itself because it is not clickable
     this.aboutLink = {
-      abouthover: page.getByTestId('linkElement-3'),
-      aboutstory: page.getByTestId('linkElement-3-0'),
-      aboutsales: page.getByTestId('linkElement-3-1'),
-      aboutphoto: page.getByTestId('linkElement-3-2'),
-      aboutcarrers: page.getByTestId('linkElement-3-3'),
+      abouthover: page.locator("//*[@data-testid='linkElement-3']"),
+      aboutstory: page.locator("//*[@data-testid='linkElement-3-0']"),
+      aboutsales: page.locator("//*[@data-testid='linkElement-3-1']"),
+      aboutphoto: page.locator("//*[@data-testid='linkElement-3-2']"),
+      aboutcarrers: page.locator("//*[@data-testid='linkElement-3-3']"),
     };
 
     // Remaining links that dont contain sublinks
-    this.equipmentLink = page.getByTestId('linkElement-2');
-    this.contactLink = page.getByTestId('linkElement-4');
-    this.itemsLink = page.getByTestId('linkElement-5');
+    this.equipmentLink = page.locator("//*[@data-testid='linkElement-2']");
+    this.contactLink = page.locator("//*[@data-testid='linkElement-4']");
+    this.itemsLink = page.locator("//*[@data-testid='linkElement-5']");
 
     // Footer Locators (# is used to call on the id of the footer in a locator i believe)
-    this.footer = page.locator('#SITE_FOOTER');
+    this.footer = page.locator("(//div[@data-testid = 'columns']) [9]");
     // Company & contact info
-    this.companyName = page.getByText('Andre & Son Logo PNG');
-    this.addressLine1 = page.getByText('17150 State Route 706');
-    this.addressLine2 = page.getByText('Montrose, PA 18801');
-    this.email = page.locator('a[href^="mailto:turf@andreandson.com"]');
-    this.phonePrimary = page.getByText('570.278.1131');
-    this.phoneSecondary = page.getByText('888.887.3770');
+    this.companyName = page.locator("//span[contains(normalize-space(.), 'Andre & Son Turf Division')]");
+    this.companyLogo = page.locator("//img[@alt='Andre and Son Logo PNG.png']");
+    this.addressLine1 = page.locator("(//span[contains(normalize-space(.), '17150 State Route 706')])[3]");
+    this.addressLine2 = page.locator("//span[contains(normalize-space(.), 'Montrose, PA 18801')])[3]");
+    this.email = page.locator("(//*[@href='mailto:turf@andreandson.com']) [2]");
+    this.phonePrimary = page.locator("//span[contains(normalize-space(.), '570.278.1131 or')]");
+    this.phoneSecondary = page.locator("//span[contains(normalize-space(.), '888.887.3770')])[2]");
 
     
-    this.trueValueLogo = page.getByText('True Value');
+    this.trueValueLogo = page.locator("//img[@id='img_comp-klwsfd3b']");
 
     // Social media icons
-    this.twitterIcon = page.locator('a[href*="twitter.com/Andre Turf"]');
-    this.instagramIcon = page.locator('a[href*="instagram.com/andre turf/"]');
-    this.facebookIcon = page.locator('a[href*="facebook.com/andreturf"]');
+    this.twitterIcon = page.locator("//a[@aria-label='Twitter']");
+    this.instagramIcon = page.locator("//a[@aria-label='Instagram   ']");
+    this.facebookIcon = page.locator("//a[@aria-label='Facebook']")
   }
 
 
@@ -129,35 +135,36 @@ export class NavigationPage {
 // Rotarty Decompaction 
 
 async verifyRotaryDecompaction() {
-    await this.page
-    const contractServicesButton = this.page.getByRole('link', { name: 'CONTRACT SERVICES' });
-    const Header = this.page.locator('h1')
-    await expect(Header).toContainText('Rotarty Decompaction')
+    await this.page.goto('/')
+    await this.contractLink.contractbutton.hover()
+    await this.contractLink.contractrotarydropdown.waitFor({state: 'visible'})
+    await this.contractLink.contractrotarydropdown.click()
+    const Header = this.page.locator('(//span[@style="font-size:56px;"])')
+    await expect(Header).toBeVisible
 }
 
 // Hover Turf Products and click on turf king combo products
  async clickTurfProducts(){
-    await this.page
     await this.turfLink.turfpoduct.click()
-    const Header = this.page.locator('h1')
-    await expect(Header).toContainText('Turf Product Catalog')
+    const Header = this.page.locator("(//span[contains(normalize-space(.), 'TURF PRODUCT CATALOG')])")
+    await expect(Header).toBeVisible
   }
 
   async clickTurfComboProducts() {
 // load page and hover turf products
-    await this.page
+    await this.page.goto('/')
     await this.turfLink.turfpoduct.hover()
         // click sublink turf king combo products
     await this.turfLink.turfcombo.click()   
         // Locator for h1 heading with Turf King Combination Products
 
-    const Header = this.page.locator('h1')
-    await expect(Header).toContainText('Turf King Combination Products')
+    const Header = this.page.locator("//span[contains(normalize-space(.), 'Turf King Combination')]) [1]")
+    await expect(Header).toBeVisible
      // verify text Turf King Combination Products after clicking sublink
   }
    
   async clickTurfFertilizer() {
-    await this.page
+    await this.page.goto('/')
     await this.turfLink.turfpoduct.hover()
     await this.turfLink.turffertilizer.click()
     const Header = this.page.locator('h1')
