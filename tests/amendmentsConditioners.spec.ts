@@ -176,8 +176,7 @@ test('Mound and Box Packing clay Learn More leads to correct url with correct ti
 
 });
 
-//Verify that after clicking "Learn More" button under C20 Soil Builder, 
-//new page contains "precisionorganics.com" in address
+//Verify that after clicking "Learn More" button under C20 Soil Builder, new page contains "precisionorganics.com" in address
 test('Verify precisionorganics.com ...', async ({ page }) => {
 
     const homePage = new HomePage(page);
@@ -234,4 +233,224 @@ test('Verify Turf King Cal Plus Label opens correct PDF link', async ({ page }) 
 
     // Verify the correct PDF URL was requested
     expect(request.url()).toBe('https://www.andreandson.com/_files/ugd/3bd49b_a66c9ab8ecd84a98bc76c7feaf17d78e.pdf');
+});
+
+test('Verify Turf King Cal Plus SDS opens correct PDF link', async ({ page }) => {
+    
+    const enhancedLimeGyspum = new EnhancedLimeGypsum(page);
+
+    // Go to Enhanced Lime and Gypsum page
+    await page.goto('/enhanced-lime-gypsum');
+
+    // Capture the navigation request to avoid headless failure
+    const [request] = await Promise.all([
+        page.waitForEvent('request', request => 
+            request.url() === 'https://www.andreandson.com/_files/ugd/3bd49b_47a3ae590f9742ed8b6ea537e0855e8a.pdf'
+        ),
+        //click on Turf King Cal Plus Label Button
+        enhancedLimeGyspum.clickTurfKingCalPlusSDS(),
+    ]);
+
+    // Verify the correct PDF URL was requested
+    expect(request.url()).toBe('https://www.andreandson.com/_files/ugd/3bd49b_47a3ae590f9742ed8b6ea537e0855e8a.pdf');
+});
+
+test('Verify Turf King Cal Plus Spec Sheet opens correct PDF link', async ({ page }) => {
+    
+    const enhancedLimeGyspum = new EnhancedLimeGypsum(page);
+
+    // Go to Enhanced Lime and Gypsum page
+    await page.goto('/enhanced-lime-gypsum');
+
+    // Capture the navigation request to avoid headless failure
+    const [request] = await Promise.all([
+        page.waitForEvent('request', request => 
+            request.url() === 'https://www.andreandson.com/_files/ugd/3bd49b_842bff02d5d04e4593f802452f65481e.pdf'
+        ),
+        //click on Turf King Cal Plus Label Button
+        enhancedLimeGyspum.clickTurfKingCalPlusSpecSheet(),
+    ]);
+
+    // Verify the correct PDF URL was requested
+    expect(request.url()).toBe('https://www.andreandson.com/_files/ugd/3bd49b_842bff02d5d04e4593f802452f65481e.pdf');
+});
+
+test('Verify Turf King Cal Plus Mini Label opens correct PDF link', async ({ page }) => {
+    
+    const enhancedLimeGyspum = new EnhancedLimeGypsum(page);
+
+    // Go to Enhanced Lime and Gypsum page
+    await page.goto('/enhanced-lime-gypsum');
+
+    // Capture the navigation request to avoid headless failure
+    const [request] = await Promise.all([
+        page.waitForEvent('request', request => 
+            request.url() === 'https://www.andreandson.com/_files/ugd/3bd49b_8b427bbc3a984ec49db7c67409a6ed0c.pdf'
+        ),
+        //click on Turf King Cal Plus Label Button
+        enhancedLimeGyspum.clickTurfKingCalPlusMiniLabel(),
+    ]);
+
+    // Verify the correct PDF URL was requested
+    expect(request.url()).toBe('https://www.andreandson.com/_files/ugd/3bd49b_8b427bbc3a984ec49db7c67409a6ed0c.pdf');
+});
+
+test('Verify Turf King Cal Plus Mini SDS opens correct PDF link', async ({ page }) => {
+    
+    const enhancedLimeGyspum = new EnhancedLimeGypsum(page);
+
+    // Go to Enhanced Lime and Gypsum page
+    await page.goto('/enhanced-lime-gypsum');
+
+    // Capture the navigation request to avoid headless failure
+    const [request] = await Promise.all([
+        page.waitForEvent('request', request => 
+            request.url() === 'https://www.andreandson.com/_files/ugd/3bd49b_47a3ae590f9742ed8b6ea537e0855e8a.pdf'
+        ),
+        //click on Turf King Cal Plus Label Button
+        enhancedLimeGyspum.clickTurfKingCalPlusMiniSDS(),
+    ]);
+
+    // Verify the correct PDF URL was requested
+    expect(request.url()).toBe('https://www.andreandson.com/_files/ugd/3bd49b_47a3ae590f9742ed8b6ea537e0855e8a.pdf');
+});
+
+test('Verify Turf King Cal Plus Mini Spec Sheet opens correct PDF link', async ({ page }) => {
+    
+    const enhancedLimeGyspum = new EnhancedLimeGypsum(page);
+
+    // Go to Enhanced Lime and Gypsum page
+    await page.goto('/enhanced-lime-gypsum');
+
+    // Capture the navigation request to avoid headless failure
+    const [request] = await Promise.all([
+        page.waitForEvent('request', request => 
+            request.url() === 'https://www.andreandson.com/_files/ugd/3bd49b_469a97b4dfdd44d18e716ce06ec7e7bd.pdf'
+        ),
+        //click on Turf King Cal Plus Label Button
+        enhancedLimeGyspum.clickTurfKingCalPlusMiniSpecSheet(),
+    ]);
+
+    // Verify the correct PDF URL was requested
+    expect(request.url()).toBe('https://www.andreandson.com/_files/ugd/3bd49b_469a97b4dfdd44d18e716ce06ec7e7bd.pdf');
+});
+
+test('Verify Turf King Gypsum Plus Label opens correct PDF link', async ({ page }) => {
+    
+    const enhancedLimeGyspum = new EnhancedLimeGypsum(page);
+
+    // Go to Enhanced Lime and Gypsum page
+    await page.goto('/enhanced-lime-gypsum');
+
+    // Capture the navigation request to avoid headless failure
+    const [request] = await Promise.all([
+        page.waitForEvent('request', request => 
+            request.url() === 'https://www.andreandson.com/_files/ugd/3bd49b_c2d1911de7f1408bbd226f2ebaf591ca.pdf'
+        ),
+        //click on Turf King Cal Plus Label Button
+        enhancedLimeGyspum.clickTurfKingGypsumPlusLabel(),
+    ]);
+
+    // Verify the correct PDF URL was requested
+    expect(request.url()).toBe('https://www.andreandson.com/_files/ugd/3bd49b_c2d1911de7f1408bbd226f2ebaf591ca.pdf');
+});
+
+test('Verify Turf King Gypsum Plus SDS opens correct PDF link', async ({ page }) => {
+    
+    const enhancedLimeGyspum = new EnhancedLimeGypsum(page);
+
+    // Go to Enhanced Lime and Gypsum page
+    await page.goto('/enhanced-lime-gypsum');
+
+    // Capture the navigation request to avoid headless failure
+    const [request] = await Promise.all([
+        page.waitForEvent('request', request => 
+            request.url() === 'https://www.andreandson.com/_files/ugd/3bd49b_97a7555c1af94563a8741003df2b9f94.pdf'
+        ),
+        //click on Turf King Cal Plus Label Button
+        enhancedLimeGyspum.clickTurfKingGypsumPlusSDS(),
+    ]);
+
+    // Verify the correct PDF URL was requested
+    expect(request.url()).toBe('https://www.andreandson.com/_files/ugd/3bd49b_97a7555c1af94563a8741003df2b9f94.pdf');
+});
+
+test('Verify Turf King Gypsum Plus Spec Sheet opens correct PDF link', async ({ page }) => {
+    
+    const enhancedLimeGyspum = new EnhancedLimeGypsum(page);
+
+    // Go to Enhanced Lime and Gypsum page
+    await page.goto('/enhanced-lime-gypsum');
+
+    // Capture the navigation request to avoid headless failure
+    const [request] = await Promise.all([
+        page.waitForEvent('request', request => 
+            request.url() === 'https://www.andreandson.com/_files/ugd/3bd49b_9feebd7defc34b0292eb670a9b020230.pdf'
+        ),
+        //click on Turf King Cal Plus Label Button
+        enhancedLimeGyspum.clickTurfKingGypsumPlusSpecSheet(),
+    ]);
+
+    // Verify the correct PDF URL was requested
+    expect(request.url()).toBe('https://www.andreandson.com/_files/ugd/3bd49b_9feebd7defc34b0292eb670a9b020230.pdf');
+});
+
+test('Verify Turf King Gypsum Plus Mini Label opens correct PDF link', async ({ page }) => {
+    
+    const enhancedLimeGyspum = new EnhancedLimeGypsum(page);
+
+    // Go to Enhanced Lime and Gypsum page
+    await page.goto('/enhanced-lime-gypsum');
+
+    // Capture the navigation request to avoid headless failure
+    const [request] = await Promise.all([
+        page.waitForEvent('request', request => 
+            request.url() === 'https://www.andreandson.com/_files/ugd/3bd49b_2c6436105d0c4cf8aaee4372cb56e10c.pdf'
+        ),
+        //click on Turf King Cal Plus Label Button
+        enhancedLimeGyspum.clickTurfKingGypsumPlusMiniLabel(),
+    ]);
+
+    // Verify the correct PDF URL was requested
+    expect(request.url()).toBe('https://www.andreandson.com/_files/ugd/3bd49b_2c6436105d0c4cf8aaee4372cb56e10c.pdf');
+});
+
+test('Verify Turf King Gypsum Plus Mini SDS opens correct PDF link', async ({ page }) => {
+    
+    const enhancedLimeGyspum = new EnhancedLimeGypsum(page);
+
+    // Go to Enhanced Lime and Gypsum page
+    await page.goto('/enhanced-lime-gypsum');
+
+    // Capture the navigation request to avoid headless failure
+    const [request] = await Promise.all([
+        page.waitForEvent('request', request => 
+            request.url() === 'https://www.andreandson.com/_files/ugd/3bd49b_97a7555c1af94563a8741003df2b9f94.pdf'
+        ),
+        //click on Turf King Cal Plus Label Button
+        enhancedLimeGyspum.clickTurfKingGypsumPlusMiniSDS(),
+    ]);
+
+    // Verify the correct PDF URL was requested
+    expect(request.url()).toBe('https://www.andreandson.com/_files/ugd/3bd49b_97a7555c1af94563a8741003df2b9f94.pdf');
+});
+
+test('Verify Turf King Gypsum Plus Mini Spec Sheet opens correct PDF link', async ({ page }) => {
+    
+    const enhancedLimeGyspum = new EnhancedLimeGypsum(page);
+
+    // Go to Enhanced Lime and Gypsum page
+    await page.goto('/enhanced-lime-gypsum');
+
+    // Capture the navigation request to avoid headless failure
+    const [request] = await Promise.all([
+        page.waitForEvent('request', request => 
+            request.url() === 'https://www.andreandson.com/_files/ugd/3bd49b_8cc591c009b94a8b84a9bef941cc9c68.pdf'
+        ),
+        //click on Turf King Cal Plus Label Button
+        enhancedLimeGyspum.clickTurfKingGypsumPlusMiniSpecSheet(),
+    ]);
+
+    // Verify the correct PDF URL was requested
+    expect(request.url()).toBe('https://www.andreandson.com/_files/ugd/3bd49b_8cc591c009b94a8b84a9bef941cc9c68.pdf');
 });
