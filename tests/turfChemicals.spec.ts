@@ -88,6 +88,7 @@ test('Checking description on TURF CHEMICALS page, verifying all learn more butt
   await expect(page).toHaveURL('https://www.andreandson.com/prime-source');
   
   // TC 133, 134, 135 Click each Browse button 
+  await albaughPage.verifyAlbaughPageContent();
   await albaughPage.clickBrowseProductButton(0);
   await page.pause();
   // put assert here for fungicides link and then close this window
