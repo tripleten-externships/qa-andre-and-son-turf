@@ -1,8 +1,8 @@
 import { test, expect } from '@playwright/test';
 
-test('has title', async ({ page }) => {
-  
+test.only('has title', async ({ page }) => {
+    await page.goto('https://www.andreandson.com/contract-services');
+    await page.getByText('Conventional Aerification').scrollIntoViewIfNeeded();
+    await page.getByText('Conventional Aerification').click();
+    await expect(page).toHaveURL('https://www.andreandson.com/conventional-aerification');
 });
-
-
-await page.locator('#comp-igauz7ee0').getByRole('link', { name: 'TURF PRODUCTS' }).click();
