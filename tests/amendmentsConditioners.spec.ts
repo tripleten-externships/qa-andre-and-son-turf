@@ -215,3 +215,23 @@ test('Verify precisionorganics.com ...', async ({ page }) => {
     await expect(newTab).toHaveURL('https://www.precisionorganics.com/');
 
 });
+
+test('Verify Turf King Cal Plus Label opens correct PDF link', async ({ page }) => {
+    
+    const enhancedLimeGyspum = new EnhancedLimeGypsum(page);
+
+    // Go to Enhanced Lime and Gypsum page
+    await page.goto('/enhanced-lime-gypsum');
+
+    // Capture the navigation request to avoid headless failure
+    const [request] = await Promise.all([
+        page.waitForEvent('request', request => 
+            request.url() === 'https://www.andreandson.com/_files/ugd/3bd49b_a66c9ab8ecd84a98bc76c7feaf17d78e.pdf'
+        ),
+        //click on Turf King Cal Plus Label Button
+        enhancedLimeGyspum.clickTurfKingCalPlusLabel(),
+    ]);
+
+    // Verify the correct PDF URL was requested
+    expect(request.url()).toBe('https://www.andreandson.com/_files/ugd/3bd49b_a66c9ab8ecd84a98bc76c7feaf17d78e.pdf');
+});
