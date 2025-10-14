@@ -619,7 +619,7 @@ test('Ferris section link', async ({ page }) => {
     ]);
 
     // Wait for it to load
-    await newPage.waitForLoadState();
+    // await newPage.waitForLoadState();
 
     // Verify URL
     await expect(newPage).toHaveURL('https://www.ferrismowers.com/na/en_us/home.html');
