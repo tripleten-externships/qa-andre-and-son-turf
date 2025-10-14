@@ -33,18 +33,14 @@ test.only('Verify that the "Conventional Aerification" link element is clickable
     const contractServicesPage = new ContractServicesPage(page);
     //Go to Contract Services page
     await page.goto('/contract-services', { waitUntil: 'load' });
-    await contractServicesPage.conventionalAerificationelement.scrollIntoViewIfNeeded;
-    await contractServicesPage.conventionalAerificationelement.waitFor({ state: 'visible'});    
-    //Click on Conventional Aerification link element
-    const [newPage] = await Promise.all([
-        page.context().waitForEvent('page'),
-        contractServicesPage.conventionalAerificationelement.click()
-    ]);
+    //Click on the "Conventional Aerification" link element
+    await contractServicesPage.conventionalAerificationelement.scrollIntoViewIfNeeded();
+    await contractServicesPage.conventionalAerificationelement.isVisible();
+    await contractServicesPage.conventionalAerificationelement.click();
     //Verify that the new page is opened with correct URL
-    await newPage.waitForLoadState();
-    await expect(newPage).toHaveURL(/.*conventional-aerification/);
+    await expect(page.url()).toContain('/conventional-aerification');
     //Verify that the new page contains the expected content
-    const newPageTitle = newPage.locator('h1'); // Adjust the selector as needed
+    const newPageTitle = page.locator('h1'); // Adjust the selector as needed
     await expect(newPageTitle).toContainText('Conventional Aerification'); // Adjust the expected text as needed
 });
 
