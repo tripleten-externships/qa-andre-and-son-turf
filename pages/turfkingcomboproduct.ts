@@ -1,8 +1,10 @@
 import { expect, Locator, Page } from '@playwright/test';
 
-export class TurfKingComboProductPage {
+export class turfKingComboProductPage {
 
     readonly page: Page;
+    readonly turfProductsTitle: Locator;
+    readonly combinationProductLearnMoreButton: Locator;
     readonly turfKingProdiamineTitle: Locator;
     readonly turfKingProdiamineDescription: Locator;
     readonly turfKingProdiamineLearnMoreButton: Locator;
@@ -32,13 +34,14 @@ export class TurfKingComboProductPage {
     readonly emailAddressTextBox: Locator;
     readonly submitButton: Locator;
     readonly andreandsonlogo: Locator;
-    readonly turfKingTitleInFooter: Locator;
+    readonly turfProductsTitleInFooter: Locator;
         readonly footerSection: Locator;
+        readonly scrollToFooterButton: Locator;
     
-
-
     constructor(page: Page) {
         this.page = page;
+        this.turfProductsTitle = page.getByRole('link', {name: 'Turf Products'}).nth(0);
+        this.combinationProductLearnMoreButton = page.locator('#comp-kmctlbje__item1').getByRole('link', { name: 'Learn More' });
         this.turfKingProdiamineTitle = page.locator('h1:has-text("Turf King + Prodiamine")');
         this.turfKingProdiamineDescription = page.locator('p:has-text("Turf King + Prodiamine description")');
         this.turfKingProdiamineLearnMoreButton = page.locator('button:has-text("Learn More")');
@@ -68,23 +71,29 @@ export class TurfKingComboProductPage {
         this.emailAddressTextBox = page.locator('input[placeholder="Email address"]');
         this.submitButton = page.locator('button:has-text("Submit")');
         this.andreandsonlogo = page.getByRole('link', { name: 'logo_edited_edited.png' });
-        this.turfKingTitleInFooter = page.locator('footer').getByText('TURF KING', { exact: true });
+        this.turfProductsTitleInFooter = page.getByTestId('linkElement-0');
             this.footerSection = page.locator('footer');
+            this.scrollToFooterButton = page.locator('button[aria-label="Scroll to footer"]');
+
     
-
     }
-
-    async goto(path = '/') {
-        await this.page.goto(path);
+    async goto() {
+        await this.page.goto('/');
     }
-    async clickandreandsonlogo() {
-        await this.andreandsonlogo.click()
+    async clickTurfProductsTitle() {
+        await this.turfProductsTitle.click();
+    }
+    async clickCombinationProductLearnMoreButton() {
+        await this.combinationProductLearnMoreButton.click();
     }
     async scrollToFooterSection() {
         await this.footerSection.scrollIntoViewIfNeeded();
     }
     async verifyTurfKingTitleIsHighlighted() {
-        await expect(this.turfKingTitleInFooter).toHaveCSS('background-color', 'rgb(255, 255, 0)'); // Yellow color
+        const color = await this.turfProductsTitleInFooter.evaluate((el) => {
+            return window.getComputedStyle(el).color;
+        });
+        expect(color).toBe('rgb(255, 255, 0)'); // Yellow color in RGB format
     }
-
+    
 }

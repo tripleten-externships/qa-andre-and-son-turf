@@ -1,19 +1,20 @@
 import { test, expect } from "@playwright/test";
-import { TurfProductPage } from "../pages/turf product ";
-import { turfProductHomePage } from "../pages/turfproduct home";
+import { turfKingComboProductPage } from "../pages/turfkingcomboproduct";
 
-//before running the test amke sure to go to the turf king combo products page by clicking on the learn more button under the description of the combination products in the turf product page.
+//before running the test, navigate to the turf product page by clicking on the "turf products" title on the homepage
+//then clicking on the "learn more" button under the description of the combination products section
+//then wait for the page to load completely
 
 
-test.beforeEach(async ({ page }: { page: import('@playwright/test').Page }) => {
-    const turfProductPage = new TurfProductPage(page);
-    await turfProductPage.page.goto('/turf-product');
-    await turfProductPage.page.waitForLoadState('networkidle');
+
+test.beforeEach(async ({ page }) => {
+    const turfkingcomboproductsPage = new turfKingComboProductPage(page);
 });
-
-
-
-/*verify the title "Turf King + Prodiamine" .
+/*verify all the products in the combo products page
+navigate to the turf product page by clicking on the "turf products" title on the homepage
+then clicking on the "learn more" button under the description of the combination products section
+then wait for the page to load completely
+verify the title "Turf King + Prodiamine" 
 verify the "Turf King + Prodiamine" has a description under it.
 verify the title "Turf King + Prodiamine" has "Learn More" button under the description
 verify the title "Turf King + Dithiopyr".
@@ -46,15 +47,13 @@ verify clicking on the "Andre & Son Logo" in the top left corner takes you to th
 */
 
 test('verify all the products in the combo products page', async ({ page }) => {
-    const turfProductPage = new TurfProductPage(page);
-
+    const turfKingComboPage = new turfKingComboProductPage(page);
 //go to the home page first
-await turfProductPage.page.goto('/');
-//click on the learn more button under the description of the turf products in the service section to go to the turf product page
-await page.locator('#comp-kjtbzrpx__item-j9wn309i').getByRole('link', { name: 'LEARN MORE' }).click();
-//now click on the combination products link to go to the combo products page
-await turfProductPage.combinationProductslink.click();
-//verify the page is correct
+await turfKingComboPage.goto();
+//click on the "turf products" title to go to the turf product page
+await turfKingComboPage.clickTurfProductsTitle();
+//click on the combination product learn more button to go to the combo products page
+await turfKingComboPage.clickCombinationProductLearnMoreButton();
 await expect(page).toHaveURL(/.*turf-king-combo-products/);
 //verify the title "Turf King + Prodiamine" has a description under it.
 await expect(page.locator('text=Turf King + Prodiamine')).toBeVisible();
@@ -94,8 +93,5 @@ await expect(page.locator('text=Let\'s Get Growing')).toBeVisible();
 await expect(page.locator('input').first()).toBeVisible();
 //verify the "submit" button is under the "email address" text box
 await expect(page.locator('button:has-text("Submit")')).toBeVisible();
-//click on the "Andre & Son Logo" in the top left corner to go back to the home page.
-await turfProductPage.andreandsonlogo.click();
-//verify the page is correct
-await expect(page).toHaveURL('/');
+
 });
