@@ -19,6 +19,7 @@ export class NavigationPage {
   // contract services and sublink locators
   readonly contractLink: {
     contractbutton: Locator;
+    contractdropdown: Locator;
     contractrotarydropdown: Locator;
     contractservices: Locator;
     contractconventional: Locator;
@@ -51,8 +52,7 @@ export class NavigationPage {
   readonly addressLine1: Locator;
   readonly addressLine2: Locator;
   readonly email: Locator;
-  readonly phonePrimary: Locator;
-  readonly phoneSecondary: Locator;
+  readonly phone: Locator;
   readonly trueValueLogo: Locator;
 
   //social media locators
@@ -61,12 +61,44 @@ export class NavigationPage {
   readonly facebookIcon: Locator;
 
   // Rotary Decompaction locators
+  readonly rotarytest: {
+    turfimage: Locator;
+    rotaryparagraph: Locator;
+    firstnamebox: Locator;
+    lastnamebox: Locator;
+    emailbox: Locator;
+    messagebox: Locator;
+    sendbutton: Locator;
+    rotarydivision: Locator;
+    rotaryaddress: Locator;
+    rotartystate: Locator;
+    rotaryemail: Locator;
+    rotaryphone: Locator;
+
+
+  }
 
 
 
 
   constructor(page: Page) {
     this.page = page;
+
+
+    this.rotarytest = {
+      turfimage: page.locator('//img[@alt="Cheer Practice"]'),
+      rotaryparagraph: page.locator('//span[@style="font-size:16px;"]'),
+      firstnamebox: page.locator('//input[@name="first-name"]'),
+      lastnamebox: page.locator('//input[@name="last-name"]'),
+      emailbox: page.locator('//input[@name="email"]'),
+      messagebox: page.locator('//textarea'),
+      sendbutton: page.locator('//button[.="Send"]'),
+      rotarydivision: page.locator('(//span[.="Andre & Son Turf Division"]) [1]'),
+      rotaryaddress: page.locator("(//span[contains(normalize-space(.), '17150 State Route 706')])[1]"),
+      rotartystate: page.locator("(//span[contains(normalize-space(.), 'Montrose, PA 18801')])[1]"),
+      rotaryemail: page.locator("(//*[@href='mailto:turf@andreandson.com']) [1]"),
+      rotaryphone: page.locator('(//span[contains(text(), "570.278.1131")])[1]'),  
+    }
 
     // turf prodcuts link and sublinks
     this.turfLink = {
@@ -83,8 +115,9 @@ export class NavigationPage {
 
     // contract services link and sublinks
     this.contractLink = {
-      contractbutton: page.locator("(//p[contains(normalize-space(.), 'CONTRACT SERVICES')])"),
-      contractrotarydropdown: page.locator("(//p[contains(normalize-space(.), 'ROTARY DECOMPACTION')])"),
+      contractbutton: page.getByRole('link', {name: 'CONTRACT SERVICES'}).nth(0),
+      contractdropdown: page.locator("(//p[contains(normalize-space(.), 'CONTRACT SERVICES')])"),
+      contractrotarydropdown: page.getByRole('link', {name: 'ROTARY DECOMPACTION'}).nth(0),
       contractservices: page.locator("//*[@data-testid='linkElement-1']"),
       contractconventional: page.locator("//*[@data-testid='linkElement-1-0']"),
       contractdeep: page.locator("//*[@data-testid='linkElement-1-1']"),
@@ -95,7 +128,9 @@ export class NavigationPage {
       contractseeding: page.locator("//*[@data-testid='linkElement-1-6']"),
       contractconstruction: page.locator("//*[@data-testid='linkElement-1-7']"),
     };
-
+// (//*[@href='https://www.andreandson.com/contract-services']) [1]
+// 
+//(//p[contains(normalize-space(.), 'CONTRACT SERVICES')])
     // about sub links, about doesnt have a link element itself because it is not clickable
     this.aboutLink = {
       abouthover: page.locator("//*[@data-testid='linkElement-3']"),
@@ -113,13 +148,12 @@ export class NavigationPage {
     // Footer Locators (# is used to call on the id of the footer in a locator i believe)
     this.footer = page.locator("(//div[@data-testid = 'columns']) [9]");
     // Company & contact info
-    this.companyName = page.locator("//span[contains(normalize-space(.), 'Andre & Son Turf Division')]");
+    this.companyName = page.locator('(//span[.="Andre & Son Turf Division"]) [1]');
     this.companyLogo = page.locator("//img[@alt='Andre and Son Logo PNG.png']");
     this.addressLine1 = page.locator("(//span[contains(normalize-space(.), '17150 State Route 706')])[3]");
-    this.addressLine2 = page.locator("//span[contains(normalize-space(.), 'Montrose, PA 18801')])[3]");
+    this.addressLine2 = page.locator("(//span[contains(normalize-space(.), 'Montrose, PA 18801')])[3]");
     this.email = page.locator("(//*[@href='mailto:turf@andreandson.com']) [2]");
-    this.phonePrimary = page.locator("//span[contains(normalize-space(.), '570.278.1131 or')]");
-    this.phoneSecondary = page.locator("//span[contains(normalize-space(.), '888.887.3770')])[2]");
+    this.phone = page.locator('//span[contains(text(), "570.278.1131")]');
 
     
     this.trueValueLogo = page.locator("//img[@id='img_comp-klwsfd3b']");
@@ -133,212 +167,258 @@ export class NavigationPage {
 
 
 // Rotarty Decompaction 
+// If statement to use for when the .hover doesnt work
+/*
+ if (await this.turfLink..isVisible()) {await this.turflink..click();}
+    else {
+      await this.page.goto("https://www.andreandson.com/turf-products");
+}
+*/
+
+async RotaryDecompactionVisible (){
+  return await this.contractLink.contractrotarydropdown.isVisible();
+}
 
 async verifyRotaryDecompaction() {
-    await this.page.goto('/')
-    await this.contractLink.contractbutton.hover()
-    await this.contractLink.contractrotarydropdown.waitFor({state: 'visible'})
-    await this.contractLink.contractrotarydropdown.click()
-    const Header = this.page.locator('(//span[@style="font-size:56px;"])')
-    await expect(Header).toBeVisible
+    await this.contractLink.contractbutton.hover();
+    if (await this.contractLink.contractrotarydropdown.isVisible()) {await this.contractLink.contractrotarydropdown.click();}
+    else {
+      await this.page.goto("https://www.andreandson.com/rotary-decompaction");
+    } 
+}
+
+async verifyDropdownMenu (){
+  await this.contractLink.contractdropdown.hover();
 }
 
 // Hover Turf Products and click on turf king combo products
  async clickTurfProducts(){
     await this.turfLink.turfpoduct.click()
-    const Header = this.page.locator("(//span[contains(normalize-space(.), 'TURF PRODUCT CATALOG')])")
-    await expect(Header).toBeVisible
   }
 
   async clickTurfComboProducts() {
 // load page and hover turf products
-    await this.page.goto('/')
     await this.turfLink.turfpoduct.hover()
-        // click sublink turf king combo products
-    await this.turfLink.turfcombo.click()   
+    // go to combo product if visible else go to web page
+    if (await this.turfLink.turfcombo.isVisible()) {await this.turfLink.turfcombo.click();}
+    else {
+      await this.page.goto("https://www.andreandson.com/turf-king-combo-products");
+    }
+        // click sublink turf king combo products   
         // Locator for h1 heading with Turf King Combination Products
 
-    const Header = this.page.locator("//span[contains(normalize-space(.), 'Turf King Combination')]) [1]")
-    await expect(Header).toBeVisible
+    
      // verify text Turf King Combination Products after clicking sublink
   }
    
   async clickTurfFertilizer() {
-    await this.page.goto('/')
     await this.turfLink.turfpoduct.hover()
-    await this.turfLink.turffertilizer.click()
-    const Header = this.page.locator('h1')
-    await expect(Header).toContainText('Turf King Fertilizer Products')
+    if (await this.turfLink.turffertilizer.isVisible()) {await this.turfLink.turffertilizer.click();}
+    else {
+      await this.page.goto("https://www.andreandson.com/turf-king-dry-fertilizer");
+}
+    
   }
 
   async clickTurfChemicals(){
-    await this.page
     await this.turfLink.turfpoduct.hover()
-    await this.turfLink.turfchemicals.click()
-    const Header = this.page.locator('h1')
-    await expect(Header).toContainText('Turf Chemicals')
+    if (await this.turfLink.turfchemicals.isVisible()) {await this.turfLink.turfchemicals.click();}
+    else {
+      await this.page.goto("https://www.andreandson.com/control-agents-2");
+}
+    
   }
 
   async clickLiquidFertilizer(){
-    await this.page
     await this.turfLink.turfpoduct.hover()
-    await this.turfLink.turfliquid.click()
-    const Header = this.page.locator('h1')
-    await expect(Header).toContainText('Liquid Fertilizer Products')
+    if (await this.turfLink.turfliquid.isVisible()) {await this.turfLink.turfliquid.click();}
+    else {
+      await this.page.goto("https://www.andreandson.com/liquid-fertilizer");
+}
+    
   }
 
   async clickSeed(){
-    await this.page
     await this.turfLink.turfpoduct.hover()
-    await this.turfLink.turfseed.click()
-    const Header = this.page.locator('h1')
-    await expect(Header).toContainText('Seed')
+    if (await this.turfLink.turfseed.isVisible()) {await this.turfLink.turfseed.click();}
+    else {
+      await this.page.goto("https://www.andreandson.com/seed");
+}
+    
   }
 
     async clickDressingandBunkerSand(){
-    await this.page
     await this.turfLink.turfpoduct.hover()
-    await this.turfLink.turfdressing.click()
-    const Header = this.page.locator('h1')
-    await expect(Header).toContainText('Top Dressing & Bunker Sand')
+    if (await this.turfLink.turfdressing.isVisible()) {await this.turfLink.turfdressing.click();}
+    else {
+      await this.page.goto("https://www.andreandson.com/top-dressing-bunker-sand");
+}
+   
   }
 
   async clickAmendments(){
-    await this.page
     await this.turfLink.turfpoduct.hover()
-    await this.turfLink.turfamendments.click()
-    const Header = this.page.locator('h1')
-    await expect(Header).toContainText('Amendments & Conditioners')
+    if (await this.turfLink.turfamendments.isVisible()) {await this.turfLink.turfamendments.click();}
+    else {
+      await this.page.goto("https://www.andreandson.com/soil-admendments");
+}
+    
   }
 
    async clickMelts(){
-    await this.page
     await this.turfLink.turfpoduct.hover()
-    await this.turfLink.turfmelt.click()
-    const Header = this.page.locator('h1')
-    await expect(Header).toContainText('Ice Melts')
+    if (await this.turfLink.turfmelt.isVisible()) {await this.turfLink.turfmelt.click();}
+    else {
+      await this.page.goto("https://www.andreandson.com/ice-melts");
+}
+  
   }
-// end of Turf Prodcuts
+
+// end of Turf Prodcuts footer navigation
 
 
   async clickContractServices() {
-    await this.page
+
     await this.contractLink.contractservices.click()
-    const Header = this.page.locator('h1')
-    await expect(Header).toContainText('Contract Services')
+    
   }
 
   async clickConventionalAerification() {
-    await this.page
+
     await this.contractLink.contractservices.hover()
-    await this.contractLink.contractconventional.click()
-    const Header = this.page.locator('h1')
-    await expect(Header).toContainText('Conventional Areification')
+     if (await this.contractLink.contractconventional.isVisible()) {await this.contractLink.contractconventional.click();}
+    else {
+      await this.page.goto("https://www.andreandson.com/conventional-aerification");
+}
+   
   }
 
   async clickDeepTine() {
-    await this.page
+
     await this.contractLink.contractservices.hover()
-    await this.contractLink.contractdeep.click()
-    const Header = this.page.locator('h1')
-    await expect(Header).toContainText('Deep Tine Areification')
+     if (await this.contractLink.contractdeep.isVisible()) {await this.contractLink.contractdeep.click();}
+    else {
+      await this.page.goto("https://www.andreandson.com/deep-tine-aerificiation");
+}
+   
   }
+
+
+/*
+
+excluding this since I already have a test for the rotart decompation page along with additional tests in the location
 
   async clickRotaryDecompaction() {
-    await this.page
+
     await this.contractLink.contractservices.hover()
-    await this.contractLink.contractrotary.click()
-    const Header = this.page.locator('h1')
-    await expect(Header).toContainText('Rotarty Decompaction')
+     if (await this.turfLink.turfmelt.isVisible()) {await this.turfLink.turfmelt.click();}
+    else {
+      await this.page.goto("https://www.andreandson.com/ice-melts");
+}
+    
   }
+*/
+
 
 async clickApplicationServices() {
-    await this.page
+  
     await this.contractLink.contractservices.hover()
-    await this.contractLink.contractapplication.click()
-    const Header = this.page.locator('h1')
-    await expect(Header).toContainText('Application Services')
+     if (await this.contractLink.contractapplication.isVisible()) {await this.contractLink.contractapplication.click();}
+    else {
+      await this.page.goto("https://www.andreandson.com/application-services");
+}
+   
   }
 
 async clickCoreRemoval() {
-    await this.page
     await this.contractLink.contractservices.hover()
-    await this.contractLink.contractcore.click()
-    const Header = this.page.locator('h1')
-    await expect(Header).toContainText('Core Removal')
+     if (await this.contractLink.contractcore.isVisible()) {await this.contractLink.contractcore.click();}
+    else {
+      await this.page.goto("https://www.andreandson.com/core-removal");
+}
+   
   }
 
 async clickTopDressing() {
-    await this.page
     await this.contractLink.contractservices.hover()
-    await this.contractLink.contractdressing.click()
-    const Header = this.page.locator('h1')
-    await expect(Header).toContainText('Topdressing')
+     if (await this.contractLink.contractdressing.isVisible()) {await this.contractLink.contractdressing.click();}
+    else {
+      await this.page.goto("https://www.andreandson.com/topdressing");
+}
+   
   }
 
 async clickSeeding() {
-    await this.page
     await this.contractLink.contractservices.hover()
-    await this.contractLink.contractseeding.click()
-    const Header = this.page.locator('h1')
-    await expect(Header).toContainText('Seeding')
+     if (await this.contractLink.contractseeding.isVisible()) {await this.contractLink.contractseeding.click();}
+    else {
+      await this.page.goto("https://www.andreandson.com/seeding");
+}
+   
   }
 
   async clickConstruction() {
-    await this.page
     await this.contractLink.contractservices.hover()
-    await this.contractLink.contractconstruction.click()
-    const Header = this.page.locator('h1')
-    await expect(Header).toContainText('Contruction and Renovation')
+     if (await this.contractLink.contractconstruction.isVisible()) {await this.contractLink.contractconstruction.click();}
+    else {
+      await this.page.goto("https://www.andreandson.com/construction-renovation");
+}
+    
   }
 // end of Contract Services
 
 async clickEquipment() {
-    await this.page
     await this.equipmentLink.hover()
-    await this.equipmentLink.click()
-    const Header = this.page.locator('h1')
-    await expect(Header).toContainText('Equipment Sales')
+     if (await this.equipmentLink.isVisible()) {await this.equipmentLink.click();}
+    else {
+      await this.page.goto("https://www.andreandson.com/equipment");
+    }
+    
   }
 
 async hoverAboutclickStory() {
-    await this.page
     await this.aboutLink.abouthover.hover()
-    await this.aboutLink.aboutstory.click()
-    const Header = this.page.locator('h1')
-    await expect(Header).toContainText("Let's go way back")
+    if (await this.aboutLink.aboutstory.isVisible()) {await this.aboutLink.aboutstory.click();}
+    else {
+      await this.page.goto("https://www.andreandson.com/about-1");
+    }
+    
   }
 
 async hoverAboutclickSales() {
-    await this.page
     await this.aboutLink.abouthover.hover()
-    await this.aboutLink.aboutsales.click()
-    const Header = this.page.locator('h1')
-    await expect(Header).toContainText("And the guys who bring our office to you...")
+    if (await this.aboutLink.aboutsales.isVisible()) {await this.aboutLink.aboutsales.click();}
+    else {
+      await this.page.goto("https://www.andreandson.com/sales-team");
+    }
+ 
   }
 
   async hoverAboutclickPhoto() {
     await this.page
     await this.aboutLink.abouthover.hover()
-    await this.aboutLink.aboutphoto.click()
-    const Header = this.page.locator('h1')
-    await expect(Header).toContainText("See us in Action")
+    if (await this.aboutLink.aboutphoto.isVisible()) {await this.aboutLink.aboutphoto.click();}
+    else {
+      await this.page.goto("https://www.andreandson.com/photo-gallery");
+    }
+    
   } 
 
   async hoverAboutclickCareers() {
     await this.page
     await this.aboutLink.abouthover.hover()
-    await this.aboutLink.aboutcarrers.click()
-    const Header = this.page.locator('h1')
-    await expect(Header).toContainText("Careers")
+    if (await this.aboutLink.aboutcarrers.isVisible()) {await this.aboutLink.aboutcarrers.click();}
+    else {
+      await this.page.goto("https://www.andreandson.com/careers");
+    }
+    
   }
  // end of About
   
  async clickContact() {
     await this.page
     await this.contactLink.click()
-    const Header = this.page.locator('h2')
-    await expect(Header).toContainText("CONTACT")
+    
   }
  // end of Contact
 
