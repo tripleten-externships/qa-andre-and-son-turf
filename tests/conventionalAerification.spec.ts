@@ -26,16 +26,17 @@ test('Verify page loads successfully', async ({ page }) => {
     //const mainRegionImg = page
     // .getByRole('region', { name: 'main content' }).locator('img');
     //await expect(mainRegionImg.first()).toBeVisible();
-  await convAero.verifymaincontentimage();
+  expect(convAero.verifymaincontentimage());
+  //await expect(convAero.mainContentImages).toBeVisible();
   //Verify specific images by their accessible names
     //await expect(page.getByRole('img', { name: 'Fairways Aerification 3.jpg' })).toBeVisible();
-  await convAero.verifyfairwaysAerificationImage();
+  expect(convAero.verifyfairwaysAerificationImage());
     //await expect(page.getByRole('img', { name: 'Conventional Aercore Greens 2' })).toBeVisible();
-  await convAero.verifyconventionalAercoreGreensImage();
+  expect(convAero.verifyconventionalAercoreGreensImage());
   //Verify page description text displays correctly
     //await expect(page.getByText('Conventional aerification is the process of removing small cores of soil from the turf and soil profile to reduce compaction, improve water infiltration, and enhance overall turf health. This method is commonly used on golf courses, sports fields, and other high-traffic turf areas.'
     // )).toBeVisible(); 
-  await convAero.verifypagedescriptiontext(); 
+  expect(convAero.verifypagedescriptiontext()); 
 
   }});});
 
@@ -62,23 +63,27 @@ test('Verify form fields can be filled out', async ({ page }) => {
   //fill out the first name field
   //await page.getByLabel('First Name').fill('Ignacio');
   await convAero.fillfirstNameField('Ignacio');
+  expect (convAero.fillfirstName).toHaveValue('Ignacio');
   //click on the last name field
   //await page.getByLabel('Last Name').click(); 
   await convAero.clicklastNameField();
   //fill out the last name field
   //await page.getByLabel('Last Name').fill('Robles');
   await convAero.filllastNameField('Robles');
+  expect (convAero.filllastname).toHaveValue('Robles');
   //click on the email field
   //await page.getByLabel('Email').click();
   await convAero.clickemailField();
   //fill out the email field
   //await page.getByLabel('Email').fill('ignacio@gmail.com)');
   await convAero.fillemailField('ignacio@gmail.com');
+  expect (convAero.fillemail).toHaveValue('ignacio@gmail.com');
   //click on the message field
   //await page.getByLabel('Message').click();
   await convAero.clickmessageField();
   //fill out the message field
   //await page.getByLabel('Message').fill('This is a test message.');
   await convAero.fillmessageField('This is a test message.');
+  expect (convAero.fillmessage).toHaveValue('This is a test message.');
 
 });
