@@ -1,4 +1,9 @@
 import { test, expect } from '@playwright/test';
+import { IceMeltsPage } from '../pages/example';
+
+/*
+
+*/
 
 test.only('has title', async ({ page }) => {
     await page.goto('https://www.andreandson.com/contract-services');
