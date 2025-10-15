@@ -1,6 +1,4 @@
 import { expect, Locator, Page } from "@playwright/test";
-import { turfProducthomePage } from "./turfproduct home";
-
 
 export class TurfProductPage {
     async clickTurfProductsTitle() {

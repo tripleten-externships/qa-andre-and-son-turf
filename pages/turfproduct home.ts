@@ -56,4 +56,18 @@ export class turfProducthomePage {
     async clickturfkingcomboproductslink() {
         await this.turfkingcomboproductslink.click();
     }
+    
+    async navigateToTurfKingComboProductsViaDropdown() {
+        // Hover over the "Turf Products" menu item to reveal dropdown
+        await this.turfproductstitle.hover();
+        
+        // Wait a moment for dropdown to appear
+        await this.page.waitForTimeout(500);
+        
+        // Click on "Turf King Combo Products" in the dropdown menu
+        await this.turfkingcomboproductslink.click();
+        
+        // Wait for navigation to complete
+        await this.page.waitForLoadState('networkidle');
+    }
 }

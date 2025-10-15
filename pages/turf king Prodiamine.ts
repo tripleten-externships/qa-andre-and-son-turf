@@ -1,168 +1,144 @@
 import { Locator, Page } from '@playwright/test';
 
-export class TurfKingProdiaminePage {
-    static getByRole(arg0: string, arg1: { name: string; }): any {
+
+export class turfkingprodiaminepage {
+    static turfking1503withprodiaminelabelbutton(turfking1503withprodiaminelabelbutton: any) {
+        throw new Error('Method not implemented.');
+    }
+    static clickTurfKing1906withProdiamineSpecSheetButton(): any {
+        throw new Error('Method not implemented.');
     }
     readonly page: Page;
-
-    readonly turfkingprodiaminetitle: Locator;
-    readonly turfkingprodiaminedescription: Locator;
+    readonly turfProductsTitle: Locator;
+    readonly combinationProductLearnMoreButton: Locator;
     readonly turfkingprodiaminelearnmorebutton: Locator;
+    readonly turfkingprodiamineheading: Locator;
+    readonly turfkingprodiaminepagedescription: Locator;
     readonly wetgrassimagealttext: Locator;
     readonly spreadersettingbutton: Locator;
-    
-    // Turf King 15-0-3 with .20% Prodiamine
-    readonly turfking1503withprodiamine: Locator;
+    readonly turfking1503withprodiaminetitle: Locator;
     readonly turfking1503withprodiaminelabelbutton: Locator;
     readonly turfking1503withprodiaminesdsbutton: Locator;
     readonly turfking1503withprodiaminespecsheetbutton: Locator;
-    
-    // Turf King 19-0-6 with .29% Prodiamine
-    readonly turfking1906withprodiamine: Locator;
+    readonly turfking1906withprodiaminetitle: Locator;
     readonly turfking1906withprodiaminelabelbutton: Locator;
     readonly turfking1906withprodiaminesdsbutton: Locator;
     readonly turfking1906withprodiaminespecsheetbutton: Locator;
-    
-    // Turf King 0-0-7 with .37% Prodiamine
-    readonly turfking007withprodiamine: Locator;
+    readonly turfking007withprodiaminetitle: Locator;
     readonly turfking007withprodiaminelabelbutton: Locator;
     readonly turfking007withprodiaminesdsbutton: Locator;
     readonly turfking007withprodiaminespecsheetbutton: Locator;
-    
-    // Turf King 13-0-0 with .37% Prodiamine
-    readonly turfking1300withprodiamine: Locator;
+    readonly turfking1300withprodiaminetitle: Locator;
     readonly turfking1300withprodiaminelabelbutton: Locator;
     readonly turfking1300withprodiaminesdsbutton: Locator;
     readonly turfking1300withprodiaminespecsheetbutton: Locator;
-    
-    // Turf King 18-0-4 with .37% Prodiamine
-    readonly turfking1804withprodiamine: Locator;
+    readonly turfking1804withprodiaminetitle: Locator;
     readonly turfking1804withprodiaminelabelbutton: Locator;
     readonly turfking1804withprodiaminesdsbutton: Locator;
     readonly turfking1804withprodiaminespecsheetbutton: Locator;
-
-    //Turf King 0-0-7 with .42% Prodiamine
-    readonly turfking007with42prodiamine: Locator;
+    readonly turfking007with42prodiaminetitle: Locator;
     readonly turfking007with42prodiaminelabelbutton: Locator;
     readonly turfking007with42prodiaminesdsbutton: Locator;
     readonly turfking007with42prodiaminespecsheetbutton: Locator;
-
-    //Turf king 15-0-0 with .42% Prodiamine
-    readonly turfking1500with42prodiamine: Locator;
+    readonly turfking1500with42prodiaminetitle: Locator;
     readonly turfking1500with42prodiaminelabelbutton: Locator;
     readonly turfking1500with42prodiaminesdsbutton: Locator;
     readonly turfking1500with42prodiaminespecsheetbutton: Locator;
-
-    //Turf king 18-0-3 with .42% Prodiamine
-    readonly turfking1803with42prodiamine: Locator;
-    readonly turfking1803with42prodiaminelabelbutton: Locator
+    readonly turfking1803with42prodiaminetitle: Locator;
+    readonly turfking1803with42prodiaminelabelbutton: Locator;
     readonly turfking1803with42prodiaminesdsbutton: Locator;
     readonly turfking1803with42prodiaminespecsheetbutton: Locator;
-
-    //Turf King 0-0-7 with .58% Prodiamine
-    readonly turfking007with58prodiamine: Locator
+    readonly turfking007with58prodiaminetitle: Locator;
     readonly turfking007with58prodiaminelabelbutton: Locator;
     readonly turfking007with58prodiaminesdsbutton: Locator;
     readonly turfking007with58prodiaminespecsheetbutton: Locator;       
-
-    //Turf King 15-0-0 with .58% Prodiamine
-    readonly turfking1500with58prodiamine: Locator;
+    readonly turfking1500with58prodiaminetitle: Locator;
     readonly turfking1500with58prodiaminelabelbutton: Locator
     readonly turfking1500with58prodiaminesdsbutton: Locator;
     readonly turfking1500with58prodiaminespecsheetbutton: Locator;
-
-    //Turf King 18-0-0 with .58% Prodiamine
-    readonly turfking1800with58prodiamine: Locator;
+    readonly turfking1800with58prodiaminetitle: Locator;
     readonly turfking1800with58prodiaminelabelbutton: Locator
     readonly turfking1800with58prodiaminesdsbutton: Locator;
     readonly turfking1800with58prodiaminespecsheetbutton: Locator;
-
+    
 
     constructor(page: Page) {
         this.page = page;
-        
-        // Page content
-        this.turfkingprodiaminetitle = page.getByRole('heading', { name: 'Turf King + Prodiamine' });
-        this.turfkingprodiaminedescription = page.getByText('Prodiamine is a pre-emergence');
-        this.turfkingprodiaminelearnmorebutton = page.locator('text=Turf King + Prodiamine').getByRole('link', { name: 'Learn More' });
-        this.wetgrassimagealttext = page.locator('img[alt*="grass"]');
+        this.turfProductsTitle = page.locator('#comp-igauz7ee0').getByRole('link', { name: 'TURF PRODUCTS' });
+        this.combinationProductLearnMoreButton = page.locator('#comp-kmctlbje__item1').getByRole('link', { name: 'Learn More' });
+        this.turfkingprodiaminelearnmorebutton = page.locator('#comp-klsvc7ly__item-kes5qvaj').getByRole('link', { name: 'Learn More' });
+        this.turfkingprodiamineheading = page.getByText('Turf King + Prodiamine');
+        this.turfkingprodiaminepagedescription = page.getByText('Prodiamine is a pre-emergence');
+        this.wetgrassimagealttext = page.getByRole('img', { name: 'Wet grass' });
         this.spreadersettingbutton = page.getByRole('link', { name: 'Spreader Settings' });
-        
-        // Turf King 15-0-3 with .20% Prodiamine
-        this.turfking1503withprodiamine = page.getByText('Turf King 15-0-3 with .20% Prodiamine');
-        this.turfking1503withprodiaminelabelbutton = page.getByRole('listitem').filter({ hasText: 'Turf King 15-0-3' }).getByRole('link', { name: 'Label' });
-        this.turfking1503withprodiaminesdsbutton = page.getByRole('listitem').filter({ hasText: 'Turf King 15-0-3' }).getByRole('link', { name: 'SDS' });
-        this.turfking1503withprodiaminespecsheetbutton = page.getByRole('listitem').filter({ hasText: 'Turf King 15-0-3' }).getByRole('link', { name: 'Spec Sheet' });
-        
-        // Turf King 19-0-6 with .29% Prodiamine
-        this.turfking1906withprodiamine = page.getByText('Turf King 19-0-6 with .29% Prodiamine');
-        this.turfking1906withprodiaminelabelbutton = page.getByRole('listitem').filter({ hasText: 'Turf King 19-0-6' }).getByRole('link', { name: 'Label' });
-        this.turfking1906withprodiaminesdsbutton = page.getByRole('listitem').filter({ hasText: 'Turf King 19-0-6' }).getByRole('link', { name: 'SDS' });
-        this.turfking1906withprodiaminespecsheetbutton = page.getByRole('listitem').filter({ hasText: 'Turf King 19-0-6' }).getByRole('link', { name: 'Spec Sheet' });
-        
-        // Turf King 0-0-7 with .37% Prodiamine
-        this.turfking007withprodiamine = page.getByText('Turf King 0-0-7 with .37% Prodiamine');
-        this.turfking007withprodiaminelabelbutton = page.getByRole('listitem').filter({ hasText: 'Turf King 0-0-7' }).getByRole('link', { name: 'Label' });
-        this.turfking007withprodiaminesdsbutton = page.getByRole('listitem').filter({ hasText: 'Turf King 0-0-7' }).getByRole('link', { name: 'SDS' });
-        this.turfking007withprodiaminespecsheetbutton = page.getByRole('listitem').filter({ hasText: 'Turf King 0-0-7' }).getByRole('link', { name: 'Spec Sheet' });
-        
-        // Turf King 13-0-0 with .37% Prodiamine
-        this.turfking1300withprodiamine = page.getByText('Turf King 13-0-0 with .37% Prodiamine');
-        this.turfking1300withprodiaminelabelbutton = page.getByRole('listitem').filter({ hasText: 'Turf King 13-0-0' }).getByRole('link', { name: 'Label' });
-        this.turfking1300withprodiaminesdsbutton = page.getByRole('listitem').filter({ hasText: 'Turf King 13-0-0' }).getByRole('link', { name: 'SDS' });
-        this.turfking1300withprodiaminespecsheetbutton = page.getByRole('listitem').filter({ hasText: 'Turf King 13-0-0' }).getByRole('link', { name: 'Spec Sheet' });
-        
-        // Turf King 18-0-4 with .37% Prodiamine
-        this.turfking1804withprodiamine = page.getByText('Turf King 18-0-4 with .37% Prodiamine');
-        this.turfking1804withprodiaminelabelbutton = page.getByRole('listitem').filter({ hasText: 'Turf King 18-0-4' }).getByRole('link', { name: 'Label' });
-        this.turfking1804withprodiaminesdsbutton = page.getByRole('listitem').filter({ hasText: 'Turf King 18-0-4' }).getByRole('link', { name: 'SDS' });
-        this.turfking1804withprodiaminespecsheetbutton = page.getByRole('listitem').filter({ hasText: 'Turf King 18-0-4' }).getByRole('link', { name: 'Spec Sheet' });
-
-        //Turf King 0-0-7 with .42% Prodiamine
-        this.turfking007with42prodiamine = page.getByText('Turf King 0-0-7 with .42% Prodiamine');
-        this.turfking007with42prodiaminelabelbutton = page.getByRole('listitem').filter({ hasText: 'Turf King 0-0-7' }).getByRole('link', { name: 'Label' });
-        this.turfking007with42prodiaminesdsbutton = page.getByRole('listitem').filter({ hasText: 'Turf King 0-0-7' }).getByRole('link', { name: 'SDS' });
-        this.turfking007with42prodiaminespecsheetbutton = page.getByRole('listitem').filter({ hasText: 'Turf King 0-0-7' }).getByRole('link', { name: 'Spec Sheet' });  
-
-        //Turf king 15-0-0 with .42% Prodiamine
-        this.turfking1500with42prodiamine = page.getByText('Turf King 15-0-0 with .42% Prodiamine');
-        this.turfking1500with42prodiaminelabelbutton = page.getByRole('listitem').filter({ hasText: 'Turf King 15-0-0' }).getByRole('link', { name: 'Label' });
-        this.turfking1500with42prodiaminesdsbutton = page.getByRole('listitem').filter({ hasText: 'Turf King 15-0-0' }).getByRole('link', { name: 'SDS' });
-        this.turfking1500with42prodiaminespecsheetbutton = page.getByRole('listitem').filter({ hasText: 'Turf King 15-0-0' }).getByRole('link', { name: 'Spec Sheet' });    
-
-        //Turf king 18-0-3 with .42% Prodiamine
-        this.turfking1803with42prodiamine = page.getByText('Turf King 18-0-3 with .42% Prodiamine');
-        this.turfking1803with42prodiaminelabelbutton = page.getByRole('listitem').filter({ hasText: 'Turf King 18-0-3' }).getByRole('link', { name: 'Label' });
-        this.turfking1803with42prodiaminesdsbutton = page.getByRole('listitem').filter({ hasText: 'Turf King 18-0-3' }).getByRole('link', { name: 'SDS' });
-        this.turfking1803with42prodiaminespecsheetbutton = page.getByRole('listitem').filter({ hasText: 'Turf King 18-0-3' }).getByRole('link', { name: 'Spec Sheet' });    
-
-        //Turf King 0-0-7 with .58% Prodiamine
-        this.turfking007with58prodiamine = page.getByText('Turf King 0-0-7 with .58% Prodiamine');
-        this.turfking007with58prodiaminelabelbutton = page.getByRole('listitem').filter({ hasText: 'Turf King 0-0-7' }).getByRole('link', { name: 'Label' });
-        this.turfking007with58prodiaminesdsbutton = page.getByRole('listitem').filter({ hasText: 'Turf King 0-0-7' }).getByRole('link', { name: 'SDS' });
-        this.turfking007with58prodiaminespecsheetbutton = page.getByRole('listitem').filter({ hasText: 'Turf King 0-0-7' }).getByRole('link', { name: 'Spec Sheet' });  
-
-        //Turf King 15-0-0 with .58% Prodiamine
-        this.turfking1500with58prodiamine = page.getByText('Turf King 15-0-0 with .58% Prodiamine');
-        this.turfking1500with58prodiaminelabelbutton = page.getByRole('listitem').filter({ hasText: 'Turf King 15-0-0' }).getByRole('link', { name: 'Label' });
-        this.turfking1500with58prodiaminesdsbutton = page.getByRole('listitem').filter({ hasText: 'Turf King 15-0-0' }).getByRole('link', { name: 'SDS' });
-        this.turfking1500with58prodiaminespecsheetbutton = page.getByRole('listitem').filter({ hasText: 'Turf King 15-0-0' }).getByRole('link', { name: 'Spec Sheet' });
-
-        //Turf King 18-0-0 with .58% Prodiamine
-        this.turfking1800with58prodiamine = page.getByText('Turf King 18-0-0 with .58% Prodiamine');
-        this.turfking1800with58prodiaminelabelbutton = page.getByRole('listitem').filter({ hasText: 'Turf King 18-0-0' }).getByRole('link', { name: 'Label' });
-        this.turfking1800with58prodiaminesdsbutton = page.getByRole('listitem').filter({ hasText: 'Turf King 18-0-0' }).getByRole('link', { name: 'SDS' });
-        this.turfking1800with58prodiaminespecsheetbutton = page.getByRole('listitem').filter({ hasText: 'Turf King 18-0-0' }).getByRole('link', { name: 'Spec Sheet' });
+        this.turfking1503withprodiaminetitle = page.getByText('Turf King 15-0-3 with .20% Prodiamine');
+        this.turfking1503withprodiaminelabelbutton = page.getByRole('listitem').filter({ hasText: 'Turf King 15-0-3 with .20%' }).getByLabel('Label');
+        this.turfking1503withprodiaminesdsbutton = page.getByRole('listitem').filter({ hasText: 'Turf King 15-0-3 with .20%' }).getByLabel('SDS');
+        this.turfking1503withprodiaminespecsheetbutton = page.getByRole('listitem').filter({ hasText: 'Turf King 15-0-3 with .20%' }).getByLabel('Spec Sheet');
+        this.turfking1906withprodiaminetitle = page.getByText('Turf King 19-0-6 with .29%');
+        this.turfking1906withprodiaminelabelbutton = page.getByRole('listitem').filter({ hasText: 'Turf King 19-0-6 with .29%' }).getByLabel('Label');
+        this.turfking1906withprodiaminesdsbutton = page.getByRole('listitem').filter({ hasText: 'Turf King 19-0-6 with .29%' }).getByLabel('SDS');
+        this.turfking1906withprodiaminespecsheetbutton = page.getByRole('listitem').filter({ hasText: 'Turf King 19-0-6 with .29%' }).getByLabel('Spec Sheet');
+        this.turfking007withprodiaminetitle = page.getByText('Turf King 0-0-7 with .37%');
+        this.turfking007withprodiaminelabelbutton = page.getByRole('listitem').filter({ hasText: 'Turf King 0-0-7 with .37%' }).getByLabel('Label');
+        this.turfking007withprodiaminesdsbutton = page.getByRole('listitem').filter({ hasText: 'Turf King 0-0-7 with .37%' }).getByLabel('SDS');
+        this.turfking007withprodiaminespecsheetbutton = page.getByRole('listitem').filter({ hasText: 'Turf King 0-0-7 with .37%' }).getByLabel('Spec Sheet');
+        this.turfking1300withprodiaminetitle = page.getByText('Turf King 13-0-0 with .37%');
+        this.turfking1300withprodiaminelabelbutton = page.getByRole('listitem').filter({ hasText: 'Turf King 13-0-0 with .37%' }).getByLabel('Label');
+        this.turfking1300withprodiaminesdsbutton = page.getByRole('listitem').filter({ hasText: 'Turf King 13-0-0 with .37%' }).getByLabel('SDS');
+        this.turfking1300withprodiaminespecsheetbutton = page.getByRole('listitem').filter({ hasText: 'Turf King 13-0-0 with .37%' }).getByLabel('Spec Sheet');
+        this.turfking1804withprodiaminetitle = page.getByText('Turf King 18-0-4 with .37%');
+        this.turfking1804withprodiaminelabelbutton = page.getByRole('listitem').filter({ hasText: 'Turf King 18-0-4 with .37%' }).getByLabel('Label');
+        this.turfking1804withprodiaminesdsbutton = page.getByRole('listitem').filter({ hasText: 'Turf King 18-0-4 with .37%' }).getByLabel('SDS');
+        this.turfking1804withprodiaminespecsheetbutton = page.getByRole('listitem').filter({ hasText: 'Turf King 18-0-4 with .37%' }).getByLabel('Spec Sheet');
+        this.turfking007with42prodiaminetitle = page.getByText('Turf King 0-0-7 with .42%');
+        this.turfking007with42prodiaminelabelbutton = page.getByRole('listitem').filter({ hasText: 'Turf King 0-0-7 with .42%' }).getByLabel('Label');
+        this.turfking007with42prodiaminesdsbutton = page.getByRole('listitem').filter({ hasText: 'Turf King 0-0-7 with .42%' }).getByLabel('SDS');
+        this.turfking007with42prodiaminespecsheetbutton = page.getByRole('listitem').filter({ hasText: 'Turf King 0-0-7 with .42%' }).getByLabel('Spec Sheet');
+        this.turfking1500with42prodiaminetitle = page.getByText('Turf King 15-0-0 with .42%');
+        this.turfking1500with42prodiaminelabelbutton = page.locator('#comp-kmpbyt3c__20e19126-7889-4d46-ab0c-49d24200ab46 > .uDW_Qe');
+        this.turfking1500with42prodiaminesdsbutton = page.locator('#comp-kmpbyt3g3__20e19126-7889-4d46-ab0c-49d24200ab46 > .uDW_Qe');
+        this.turfking1500with42prodiaminespecsheetbutton = page.locator('#comp-kni8moqa__20e19126-7889-4d46-ab0c-49d24200ab46 > .uDW_Qe');
+        this.turfking1803with42prodiaminetitle = page.getByText('Turf King 18-0-3 with .42%');
+        this.turfking1803with42prodiaminelabelbutton = page.locator('#comp-kmpbyt3c__4ea93c19-e8b7-4be8-a538-63a4f4e0b1d2 > .uDW_Qe');
+        this.turfking1803with42prodiaminesdsbutton = page.locator('#comp-kmpbyt3g3__4ea93c19-e8b7-4be8-a538-63a4f4e0b1d2 > .uDW_Qe');
+        this.turfking1803with42prodiaminespecsheetbutton = page.locator('#comp-kni8moqa__4ea93c19-e8b7-4be8-a538-63a4f4e0b1d2 > .uDW_Qe');
+        this.turfking007with58prodiaminetitle = page.getByText('Turf King 0-0-7 with .58%');
+        this.turfking007with58prodiaminelabelbutton = page.locator('#comp-kmpbyt3c__3398cc41-043e-4ffa-b14e-92aeeb641edc > .uDW_Qe');
+        this.turfking007with58prodiaminesdsbutton = page.locator('#comp-kmpbyt3g3__3398cc41-043e-4ffa-b14e-92aeeb641edc > .uDW_Qe');
+        this.turfking007with58prodiaminespecsheetbutton = page.locator('#comp-kni8moqa__3398cc41-043e-4ffa-b14e-92aeeb641edc > .uDW_Qe');
+        this.turfking1500with58prodiaminetitle = page.getByText('Turf King 15-0-0 with .58%');
+        this.turfking1500with58prodiaminelabelbutton = page.locator('#comp-kmpbyt3c__34ae3d43-1d56-4e33-83bc-52455cc80303 > .uDW_Qe');
+        this.turfking1500with58prodiaminesdsbutton = page.locator('#comp-kmpbyt3g3__34ae3d43-1d56-4e33-83bc-52455cc80303 > .uDW_Qe');
+        this.turfking1500with58prodiaminespecsheetbutton = page.locator('#comp-kni8moqa__34ae3d43-1d56-4e33-83bc-52455cc80303 > .uDW_Qe');
+        this.turfking1800with58prodiaminetitle = page.getByText('Turf King 18-0-0 with .58%');
+        this.turfking1800with58prodiaminelabelbutton = page.locator('#comp-kmpbyt3c__232ac3df-1363-4b40-84a2-f83dc6d948d9 > .uDW_Qe');
+        this.turfking1800with58prodiaminesdsbutton = page.locator('#comp-kmpbyt3g3__232ac3df-1363-4b40-84a2-f83dc6d948d9 > .uDW_Qe');
+        this.turfking1800with58prodiaminespecsheetbutton = page.locator('#comp-kni8moqa__232ac3df-1363-4b40-84a2-f83dc6d948d9 > .uDW_Qe');
 
     }
-    async goto(path = '/') {
-        await this.page.goto(path);
-
+    async goto() {
+        await this.page.goto('/');
     }
-    async clickTurfKingProdiamineLearnMoreButton() {
+    async clickTurfProductsTitle() {
+        await this.turfProductsTitle.click();
+    }
+    async clickCombinationProductLearnMoreButton() {
+        await this.combinationProductLearnMoreButton.click();
+    }
+    async clickturfkingprodiaminelearnmorebutton() {
         await this.turfkingprodiaminelearnmorebutton.click();
     }
-
+    async verifyTurfKingProdiamineHeading() {
+        await this.turfkingprodiamineheading.isVisible();
+    }
+    async verifyTurfKingProdiaminePageDescription() {
+        await this.turfkingprodiaminepagedescription.isVisible();
+    }
+    async verifyWetGrassImageAltText() {
+        await this.wetgrassimagealttext.isVisible();                                                     
+    }
+    
     async clickSpreadersettingButton() {
         await this.spreadersettingbutton.click();
     }
@@ -264,6 +240,13 @@ export class TurfKingProdiaminePage {
     }
     async clickTurfKing1800with58ProdiamineSpecSheetButton() {
         await this.turfking1800with58prodiaminespecsheetbutton.click();
+    }
+    async goBackToTurfKingProdiaminePage() {
+        await this.page.goto('/turf-king-prodiamine/');
+    }
+    async goBackToPreviousPage() {
+        await this.page.goBack();
+        await this.page.waitForLoadState('networkidle');
     }
 
 }

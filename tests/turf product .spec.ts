@@ -17,7 +17,7 @@ verify the title "combination products" has a description under it.
 verify the combination products link is working correctly.*/
 
 
-test('Turf Product catalog and details', async ({ page }) => {
+    test('Turf Product catalog and details', async ({ page }) => {
     const turfProductPage = new TurfProductPage(page);
     const turfProductHome = new turfProducthomePage(page);
     //go to the home page first

@@ -1,7 +1,7 @@
 import { expect, Locator, Page } from '@playwright/test';
 
 export class turfKingComboProductPage {
-
+ 
     readonly page: Page;
     readonly turfProductsTitle: Locator;
     readonly combinationProductLearnMoreButton: Locator;
@@ -44,7 +44,7 @@ export class turfKingComboProductPage {
         this.combinationProductLearnMoreButton = page.locator('#comp-kmctlbje__item1').getByRole('link', { name: 'Learn More' });
         this.turfKingProdiamineTitle = page.locator('h1:has-text("Turf King + Prodiamine")');
         this.turfKingProdiamineDescription = page.locator('p:has-text("Turf King + Prodiamine description")');
-        this.turfKingProdiamineLearnMoreButton = page.locator('button:has-text("Learn More")');
+        this.turfKingProdiamineLearnMoreButton = page.locator('text=Turf King + Prodiamine').locator('..').getByRole('link', { name: 'Learn More' });
         this.turfKingDithiopyrTitle = page.locator('h1:has-text("Turf King + Dithiopyr")');
         this.turfKingDithiopyrDescription = page.locator('p:has-text("Turf King + Dithiopyr description")');
         this.turfKingDithiopyrLearnMoreButton = page.locator('button:has-text("Learn More")');
