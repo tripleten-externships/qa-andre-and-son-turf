@@ -159,3 +159,4 @@ test('Verify that the "Construction & Renovation" link element in the footer is 
     const newPageTitle = page.locator('h1'); // Adjust the selector as needed
     await expect(newPageTitle).toContainText('Construction and Renovation'); // Adjust the expected text as needed
 });
+

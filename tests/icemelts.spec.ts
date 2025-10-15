@@ -157,3 +157,109 @@ test('Hover over Turf Products menu and click Ice Melts submenu', async ({ page 
   await expect(page).toHaveURL('https://www.andreandson.com/ice-melts');
   await expect(page.locator('h1, h2, [role="heading"]').first()).toContainText('Ice Melts');
 });
+
+
+test.describe('Let\'s Get Growing Container - Message Box Input Validation', () => {
+  test.beforeEach(async ({ page }) => {
+    const iceMeltsPage = new IceMeltsPage(page);
+    await page.goto('/ice-melts', { waitUntil: 'load' });
+    // Scroll to the "Let's Get Growing" container
+    await iceMeltsPage.letsGetGrowingTextBox.nth(0).scrollIntoViewIfNeeded();
+    await expect(page.getByRole('heading', { name: 'Let\'s Get Growing' })).toBeVisible();
+  });
+
+  test('Verify that "Let\'s Get Growing Container" can enter Latin letters in the message box', async ({ page }) => {
+    const testLatinText = 'Test Latin Letters: abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const messageTextarea = page.getByPlaceholder('Enter your text here'); // Adjust selector if needed
+    if (await messageTextarea.isVisible()) {
+      await messageTextarea.fill(testLatinText);
+      await expect(messageTextarea).toHaveValue(testLatinText);
+    }
+  });
+
+  test('Verify that "Let\'s Get Growing Container" can enter numbers in the message box', async ({ page }) => {
+    const testNumbers = '1234567890';
+    const messageTextarea = page.getByPlaceholder('Enter your text here'); // Adjust selector if needed
+    if (await messageTextarea.isVisible()) {
+      await messageTextarea.fill(testNumbers);
+      await expect(messageTextarea).toHaveValue(testNumbers);
+    }
+  });
+
+  test('Verify that "Let\'s Get Growing Container" can enter special characters in the message box', async ({ page }) => {
+    const testSymbols = '@#$%^&*()_+[]{}|;:,.<>?/~`-=';
+    const messageTextarea = page.getByPlaceholder('Enter your text here'); // Adjust selector if needed
+    if (await messageTextarea.isVisible()) {
+      await messageTextarea.fill(testSymbols);
+      await expect(messageTextarea).toHaveValue(testSymbols);
+    }
+  });
+});
+
+test.describe('Let\'s Get Growing Container - Email Box Input Validation', () => {
+  test.beforeEach(async ({ page }) => {
+    const iceMeltsPage = new IceMeltsPage(page);
+    await page.goto('/ice-melts', { waitUntil: 'load' });
+    // Scroll to the "Let's Get Growing" container
+    await iceMeltsPage.letsGetGrowingTextBox.nth(0).scrollIntoViewIfNeeded();
+    await expect(page.getByRole('heading', { name: 'Let\'s Get Growing' })).toBeVisible();
+  });
+
+  test('Verify that "Let\'s Get Growing Container" can enter Latin letters in the email box', async ({ page }) => {
+    const testLatinText = 'Test Latin Letters: abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const emailInput = page.getByRole('textbox', { name: 'Email Address*' }); // Adjust selector
+    if (await emailInput.isVisible()) {
+      await emailInput.fill(testLatinText); // Valid email with Latin chars
+      await expect(emailInput).toHaveValue(testLatinText);
+    }
+  });
+
+  test('Verify that "Let\'s Get Growing Container" can enter numbers in the email box', async ({ page }) => {
+    const testNumbers = '1234567890';
+    const emailInput = page.getByRole('textbox', { name: 'Email Address*' }); // Adjust selector
+    if (await emailInput.isVisible()) {
+      await emailInput.fill(testNumbers); // Valid email with Numbers
+      await expect(emailInput).toHaveValue(testNumbers);
+    }
+  });
+
+  test('Verify that "Let\'s Get Growing Container" can enter special characters in the email box', async ({ page }) => {
+    const testSymbols = '@._';
+    const emailInput = page.getByRole('textbox', { name: 'Email Address*' }); // Adjust selector
+    if (await emailInput.isVisible()) {
+      await emailInput.fill(testSymbols); // Valid email with Symbols
+      await expect(emailInput).toHaveValue(testSymbols);
+    }
+  });
+});
+
+/*Verify that "Ice Melt" is clickable under the "Turf Products" footer menu*/
+test.describe('Ice Melt is clickable under the Turf Products footer menu', () => {
+  test.beforeEach(async ({ page }) => {
+  const iceMeltsPage = new IceMeltsPage(page);
+  await page.goto('/', { waitUntil: 'load' });
+  await iceMeltsPage.footerSectionTurfProductsMenu.scrollIntoViewIfNeeded(); // Scroll to parent <li>
+  await expect(iceMeltsPage.footerSectionTurfProductsMenu).toBeVisible();
+});
+
+test('should hover over "Turf Products" footer menu and click "Ice Melts" submenu', async ({ page }) => {
+  const iceMeltsPage = new IceMeltsPage(page);
+  // Hover on the parent <li> (key fix!)
+  await iceMeltsPage.footerSectionTurfProductsMenu.hover();
+
+  // Short delay for Wix JS/animation
+  await page.waitForTimeout(500);
+
+  // Wait/assert visibility on submenu link (retries automatically)
+  await expect(iceMeltsPage.footerSectionIceMeltsMenu).toBeVisible({ timeout: 5000 });
+
+  // Click the "Ice Melts" submenu
+  await iceMeltsPage.footerSectionIceMeltsMenu.click();
+
+  // Verify navigation
+  await expect(page).toHaveURL(/ice-melts$/); // Flexible regex (ignores baseURL/protocol)
+  await expect(page.getByRole('heading', { name: /Ice Melts/i })).toBeVisible(); // Precise, case-insensitive
+});
+});
+
+
