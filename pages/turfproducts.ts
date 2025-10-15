@@ -4,6 +4,7 @@ export class TuftProductsPage{
     readonly page: Page;
     readonly logoAndreSon: Locator;
     readonly logoAndreSonlink: Locator;
+    readonly backGroundVideo: Locator;
     readonly turfProductsTitle: Locator;
     readonly turfProductsHeroTitle: Locator;
     readonly turfProductsHeroText1: Locator;
@@ -48,12 +49,19 @@ export class TuftProductsPage{
     readonly iceMeltImageAltText: Locator;
     readonly imLearnMoreButton: Locator;
     readonly liquidFertilizerLink: Locator;
+    readonly infoRequestAltText: Locator;
+    readonly infoRequestTitle: Locator;
+    readonly infoRequestText: Locator;
+    readonly infoRequestEmail: Locator;
+    readonly infoRequestSubmitButton: Locator;
+    readonly turfProductsFooter: Locator;
 
     constructor(page: Page){
         this.page=page;
         this.logoAndreSon=page.getByText('ANDRE & SON ');
         this.logoAndreSonlink=page.getByRole('link', {name: 'Andre & Son'});
         this.turfProductsTitle=page.getByRole('link', {name: 'Turf Products'}).nth(0);
+        this.backGroundVideo=page.locator('img[src="https://static.wixstatic.com/media/922587_1b0d8e0c95474ab1a58c0af65c4ea150f000.jpg/v1/fill/w_516,h_432,al_c,lg_1,q_80,usm_0.33_1.00_0.00,enc_avif,quality_auto/922587_1b0d8e0c95474ab1a58c0af65c4ea150f000.jpg"]');
         this.turfProductsHeroTitle=page.getByText("There's a Reason We're the Turf King");
         this.turfProductsHeroText1=page.getByText('Our Turf King line of fertilizers is a top of the line, proven winner.')
         this.turfProductsHeroText2=page.getByText("We're the Turf King because we're the experts.");
@@ -98,7 +106,14 @@ export class TuftProductsPage{
         this.iceMeltImageAltText=page.getByAltText('ice melt.jpg');
         this.imLearnMoreButton=page.getByRole('link', { name: 'Learn More', exact: true }).nth(7);
         this.liquidFertilizerLink=page.getByRole('link', { name: 'LIQUID FERTILIZER' });
+        this.infoRequestAltText = page.getByAltText('RoughPic.jpg');
+        this.infoRequestTitle = page.getByText('Have a question about our');
+        this.infoRequestText = page.getByPlaceholder('Enter your text here');
+        this.infoRequestEmail = page.getByRole('textbox', { name: 'Email Address*' });
+        this.infoRequestSubmitButton = page.locator('//button[@aria-label="Submit"]');
+        this.turfProductsFooter = page.locator('//a[contains(text(),"TURF PRODUCTS")]')
         }
+
     async clickTurfProductsTitle(){
         await this.turfProductsTitle.click();
     } 
@@ -137,5 +152,26 @@ export class TuftProductsPage{
     }
     async clickLiquidFertilizerLink(){
         await this.liquidFertilizerLink.click();
+    }
+    async fillText(text: string){
+        await this.infoRequestText.fill(text);
+    }
+    async fillEmail(email: string){
+        await this.infoRequestEmail.fill(email);
+    }
+    async isElementAriaCurrent(expectedValue = 'page') {
+        const ariaCurrent = await this.turfProductsTitle.getAttribute('aria-current');
+        return ariaCurrent === expectedValue;
+    }
+    async isElementAriaCurrent1(expectedValue = 'page') {
+        const ariaCurrent = await this.turfProductsFooter.getAttribute('aria-current');
+        return ariaCurrent === expectedValue;
+    }
+    async isBackgroundVideoActive() {
+        const isVisible = await this.backGroundVideo.isVisible();
+        if (!isVisible) {
+        return false;
+        }
+        await this.backGroundVideo.waitFor({ state: 'visible', timeout: 5000 });
     }
 }

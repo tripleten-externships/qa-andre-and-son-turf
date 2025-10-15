@@ -439,13 +439,13 @@ test.describe('Plant food page Learn More buttons', () => {
     test('verify pHUSION Acid Learn More Button', async ({ page }) => {
         const plantFoodPage = new PlantFoodPage(page);
         const [newTab]= await Promise.all([
-        page.waitForEvent('popup'),
+            page.waitForEvent('popup'),
     //click on pHUSION Acid Learn More button
-        await plantFoodPage.pfPHALearnMoreButton.click()]);
+            plantFoodPage.pfPHALearnMoreButton.click()]);
     console.log(newTab.url());
     await newTab.waitForLoadState();
     //assert that the url is correct
-    expect(await newTab).toHaveURL('https://www.plantfoodco.com/media/2373/wt-phusion-organic-acid-17.pdf');
+    await expect(newTab).toHaveURL('https://www.plantfoodco.com/media/2373/wt-phusion-organic-acid-17.pdf');
     });
 //* Verify that when clicked, the "Learn More" button opens a new page with a URL that says "pHuson Gypsum Mini"
     test('verify pHuson Gypsum Mini Learn More Button', async ({ page }) => {
@@ -457,7 +457,7 @@ test.describe('Plant food page Learn More buttons', () => {
     console.log(newTab.url());
     await newTab.waitForLoadState();
     //assert that the url is correct
-    expect(await newTab).toHaveURL('https://www.plantfoodco.com/media/2351/sa-phusion-calcium-sulfate-gypsum-17.pdf');
+    await expect(newTab).toHaveURL('https://www.plantfoodco.com/media/2351/sa-phusion-calcium-sulfate-gypsum-17.pdf');
     });
 //* Verify that when clicked, the "Learn More" button opens a new page with a URL that says "Sili-K"
     test('verify Sili-K Learn More Button', async ({ page }) => {
@@ -469,7 +469,7 @@ test.describe('Plant food page Learn More buttons', () => {
     console.log(newTab.url());
     await newTab.waitForLoadState();
     //assert that the url is correct
-    expect(await newTab).toHaveURL('https://www.plantfoodco.com/media/2348/mn-sili-k-17.pdf');
+    await expect(newTab).toHaveURL('https://www.plantfoodco.com/media/2348/mn-sili-k-17.pdf');
     });
 //* Verify that when clicked, the "Learn More" button opens a new page with a URL that says "Sugar Cal"
     test('verify Sugar Cal Learn More Button', async ({ page }) => {
@@ -481,7 +481,7 @@ test.describe('Plant food page Learn More buttons', () => {
     console.log(newTab.url());
     await newTab.waitForLoadState();
     //assert that the url is correct
-    expect(await newTab).toHaveURL('https://www.plantfoodco.com/media/2358/sn-sugar-cal-17.pdf');
+    await expect(newTab).toHaveURL('https://www.plantfoodco.com/media/2358/sn-sugar-cal-17.pdf');
     });
 //* Verify that when clicked, the "Learn More" button opens a new page with a URL that says "Zinc 7%"
     test('verify Zinc 7% Learn More Button', async ({ page }) => {
@@ -493,7 +493,7 @@ test.describe('Plant food page Learn More buttons', () => {
     console.log(newTab.url());
     await newTab.waitForLoadState();
     //assert that the url is correct
-    expect(await newTab).toHaveURL('https://www.plantfoodco.com/media/2343/mn-zinc-7-17.pdf');
+    await expect(newTab).toHaveURL('https://www.plantfoodco.com/media/2343/mn-zinc-7-17.pdf');
     });
 //* Verify that when clicked, the "Learn More" button opens a new webpage with the information on the pump
     test('verify Tote Hose Meter Unit Learn More Button', async ({ page }) => {
@@ -505,7 +505,7 @@ test.describe('Plant food page Learn More buttons', () => {
     console.log(newTab.url());
     await newTab.waitForLoadState();
     //assert that the url is correct
-    expect(await newTab).toHaveURL('https://www.plantfoodco.com/golf-professional-turf/products/accessories/flow-meter/');
+    await expect(newTab).toHaveURL('https://www.plantfoodco.com/golf-professional-turf/products/accessories/flow-meter/');
     });
 //* Verify that when clicked, the "Learn More" button opens a new webpage with the information on the pump assembly
     test('verify Tote Hose Unit Learn More Button', async ({ page }) => {
@@ -517,7 +517,7 @@ test.describe('Plant food page Learn More buttons', () => {
     console.log(newTab.url());
     await newTab.waitForLoadState();
     //assert that the url is correct
-    expect(await newTab).toHaveURL('https://www.plantfoodco.com/golf-professional-turf/products/accessories/hose-assembly/');
+    await expect(newTab).toHaveURL('https://www.plantfoodco.com/golf-professional-turf/products/accessories/hose-assembly/');
     });
 //* Verify that when clicked, the "Learn More" button opens a new page with a URL that says "Alpha Mat"
     test('verify Alpha Mat Learn More Button', async ({ page }) => {
@@ -529,7 +529,7 @@ test.describe('Plant food page Learn More buttons', () => {
     console.log(newTab.url());
     await newTab.waitForLoadState();
     //assert that the url is correct
-    expect(await newTab).toHaveURL('https://www.plantfoodco.com/media/2372/wt-alpha-17.pdf');
+    await expect(newTab).toHaveURL('https://www.plantfoodco.com/media/2372/wt-alpha-17.pdf');
         });
 //* Verify that when clicked, the "Learn More" button opens a new page with a URL that says "0-0-25"
     test('verify 0-0-25 Learn More Button', async ({ page }) => {
@@ -541,7 +541,7 @@ test.describe('Plant food page Learn More buttons', () => {
     console.log(newTab.url());
     await newTab.waitForLoadState();
     //assert that the url is correct
-    expect(await newTab).toHaveURL('https://www.plantfoodco.com/media/2304/lf-0-0-25-potassium-plus-17.pdf');
+    await expect(newTab).toHaveURL('https://www.plantfoodco.com/media/2304/lf-0-0-25-potassium-plus-17.pdf');
         });
 //* Verify that when clicked, the "Learn More" button opens a new page with a URL that says "10-10-10"
     test('verify 10-10-10 Learn More Button', async ({ page }) => {
@@ -553,7 +553,7 @@ test.describe('Plant food page Learn More buttons', () => {
     console.log(newTab.url());
     await newTab.waitForLoadState();
     //assert that the url is correct
-    expect(await newTab).toHaveURL('https://www.plantfoodco.com/media/2315/lf-10-10-10-17.pdf');
+    await expect(newTab).toHaveURL('https://www.plantfoodco.com/media/2315/lf-10-10-10-17.pdf');
         });
 //* Verify that when clicked, the "Learn More" button opens a new page with a URL that says "10-34-0"
     test('verify 10-34-0 Learn More Button', async ({ page }) => {
@@ -565,7 +565,7 @@ test.describe('Plant food page Learn More buttons', () => {
     console.log(newTab.url());
     await newTab.waitForLoadState();
     //assert that the url is correct
-    expect(await newTab).toHaveURL('https://www.plantfoodco.com/media/2317/lf-10-34-0-ammonium-polyphosphate-17.pdf');
+    await expect(newTab).toHaveURL('https://www.plantfoodco.com/media/2317/lf-10-34-0-ammonium-polyphosphate-17.pdf');
         });
 //* Verify that when clicked, the "Learn More" button opens a new page with a URL that says "10-4-6"
     test('verify 10-4-6 Learn More Button', async ({ page }) => {
@@ -577,7 +577,7 @@ test.describe('Plant food page Learn More buttons', () => {
     console.log(newTab.url());
     await newTab.waitForLoadState();
     //assert that the url is correct
-    expect(await newTab).toHaveURL('https://www.plantfoodco.com/media/2316/lf-10-4-6-17.pdf');
+    await expect(newTab).toHaveURL('https://www.plantfoodco.com/media/2316/lf-10-4-6-17.pdf');
         });
 //* Verify that when clicked, the "Learn More" button opens a new page with a URL that says "12-0-12"
     test('verify 12-0-12 Learn More Button', async ({ page }) => {
@@ -589,7 +589,7 @@ test.describe('Plant food page Learn More buttons', () => {
     console.log(newTab.url());
     await newTab.waitForLoadState();
     //assert that the url is correct
-    expect(await newTab).toHaveURL('https://www.plantfoodco.com/media/2318/lf-12-0-12-50-srn-17.pdf');
+    await expect(newTab).toHaveURL('https://www.plantfoodco.com/media/2318/lf-12-0-12-50-srn-17.pdf');
         });
 //* Verify that when clicked, the "Learn More" button opens a new page with a URL that says "12-3-12"
     test('verify 12-3-12 Learn More Button', async ({ page }) => {
@@ -601,7 +601,7 @@ test.describe('Plant food page Learn More buttons', () => {
     console.log(newTab.url());
     await newTab.waitForLoadState();
     //assert that the url is correct
-    expect(await newTab).toHaveURL('https://www.plantfoodco.com/media/2321/lf-12-3-12-50-srn-17.pdf');
+    await expect(newTab).toHaveURL('https://www.plantfoodco.com/media/2321/lf-12-3-12-50-srn-17.pdf');
         });
 //* Verify that when clicked, the "Learn More" button opens a new page with a URL that says "16-0-7 25% SRN"
     test('verify 16-0-7 25% SRN Learn More Button', async ({ page }) => {
@@ -613,7 +613,7 @@ test.describe('Plant food page Learn More buttons', () => {
     console.log(newTab.url());
     await newTab.waitForLoadState();
     //assert that the url is correct
-    expect(await newTab).toHaveURL('');
+    await expect(newTab).toHaveURL('');
     });
 //* Verify that when clicked, the "Learn More" button opens a new page with a URL that says "16-0-8 50% SRN"
     test('verify 16-0-8 50% SRN Learn More Button', async ({ page }) => {
@@ -625,7 +625,7 @@ test.describe('Plant food page Learn More buttons', () => {
     console.log(newTab.url());
     await newTab.waitForLoadState();
     //assert that the url is correct
-    expect(await newTab).toHaveURL('https://www.plantfoodco.com/media/2323/lf-16-0-8-50-srn-17.pdf');
+    await expect(newTab).toHaveURL('https://www.plantfoodco.com/media/2323/lf-16-0-8-50-srn-17.pdf');
         });
 //* Verify that when clicked, the "Learn More" button opens a new page with a URL that says "16-2-7 25% SRN"
     test('verify 16-2-7 25% SRN Learn More Button', async ({ page }) => {
@@ -637,7 +637,7 @@ test.describe('Plant food page Learn More buttons', () => {
     console.log(newTab.url());
     await newTab.waitForLoadState();
     //assert that the url is correct
-    expect(await newTab).toHaveURL('https://www.plantfoodco.com/media/2322/lf-16-2-7-25-srn-synergy.pdf');
+    await expect(newTab).toHaveURL('https://www.plantfoodco.com/media/2322/lf-16-2-7-25-srn-synergy.pdf');
         });
 //* Verify that when clicked, the "Learn More" button opens a new page with a URL that says "16-2-8"
     test('verify 16-2-8 Learn More Button', async ({ page }) => {
@@ -649,7 +649,7 @@ test.describe('Plant food page Learn More buttons', () => {
     console.log(newTab.url());
     await newTab.waitForLoadState();
     //assert that the url is correct
-    expect(await newTab).toHaveURL('https://www.plantfoodco.com/media/2324/lf-16-2-8-50-srn-17.pdf');
+    await expect(newTab).toHaveURL('https://www.plantfoodco.com/media/2324/lf-16-2-8-50-srn-17.pdf');
         });
 //* Verify that when clicked, the "Learn More" button opens a new page with a URL that says "16-4-5"
     test('verify 16-4-5 Learn More Button', async ({ page }) => {
@@ -661,7 +661,7 @@ test.describe('Plant food page Learn More buttons', () => {
     console.log(newTab.url());
     await newTab.waitForLoadState();
     //assert that the url is correct
-    expect(await newTab).toHaveURL('https://www.plantfoodco.com/media/2166/16-4-5-50-srn-lf16.pdf');
+    await expect(newTab).toHaveURL('https://www.plantfoodco.com/media/2166/16-4-5-50-srn-lf16.pdf');
         });
 //* Verify that when clicked, the "Learn More" button opens a new page with a URL that says "18-3-3"
     test('verify 18-3-3 Learn More Button', async ({ page }) => {
@@ -673,7 +673,7 @@ test.describe('Plant food page Learn More buttons', () => {
     console.log(newTab.url());
     await newTab.waitForLoadState();
     //assert that the url is correct
-    expect(await newTab).toHaveURL('https://www.plantfoodco.com/media/2326/lf-18-3-3-17.pdf');
+    await expect(newTab).toHaveURL('https://www.plantfoodco.com/media/2326/lf-18-3-3-17.pdf');
         });
 //* Verify that when clicked, the "Learn More" button opens a new page with a URL that says "18-3-4 Super"
     test('verify 18-3-4 Super Learn More Button', async ({ page }) => {
@@ -685,7 +685,7 @@ test.describe('Plant food page Learn More buttons', () => {
     console.log(newTab.url());
     await newTab.waitForLoadState();
     //assert that the url is correct
-    expect(await newTab).toHaveURL('https://www.plantfoodco.com/media/2325/lf-18-3-4-super-mk-green-17.pdf');
+    await expect(newTab).toHaveURL('https://www.plantfoodco.com/media/2325/lf-18-3-4-super-mk-green-17.pdf');
         });
 //* Verify that when clicked, the "Learn More" button opens a new page with a URL that says "18-3-6 50% SRN"
     test('verify 18-3-6 50% SRN Learn More Button', async ({ page }) => {
@@ -697,7 +697,7 @@ test.describe('Plant food page Learn More buttons', () => {
     console.log(newTab.url());
     await newTab.waitForLoadState();
     //assert that the url is correct
-    expect(await newTab).toHaveURL('https://www.plantfoodco.com/media/2328/lf-18-3-6-50-srn-17.pdf');
+    await expect(newTab).toHaveURL('https://www.plantfoodco.com/media/2328/lf-18-3-6-50-srn-17.pdf');
         });
 //* Verify that when clicked, the "Learn More" button opens a new page with a URL that says "20-0-0"
     test('verify 20-0-0 Learn More Button', async ({ page }) => {
@@ -709,7 +709,7 @@ test.describe('Plant food page Learn More buttons', () => {
     console.log(newTab.url());
     await newTab.waitForLoadState();
     //assert that the url is correct
-    expect(await newTab).toHaveURL('https://www.plantfoodco.com/media/2329/lf-20-0-0-50-srn-17.pdf');
+    await expect(newTab).toHaveURL('https://www.plantfoodco.com/media/2329/lf-20-0-0-50-srn-17.pdf');
         });
 //* Verify that when clicked, the "Learn More" button opens a new page with a URL that says "20-0-3 Lawn"
     test('verify 20-0-3 Lawn Learn More Button', async ({ page }) => {
@@ -721,7 +721,7 @@ test.describe('Plant food page Learn More buttons', () => {
     console.log(newTab.url());
     await newTab.waitForLoadState();
     //assert that the url is correct
-    expect(await newTab).toHaveURL('https://www.plantfoodco.com/media/2170/20-0-3-25-srn-lf16.pdf');
+    await expect(newTab).toHaveURL('https://www.plantfoodco.com/media/2170/20-0-3-25-srn-lf16.pdf');
         });
 //* Verify that when clicked, the "Learn More" button opens a new page with a URL that says "20-3-3 SRN & FE"
     test('verify 20-3-3 SRN & FE Learn More Button', async ({ page }) => {
@@ -733,7 +733,7 @@ test.describe('Plant food page Learn More buttons', () => {
     console.log(newTab.url());
     await newTab.waitForLoadState();
     //assert that the url is correct
-    expect(await newTab).toHaveURL('https://www.plantfoodco.com/media/2171/20-3-3-20-srn-lf16.pdf');
+    await expect(newTab).toHaveURL('https://www.plantfoodco.com/media/2171/20-3-3-20-srn-lf16.pdf');
         });
 //* Verify that when clicked, the "Learn More" button opens a new page with a URL that says "28-0-0"
     test('verify 28-0-0 Learn More Button', async ({ page }) => {
@@ -745,7 +745,7 @@ test.describe('Plant food page Learn More buttons', () => {
     console.log(newTab.url());
     await newTab.waitForLoadState();
     //assert that the url is correct
-    expect(await newTab).toHaveURL('https://www.plantfoodco.com/media/2331/lf-28-0-0-72-srn-17.pdf');
+    await expect(newTab).toHaveURL('https://www.plantfoodco.com/media/2331/lf-28-0-0-72-srn-17.pdf');
         });
 //* Verify that when clicked, the "Learn More" button opens a new page with a URL that says "29-0-0"
     test('verify 29-0-0 Learn More Button', async ({ page }) => {
@@ -757,7 +757,7 @@ test.describe('Plant food page Learn More buttons', () => {
     console.log(newTab.url());
     await newTab.waitForLoadState();
     //assert that the url is correct
-    expect(await newTab).toHaveURL('https://www.plantfoodco.com/media/2385/29-0-0-50-srn.pdf');
+    await expect(newTab).toHaveURL('https://www.plantfoodco.com/media/2385/29-0-0-50-srn.pdf');
         });
 //* Verify that when clicked, the "Learn More" button opens a new page with a URL that says "30-0-0 60 SRN"
     test('verify 30-0-0 60 SRN Learn More Button', async ({ page }) => {
@@ -769,7 +769,7 @@ test.describe('Plant food page Learn More buttons', () => {
     console.log(newTab.url());
     await newTab.waitForLoadState();
     //assert that the url is correct
-    expect(await newTab).toHaveURL('https://www.plantfoodco.com/media/2336/lf-30-0-0-60-srn-17.pdf');
+    await expect(newTab).toHaveURL('https://www.plantfoodco.com/media/2336/lf-30-0-0-60-srn-17.pdf');
         });
 //* Verify that when clicked, the "Learn More" button opens a new page with a URL that says "30-0-0 90% MU"
     test('verify 30-0-0 90% MU Learn More Button', async ({ page }) => {
@@ -781,7 +781,7 @@ test.describe('Plant food page Learn More buttons', () => {
     console.log(newTab.url());
     await newTab.waitForLoadState();
     //assert that the url is correct
-    expect(await newTab).toHaveURL('https://www.plantfoodco.com/media/2334/lf-30-0-90-msn-17.pdf');
+    await expect(newTab).toHaveURL('https://www.plantfoodco.com/media/2334/lf-30-0-90-msn-17.pdf');
         });
 //* Verify that when clicked, the "Learn More" button opens a new page with a URL that says "30-0-0 UAN"
     test('verify 30-0-0 UAN Learn More Button', async ({ page }) => {
@@ -793,7 +793,7 @@ test.describe('Plant food page Learn More buttons', () => {
     console.log(newTab.url());
     await newTab.waitForLoadState();
     //assert that the url is correct
-    expect(await newTab).toHaveURL('https://www.plantfoodco.com/media/2335/lf-30-0-0-uan-17.pdf');
+    await expect(newTab).toHaveURL('https://www.plantfoodco.com/media/2335/lf-30-0-0-uan-17.pdf');
         });
 //* Verify that when clicked, the "Learn More" button opens a new page with a URL that says "4-20-22 DKP X"
     test('verify 4-20-22 DKP X Learn More Button', async ({ page }) => {
@@ -805,7 +805,7 @@ test.describe('Plant food page Learn More buttons', () => {
     console.log(newTab.url());
     await newTab.waitForLoadState();
     //assert that the url is correct
-    expect(await newTab).toHaveURL('https://www.plantfoodco.com/media/2306/lf-4-20-22-dkp-xtra-17.pdf');
+    await expect(newTab).toHaveURL('https://www.plantfoodco.com/media/2306/lf-4-20-22-dkp-xtra-17.pdf');
         });
 //* Verify that when clicked, the "Learn More" button opens a new page with a URL that says "5% Iron"
     test('verify 5% Iron Learn More Button', async ({ page }) => {
@@ -817,7 +817,7 @@ test.describe('Plant food page Learn More buttons', () => {
     console.log(newTab.url());
     await newTab.waitForLoadState();
     //assert that the url is correct
-    expect(await newTab).toHaveURL('https://www.plantfoodco.com/media/2342/mn-iron-5-17.pdf');
+    await expect(newTab).toHaveURL('https://www.plantfoodco.com/media/2342/mn-iron-5-17.pdf');
         });
 //* Verify that when clicked, the "Learn More" button opens a new page with a URL that says "6 Iron"
     test('verify 6 Iron Learn More Button', async ({ page }) => {
@@ -829,7 +829,7 @@ test.describe('Plant food page Learn More buttons', () => {
     console.log(newTab.url());
     await newTab.waitForLoadState();
     //assert that the url is correct
-    expect(await newTab).toHaveURL('https://www.plantfoodco.com/media/2341/mn-6-iron-17.pdf');
+    await expect(newTab).toHaveURL('https://www.plantfoodco.com/media/2341/mn-6-iron-17.pdf');
         });
 //* Verify that when clicked, the "Learn More" button opens a new page with a URL that says "7-0-0 Sulfur"
     test('verify 7-0-0 Sulfur Learn More Button', async ({ page }) => {
@@ -841,7 +841,7 @@ test.describe('Plant food page Learn More buttons', () => {
     console.log(newTab.url());
     await newTab.waitForLoadState();
     //assert that the url is correct
-    expect(await newTab).toHaveURL('https://www.plantfoodco.com/media/2308/lf-7-0-0-ammoniu-sulfate-17.pdf');
+    await expect(newTab).toHaveURL('https://www.plantfoodco.com/media/2308/lf-7-0-0-ammoniu-sulfate-17.pdf');
         });
 //* Verify that when clicked, the "Learn More" button opens a new page with a URL that says "7-0-7"
     test('verify 7-0-7 Learn More Button', async ({ page }) => {
@@ -853,7 +853,7 @@ test.describe('Plant food page Learn More buttons', () => {
     console.log(newTab.url());
     await newTab.waitForLoadState();
     //assert that the url is correct
-    expect(await newTab).toHaveURL('https://www.plantfoodco.com/media/2309/lf-7-0-7-17.pdf');
+    await expect(newTab).toHaveURL('https://www.plantfoodco.com/media/2309/lf-7-0-7-17.pdf');
         });
 //* Verify that when clicked, the "Learn More" button opens a new page with a URL that says "8-27-5"
     test('verify 8-27-5 Learn More Button', async ({ page }) => {
@@ -865,7 +865,7 @@ test.describe('Plant food page Learn More buttons', () => {
     console.log(newTab.url());
     await newTab.waitForLoadState();
     //assert that the url is correct
-    expect(await newTab).toHaveURL('https://www.plantfoodco.com/media/2311/lf-8-27-5-healthy-start-17.pdf');
+    await expect(newTab).toHaveURL('https://www.plantfoodco.com/media/2311/lf-8-27-5-healthy-start-17.pdf');
         });
 //* Verify that when clicked, the "Learn More" button opens a new page with a URL that says "Adam's Earth"
     test('verify Adams Earth Learn More Button', async ({ page }) => {
@@ -877,7 +877,7 @@ test.describe('Plant food page Learn More buttons', () => {
     console.log(newTab.url());
     await newTab.waitForLoadState();
     //assert that the url is correct
-    expect(await newTab).toHaveURL('https://www.plantfoodco.com/media/2299/bs-adamsearth-17.pdf');
+    await expect(newTab).toHaveURL('https://www.plantfoodco.com/media/2299/bs-adamsearth-17.pdf');
         });
 //* Verify that when clicked, the "Learn More" button opens a new page with a URL that says "Ammonium Thiosulfate"
     test('verify Ammonium Thiosulfate Learn More Button', async ({ page }) => {
@@ -889,7 +889,7 @@ test.describe('Plant food page Learn More buttons', () => {
     console.log(newTab.url());
     await newTab.waitForLoadState();
     //assert that the url is correct
-    expect(await newTab).toHaveURL('https://www.plantfoodco.com/media/2356/sn-ammonium-thiosulfate-17.pdf');
+    await expect(newTab).toHaveURL('https://www.plantfoodco.com/media/2356/sn-ammonium-thiosulfate-17.pdf');
         });
 //* Verify that when clicked, the "Learn More" button opens a new page with a URL that says "Blackstrap Molass"
     test('verify Blackstrap Molass Learn More Button', async ({ page }) => {
@@ -901,7 +901,7 @@ test.describe('Plant food page Learn More buttons', () => {
     console.log(newTab.url());
     await newTab.waitForLoadState();
     //assert that the url is correct
-    expect(await newTab).toHaveURL('https://www.plantfoodco.com/media/2302/bs-blackstrap-molasses17.pdf');
+    await expect(newTab).toHaveURL('https://www.plantfoodco.com/media/2302/bs-blackstrap-molasses17.pdf');
         });
 //* Verify that when clicked, the "Learn More" button opens a new page with a URL that says "Boron 10%"
     test('verify Boron 10% Learn More Button', async ({ page }) => {
@@ -913,7 +913,7 @@ test.describe('Plant food page Learn More buttons', () => {
     console.log(newTab.url());
     await newTab.waitForLoadState();
     //assert that the url is correct
-    expect(await newTab).toHaveURL('https://www.plantfoodco.com/media/2337/mn-boron-10-17.pdf');
+    await expect(newTab).toHaveURL('https://www.plantfoodco.com/media/2337/mn-boron-10-17.pdf');
         });
 //* Verify that when clicked, the "Learn More" button opens a new page with a URL that says "Calcium Nitrate"
     test('verify Calcium Nitrate Learn More Button', async ({ page }) => {
@@ -925,7 +925,7 @@ test.describe('Plant food page Learn More buttons', () => {
     console.log(newTab.url());
     await newTab.waitForLoadState();
     //assert that the url is correct
-    expect(await newTab).toHaveURL('https://www.plantfoodco.com/media/2355/sn-9-0-0-calcium-nitrate-17.pdf');
+    await expect(newTab).toHaveURL('https://www.plantfoodco.com/media/2355/sn-9-0-0-calcium-nitrate-17.pdf');
         });
 //* Verify that when clicked, the "Learn More" button opens a new page with a URL that says "Flo Thru A-PLUS"
     test('verify Flo Thru A-PLUS Learn More Button', async ({ page }) => {
@@ -937,7 +937,7 @@ test.describe('Plant food page Learn More buttons', () => {
     console.log(newTab.url());
     await newTab.waitForLoadState();
     //assert that the url is correct
-    expect(await newTab).toHaveURL('https://www.plantfoodco.com/media/2364/wa-flo-thru-a-plus-17.pdf');
+    await expect(newTab).toHaveURL('https://www.plantfoodco.com/media/2364/wa-flo-thru-a-plus-17.pdf');
     });
 //* Verify that when clicked, the "Learn More" button opens a new webpage with the information on the pump
     test('verify Hand Pump Learn More Button', async ({ page }) => {
@@ -949,7 +949,7 @@ test.describe('Plant food page Learn More buttons', () => {
     console.log(newTab.url());
     await newTab.waitForLoadState();
     //assert that the url is correct
-    expect(await newTab).toHaveURL('https://www.plantfoodco.com/golf-professional-turf/products/accessories/drum-pump/');
+    await expect(newTab).toHaveURL('https://www.plantfoodco.com/golf-professional-turf/products/accessories/drum-pump/');
         });
 //* Verify that when clicked, the "Learn More" button opens a new page with a URL that says "Humic Acid 70%"
     test('verify Humic Acid 70% Learn More Button', async ({ page }) => {
@@ -961,7 +961,7 @@ test.describe('Plant food page Learn More buttons', () => {
     console.log(newTab.url());
     await newTab.waitForLoadState();
     //assert that the url is correct
-    expect(await newTab).toHaveURL('https://www.plantfoodco.com/media/2349/sa-humic-acid-70-17.pdf');
+    await expect(newTab).toHaveURL('https://www.plantfoodco.com/media/2349/sa-humic-acid-70-17.pdf');
         });
 //* Verify that when clicked, the "Learn More" button opens a new page with a URL that says "Hydration A-PLUS"
     test('verify Hydration A-PLUS Learn More Button', async ({ page }) => {
@@ -973,7 +973,7 @@ test.describe('Plant food page Learn More buttons', () => {
     console.log(newTab.url());
     await newTab.waitForLoadState();
     //assert that the url is correct
-    expect(await newTab).toHaveURL('https://www.plantfoodco.com/media/2380/hydration-a-plus-streamsong-flyer-2018.pdf');
+    await expect(newTab).toHaveURL('https://www.plantfoodco.com/media/2380/hydration-a-plus-streamsong-flyer-2018.pdf');
         });
 //* Verify that when clicked, the "Learn More" button opens a new page with a URL that says "Impulse"
     test('verify Impulse Learn More Button', async ({ page }) => {
@@ -985,7 +985,7 @@ test.describe('Plant food page Learn More buttons', () => {
     console.log(newTab.url());
     await newTab.waitForLoadState();
     //assert that the url is correct
-    expect(await newTab).toHaveURL('https://www.plantfoodco.com/media/2298/bs-impulse-gt-17.pdf');
+    await expect(newTab).toHaveURL('https://www.plantfoodco.com/media/2298/bs-impulse-gt-17.pdf');
         });
 //* Verify that when clicked, the "Learn More" button opens a new page with a URL that says "Infiltrate-K"
     test('verify Infiltrate-K Learn more Button', async ({ page }) => {
@@ -997,7 +997,7 @@ test.describe('Plant food page Learn More buttons', () => {
     console.log(newTab.url());
     await newTab.waitForLoadState();
     //assert that the url is correct
-    expect(await newTab).toHaveURL('https://www.plantfoodco.com/media/2307/lf-0-0-29-infiltrate-k-17.pdf');
+    await expect(newTab).toHaveURL('https://www.plantfoodco.com/media/2307/lf-0-0-29-infiltrate-k-17.pdf');
         });
 //* Verify that when clicked, the "Learn More" button opens a new page with a URL that says "KCS Plus 0-0-18"
     test('verify KCS Plus 0-0-18 Learn More Button', async ({ page }) => {
@@ -1009,7 +1009,7 @@ test.describe('Plant food page Learn More buttons', () => {
     console.log(newTab.url());
     await newTab.waitForLoadState();
     //assert that the url is correct
-    expect(await newTab).toHaveURL('https://www.plantfoodco.com/media/2391/phusion-kcs-plus-tech-sheet.pdf');
+    await expect(newTab).toHaveURL('https://www.plantfoodco.com/media/2391/phusion-kcs-plus-tech-sheet.pdf');
         });
 //* Verify that when clicked, the "Learn More" button opens a new page with a URL that says "Kelp Iron"
     test('verify Kelp Iron Learn More Button', async ({ page }) => {
@@ -1021,7 +1021,7 @@ test.describe('Plant food page Learn More buttons', () => {
     console.log(newTab.url());
     await newTab.waitForLoadState();
     //assert that the url is correct
-    expect(await newTab).toHaveURL('https://www.plantfoodco.com/media/2339/mn-kelp-iron-17.pdf');
+    await expect(newTab).toHaveURL('https://www.plantfoodco.com/media/2339/mn-kelp-iron-17.pdf');
         });
 //* Verify that when clicked, the "Learn More" button opens a new page with a URL that says "KelPlant 1-0-1"
     test('verify KelPlant 1-0-1 Learn More Button', async ({ page }) => {
@@ -1033,6 +1033,6 @@ test.describe('Plant food page Learn More buttons', () => {
     console.log(newTab.url());
     await newTab.waitForLoadState();
     //assert that the url is correct
-    expect(await newTab).toHaveURL('https://www.plantfoodco.com/media/2303/bs-kelplant-1-0-1-17.pdf');
+    await expect(newTab).toHaveURL('https://www.plantfoodco.com/media/2303/bs-kelplant-1-0-1-17.pdf');
         });
 });

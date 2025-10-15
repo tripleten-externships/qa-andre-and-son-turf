@@ -9,18 +9,41 @@ test.beforeEach(async ({ page }) => {
     await turfProductsPage.clickTurfProductsTitle();
 });
 //* Verify that the description under title "There's a Reason We're the Turf King" is visible and readable by user
+//* Verify that the "Tuft Products" is highlighted in the header
+//* Verify that the "Tuft Products" is highlighted in the footer
+//* Verify that the user can enter text in the "Enter your text here" space in the "Have a question about our products?" box
+//* Verify that the user can enter email in the "Email address" space
+//* Verify that "Submit" button is clickable
+//* Verify that the info Request background image has ALT text in DevTools
 //* Verify that clicking the logo "Andre & Son" would take the user back to the homepage
-test('verify TuftProducts Hero text and logo', async ({ page }) => {
+test('verify TuftProducts Hero text, logo, and info Request', async ({ page }) => {
     const turfProductsPage = new TuftProductsPage(page);
-    //go to home page
-    //await page.goto('/');
-    //click on "Turf Products" title
-    //await turfProductsPage.clickTurfProductsTitle();
+    //assert that Turf Products is highlighted in the header
+    const isCurrent = await turfProductsPage.isElementAriaCurrent();
+    console.log(isCurrent);
+    expect(isCurrent).toBe(true);
     //assert that the hero title and description is visible
     await expect(turfProductsPage.turfProductsHeroTitle).toBeVisible();
     await expect(turfProductsPage.turfProductsHeroText1).toBeVisible();
     await expect(turfProductsPage.turfProductsHeroText2).toBeVisible();
     await expect(turfProductsPage.turfProductsHeroText3).toBeVisible();
+    //assert that the backgorund has a video
+    //await expect(turfProductsPage.backGroundVideo).toBeVisible
+    const isVideoActive =await turfProductsPage.isBackgroundVideoActive();
+    console.log(isVideoActive);
+    expect(isVideoActive).toBe(true);
+    // assert that the info Request field background image has ALT text in DevTools
+    await expect(turfProductsPage.infoRequestAltText).toBeVisible();
+    // assert that Text field can be filled
+    await turfProductsPage.fillText('demo text');
+    // assert that email field can be filled
+    await turfProductsPage.fillEmail('yuliyafarber@mail.com')
+    // assert that the Submit button is clickable
+    expect(turfProductsPage.infoRequestSubmitButton).toBeVisible;
+    //assert that Turf Products is highlighted in footer
+    const isCurrent1 = await turfProductsPage.isElementAriaCurrent1();
+    console.log(isCurrent);
+    expect(isCurrent1).toBe(true);
     //click on "Andre & Son" logo
     await turfProductsPage.clickLogoAndreSon();
     //assert that the url is correct

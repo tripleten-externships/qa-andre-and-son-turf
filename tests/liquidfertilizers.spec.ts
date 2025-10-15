@@ -21,6 +21,10 @@ test.beforeEach(async ({ page }) => {
 //* Verify that the description under title "Liquid Fertilizer Products" says "We got what you need to make your grass grow!"
 //* Verify that "Turf King Fertilizer" logo in the Liquid Fertilizer page has Alt text in Devtools. 
 //* Verify that "Turf King Fertilizer" bag in the Liquid Fertilizer page has Alt text in Devtools. 
+//* Verify that the background image in the InfoRequest field has ALT text in DevTools
+//* Verify that the user can enter text in the "Enter your text here" space in the "Let's Get Growing" box
+//* Verify that the user can enter email in the "Email address" space
+//* Verify that "Submit" button is clickable
 test('verify Liquid Fertilizer Products text and images', async ({ page }) => {
     const turfProductsPage = new TuftProductsPage(page);
     const liquidFertilizersPage = new LiquidFertilizersPage(page);
@@ -34,6 +38,14 @@ test('verify Liquid Fertilizer Products text and images', async ({ page }) => {
     await expect(liquidFertilizersPage.liquidFertilizersProductsTKAltText).toBeVisible();
     // assert that "Turf King Fertilizer" bag in the Liquid Fertilizer page has Alt text in Devtools. 
     await expect(liquidFertilizersPage.liquidFertilizersProductsTKBagAltText).toBeVisible();
+    // assert that the background page has ALT text in DevTools
+    await expect(liquidFertilizersPage.infoRequestAltText).toBeVisible();
+    // assert that Text field can be filled
+    await liquidFertilizersPage.fillText('demo text');
+    // assert that email field can be filled
+    await liquidFertilizersPage.fillEmail('yuliyafarber@mail.com')
+    // assert that the Submit button is clickable
+    expect(liquidFertilizersPage.infoRequestSubmitButton).toBeVisible;
 });
 
 //* Verify that the title "Turf King Maxx Phite" and its description is visible and readable by user

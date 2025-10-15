@@ -15,6 +15,11 @@ export class LiquidFertilizersPage{
     readonly aquaAidTitle: Locator;
     readonly aquaAidText: Locator;
     readonly aaLearnMoreButton: Locator;
+    readonly infoRequestAltText: Locator;
+    readonly infoRequestTitle: Locator;
+    readonly infoRequestText: Locator;
+    readonly infoRequestEmail: Locator;
+    readonly infoRequestSubmitButton: Locator;
 
     constructor(page: Page) {
         this.page = page;
@@ -31,6 +36,11 @@ export class LiquidFertilizersPage{
         this.aquaAidTitle = page.getByText('Aqua-Aid', { exact: true });
         this.aquaAidText = page.getByText('Hot, dry, and windy weather');
         this.aaLearnMoreButton = page.getByRole('link', { name: 'Learn More' }).nth(2);
+        this.infoRequestAltText = page.getByAltText('RoughPic.jpg');
+        this.infoRequestTitle = page.getByText('Let\'s Get Growing');
+        this.infoRequestText = page.getByPlaceholder('Enter your text here');
+        this.infoRequestEmail = page.getByRole('textbox', { name: 'Email Address*' });
+        this.infoRequestSubmitButton = page.locator('//button[@aria-label="Submit"]');
     }
 
     async clickTKMPLearnMoreButton(){
@@ -41,5 +51,11 @@ export class LiquidFertilizersPage{
     }
     async clickAALearnMoreButton(){
         await this.aaLearnMoreButton.click();
+    }
+    async fillText(text: string){
+        await this.infoRequestText.fill(text);
+    }
+    async fillEmail(email: string){
+        await this.infoRequestEmail.fill(email);
     }
 }

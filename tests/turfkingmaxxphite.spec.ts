@@ -44,7 +44,7 @@ test('verify "Turf King Maxx Phite" text, image, and buttons', async ({ page }) 
     console.log(newTab.url());
     await newTab.waitForLoadState();
     //assert that the url is correct
-    expect(await newTab).toHaveURL("https://www.andreandson.com/_files/ugd/3bd49b_ac2b3963467344a2ba8d1e47ab4f58b2.pdf");
+    await expect(newTab).toHaveURL("https://www.andreandson.com/_files/ugd/3bd49b_ac2b3963467344a2ba8d1e47ab4f58b2.pdf");
     const [newTab1]= await Promise.all([
         page.waitForEvent('popup'),
     //click on "SDS" button
@@ -52,7 +52,7 @@ test('verify "Turf King Maxx Phite" text, image, and buttons', async ({ page }) 
     console.log(newTab1.url());
     await newTab1.waitForLoadState();
     //assert that the url is correct
-    expect(await newTab1).toHaveURL("https://www.andreandson.com/_files/ugd/3bd49b_b99d6f64e9da4e3e8f16816e8857c6e1.pdf");
+    await expect(newTab1).toHaveURL("https://www.andreandson.com/_files/ugd/3bd49b_b99d6f64e9da4e3e8f16816e8857c6e1.pdf");
     const [newTab2]= await Promise.all([
         page.waitForEvent('popup'),
     //click on "Specs" button
@@ -60,5 +60,5 @@ test('verify "Turf King Maxx Phite" text, image, and buttons', async ({ page }) 
     console.log(newTab2.url());
     await newTab2.waitForLoadState();   
     //assert that the url is correct
-    expect(await newTab2).toHaveURL("https://www.andreandson.com/_files/ugd/3bd49b_7732c72512f44cd9a91ba791c13f958a.pdf");
+    await expect(newTab2).toHaveURL("https://www.andreandson.com/_files/ugd/3bd49b_7732c72512f44cd9a91ba791c13f958a.pdf");
 });

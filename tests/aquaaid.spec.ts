@@ -172,7 +172,7 @@ test.describe('Aqua Aid page Sales Sheet buttons', () => {
     console.log(newTab.url());
     await newTab.waitForLoadState();
     //assert that the url is correct
-    expect(await newTab).toHaveURL('https://aquaaidsolutions.com/wp-content/uploads/2020/12/Excalibur-ONLY-Literature.pdf')
+    await expect(newTab).toHaveURL('https://aquaaidsolutions.com/wp-content/uploads/2020/12/Excalibur-ONLY-Literature.pdf')
     });
 //* Verify that when clicked, the "Sales Sheet" button opens a new page with a URL that says "Aqua-Aid"
     test('verify Aqua-Aid Sales Sheet Button', async ({ page }) => {
@@ -184,7 +184,7 @@ test.describe('Aqua Aid page Sales Sheet buttons', () => {
     console.log(newTab.url());
     await newTab.waitForLoadState();
     //assert that the url is correct
-    expect(await newTab).toHaveURL('https://www.aquaaidsolutions.com/wp-content/uploads/2018/06/Aqua-Aid_Literature.pdf')
+    await expect(newTab).toHaveURL('https://www.aquaaidsolutions.com/wp-content/uploads/2018/06/Aqua-Aid_Literature.pdf')
     });
 //* Verify that when clicked, the "Sales Sheet" button opens a new page with a URL that says "Aquifer"
     test('verify Aquifer Sales Sheet Button', async ({ page }) => {
@@ -196,7 +196,7 @@ test.describe('Aqua Aid page Sales Sheet buttons', () => {
     console.log(newTab.url());
     await newTab.waitForLoadState();
     //assert that the url is correct
-    expect(await newTab).toHaveURL('https://www.aquaaidsolutions.com/wp-content/uploads/2018/06/Aquifer_Literature.pdf')
+    await expect(newTab).toHaveURL('https://www.aquaaidsolutions.com/wp-content/uploads/2018/06/Aquifer_Literature.pdf')
     });
 //* Verify that when clicked, the "Aqua-Root" button opens a new page with a URL that says "Aqua-Root"
     test('verify Aqua-Root Sales Sheet Button', async ({ page }) => {
@@ -208,7 +208,7 @@ test.describe('Aqua Aid page Sales Sheet buttons', () => {
     console.log(newTab.url());
     await newTab.waitForLoadState();
     //assert that the url is correct
-    expect(await newTab).toHaveURL('https://www.aquaaidsolutions.com/wp-content/uploads/2018/06/Aqua-Root_Literature.pdf')
+    await expect(newTab).toHaveURL('https://www.aquaaidsolutions.com/wp-content/uploads/2018/06/Aqua-Root_Literature.pdf')
     });
 //* Verify that when clicked, the "Sales Sheet" button opens a new page with a URL that says "Oars"
     test('verify Oars Sales Sheet Button', async ({ page }) => {
@@ -220,7 +220,7 @@ test.describe('Aqua Aid page Sales Sheet buttons', () => {
     console.log(newTab.url());
     await newTab.waitForLoadState();
     //assert that the url is correct
-    expect(await newTab).toHaveURL('https://www.aquaaidsolutions.com/wp-content/uploads/2018/06/OARS_Literature.pdf')
+    await expect(newTab).toHaveURL('https://www.aquaaidsolutions.com/wp-content/uploads/2018/06/OARS_Literature.pdf')
     });
 //* Verify that when clicked, the "Sales Sheet" button opens a new page with a URL that says "AQM"
     test('verify AQM Sales Sheet Button', async ({ page }) => {
@@ -232,7 +232,7 @@ test.describe('Aqua Aid page Sales Sheet buttons', () => {
     console.log(newTab.url());
     await newTab.waitForLoadState();
     //assert that the url is correct
-    expect(await newTab).toHaveURL('https://www.aquaaidsolutions.com/wp-content/uploads/2018/06/AQM_Literature.pdf')
+    await expect(newTab).toHaveURL('https://www.aquaaidsolutions.com/wp-content/uploads/2018/06/AQM_Literature.pdf')
     });
 //* Verify that when clicked, the "Sales Sheet" button opens a new page with a URL that says "AQAAC"
     test('verify AQAAC Sales Sheet Button', async ({ page }) => {
@@ -244,7 +244,7 @@ test.describe('Aqua Aid page Sales Sheet buttons', () => {
     console.log(newTab.url());
     await newTab.waitForLoadState();
     //assert that the url is correct
-    expect(await newTab).toHaveURL('https://www.aquaaidsolutions.com/wp-content/uploads/2018/06/AQAAC_Literature.pdf')
+    await expect(newTab).toHaveURL('https://www.aquaaidsolutions.com/wp-content/uploads/2018/06/AQAAC_Literature.pdf')
     });
 //* Verify that when clicked, the "Sales Sheet" button opens a new page with a URL that says "Conduit 90"
     test('verify Conduit 90 Sales Sheet Button', async ({ page }) => {
@@ -256,7 +256,7 @@ test.describe('Aqua Aid page Sales Sheet buttons', () => {
     console.log(newTab.url());
     await newTab.waitForLoadState();
     //assert that the url is correct
-    expect(await newTab).toHaveURL('https://www.aquaaidsolutions.com/wp-content/uploads/2018/06/Conduit-90_Literature.pdf')
+    await expect(newTab).toHaveURL('https://www.aquaaidsolutions.com/wp-content/uploads/2018/06/Conduit-90_Literature.pdf')
     });
 //* Verify that when clicked, the "Sales Sheet" button opens a new page with a URL that says "FWY-ISP"
     test('verify FWY-ISP Sales Sheet Button', async ({ page }) => {
@@ -268,7 +268,7 @@ test.describe('Aqua Aid page Sales Sheet buttons', () => {
     console.log(newTab.url());
     await newTab.waitForLoadState();
     //assert that the url is correct
-    expect(await newTab).toHaveURL('https://www.aquaaidsolutions.com/wp-content/uploads/2018/06/FWY-ISP_Literature.pdf')
+    await expect(newTab).toHaveURL('https://www.aquaaidsolutions.com/wp-content/uploads/2018/06/FWY-ISP_Literature.pdf')
     });
 //* Verify that when clicked, the "Sales Sheet" button opens a new page with a URL that says "OARS-Ps"
     test('verify OARS-Ps Sales Sheet Button', async ({ page }) => {
@@ -280,7 +280,7 @@ test.describe('Aqua Aid page Sales Sheet buttons', () => {
     console.log(newTab.url());
     await newTab.waitForLoadState();
     //assert that the url is correct
-    expect(await newTab).toHaveURL('https://www.aquaaidsolutions.com/wp-content/uploads/2018/06/OARS-PS_Literature.pdf')
+    await expect(newTab).toHaveURL('https://www.aquaaidsolutions.com/wp-content/uploads/2018/06/OARS-PS_Literature.pdf')
     });
 //* Verify that when clicked, the "Sales Sheet" button opens a new page with a URL that says "OARS-Hs"
     test('verify OARS-Hs Sales Sheet Button', async ({ page }) => {
@@ -292,7 +292,7 @@ test.describe('Aqua Aid page Sales Sheet buttons', () => {
     console.log(newTab.url());
     await newTab.waitForLoadState();
     //assert that the url is correct
-    expect(await newTab).toHaveURL('https://www.aquaaidsolutions.com/wp-content/uploads/2018/06/OARS-HS_Literature.pdf')
+    await expect(newTab).toHaveURL('https://www.aquaaidsolutions.com/wp-content/uploads/2018/06/OARS-HS_Literature.pdf')
     });
 //* Verify that when clicked, the "Sales Sheet" button opens a new page with a URL that says "Aqua-Root"
     test('verify Aqua-Root2 Sales Sheet Button', async ({ page }) => {
@@ -304,7 +304,7 @@ test.describe('Aqua Aid page Sales Sheet buttons', () => {
     console.log(newTab.url());
     await newTab.waitForLoadState();
     //assert that the url is correct
-    expect(await newTab).toHaveURL('https://www.aquaaidsolutions.com/wp-content/uploads/2018/06/PROportioner_Literature.pdf')
+    await expect(newTab).toHaveURL('https://www.aquaaidsolutions.com/wp-content/uploads/2018/06/PROportioner_Literature.pdf')
     });
 //* Verify that when clicked, the "Sales Sheet" button opens a new page with a URL that says "Recover"
     test('verify Recover Sales Sheet Button', async ({ page }) => {
@@ -316,7 +316,7 @@ test.describe('Aqua Aid page Sales Sheet buttons', () => {
     console.log(newTab.url());
     await newTab.waitForLoadState();
     //assert that the url is correct
-    expect(await newTab).toHaveURL('https://www.aquaaidsolutions.com/wp-content/uploads/2018/06/Recover_Literature.pdf')
+    await expect(newTab).toHaveURL('https://www.aquaaidsolutions.com/wp-content/uploads/2018/06/Recover_Literature.pdf')
     });
 //* Verify that when clicked, the "Sales Sheet" button opens a new page with a URL that says "Hydra-30 Plus"
     test('verify Hydra-30 Plus Sales Sheet Button', async ({ page }) => {
@@ -328,7 +328,7 @@ test.describe('Aqua Aid page Sales Sheet buttons', () => {
     console.log(newTab.url());
     await newTab.waitForLoadState();
     //assert that the url is correct
-    expect(await newTab).toHaveURL('https://www.aquaaidsolutions.com/wp-content/uploads/2019/01/Hydra-30_Plus_Literature.pdf')
+    await expect(newTab).toHaveURL('https://www.aquaaidsolutions.com/wp-content/uploads/2019/01/Hydra-30_Plus_Literature.pdf')
     });
 //* Verify that when clicked, the "Sales Sheet" button opens a new page with a URL that says "PBS 150"
     test('verify PBS 150 Sales Sheet Button', async ({ page }) => {
@@ -340,7 +340,7 @@ test.describe('Aqua Aid page Sales Sheet buttons', () => {
     console.log(newTab.url());
     await newTab.waitForLoadState();
     //assert that the url is correct
-    expect(await newTab).toHaveURL('https://www.aquaaidsolutions.com/wp-content/uploads/2018/06/PBS150_Literature.pdf')
+    await expect(newTab).toHaveURL('https://www.aquaaidsolutions.com/wp-content/uploads/2018/06/PBS150_Literature.pdf')
     });
 //* Verify that when clicked, the "Sales Sheet" button opens a new page with a URL that says "ReDEWce"
     test('verify ReDEWce Sales Sheet Button', async ({ page }) => {
@@ -352,6 +352,6 @@ test.describe('Aqua Aid page Sales Sheet buttons', () => {
     console.log(newTab.url());
     await newTab.waitForLoadState();
     //assert that the url is correct
-    expect(await newTab).toHaveURL('https://www.aquaaidsolutions.com/wp-content/uploads/2018/06/reDEWce_Literature.pdf')
+    await expect(newTab).toHaveURL('https://www.aquaaidsolutions.com/wp-content/uploads/2018/06/reDEWce_Literature.pdf')
     });
 });
