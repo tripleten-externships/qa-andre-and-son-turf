@@ -62,7 +62,18 @@ readonly natureSafe8SuperLabelLink: Locator;
 readonly natureSafe8SuperSpecSheetLink: Locator;
 readonly natureSafe566FineLabelLink: Locator;
 readonly natureSafe566FineSpecSheetLink: Locator;
-
+readonly natureSafe10KelpLabelLink: Locator;
+readonly natureSafe10KelpSpecSheetLink: Locator;
+readonly natureSafe1028LabelLink: Locator;
+readonly natureSafe1028SpecSheetLink: Locator;
+readonly natureSafe1226LabelLink: Locator;
+readonly natureSafe1226SpecSheetLink: Locator;
+readonly natureSafe27UflexxLabelLink: Locator;
+readonly natureSafe27UflexxSpecSheetLink: Locator;
+readonly natureSafe8AQMLabelLink: Locator;
+readonly natureSafe8AQMSpecSheetLink: Locator;
+readonly natureSafe10PBSLabelLink: Locator;
+readonly natureSafe10PBSSpecSheetLink: Locator;
 
 constructor(page: Page){
     this.page=page;
@@ -124,6 +135,18 @@ constructor(page: Page){
     this.natureSafe8SuperSpecSheetLink=page.getByRole("link",{name: 'Spec Sheet'}).nth(8);
     this.natureSafe566FineLabelLink=page.getByRole("link",{name: 'Label'}).nth(9);
     this.natureSafe566FineSpecSheetLink=page.getByRole("link",{name: 'Spec Sheet'}).nth(9);
+    this.natureSafe10KelpLabelLink=page.getByRole("link",{name: 'Label'}).nth(10);
+    this.natureSafe10KelpSpecSheetLink=page.getByRole("link",{name: 'Spec Sheet'}).nth(10);
+    this.natureSafe1028LabelLink=page.getByRole("link",{name: 'Label'}).nth(11);
+    this.natureSafe1028SpecSheetLink=page.getByRole("link",{name: 'Spec Sheet'}).nth(11);
+    this.natureSafe1226LabelLink=page.getByRole("link",{name: 'Label'}).nth(12);
+    this.natureSafe1226SpecSheetLink=page.getByRole("link",{name: 'Spec Sheet'}).nth(12);
+    this.natureSafe27UflexxLabelLink=page.getByRole("link",{name: 'Label'}).nth(13);
+    this.natureSafe27UflexxSpecSheetLink=page.getByRole("link",{name: 'Spec Sheet'}).nth(13);
+    this.natureSafe8AQMLabelLink=page.getByRole("link",{name: 'Label'}).nth(14);
+    this.natureSafe8AQMSpecSheetLink=page.getByRole("link",{name: 'Spec Sheet'}).nth(14);
+    this.natureSafe10PBSLabelLink=page.getByRole("link",{name: 'Label'}).last();
+    this.natureSafe10PBSSpecSheetLink=page.getByRole("link",{name: 'Spec Sheet'}).last();
 
 }
 

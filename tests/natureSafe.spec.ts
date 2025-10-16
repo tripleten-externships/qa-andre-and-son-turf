@@ -10,8 +10,13 @@ test.beforeEach(async ({ page }) => {
 //hover over 'Turf Products' in the header.
     await page.getByRole('link', { name: 'TURF PRODUCTS' }).nth(0).hover();
 
-// click on 'Turf King Fertilizer'
-    await page.getByText('Turf King Fertilizer').nth(1).click();
+    if (await page.getByText('Turf King Fertilizer').nth(1).isVisible()){
+        
+    // click on 'Turf King Fertilizer'
+        await page.getByText('Turf King Fertilizer').nth(1).click();    
+    }
+    else {await page.goto('https://www.andreandson.com/turf-king-dry-fertilizer');}
+  
 })
 
 test('Nature Safe title and text are visible', async ({ page }) => { 
@@ -460,6 +465,264 @@ test('Nature Safe 5-6-6 Spec Sheet link', async({ page })=> {
     await Promise.all([
     page.waitForEvent('popup'),
     turfKingFertilizerPage.natureSafe566FineSpecSheetLink.click(),
+    ]);
+  
+});
+
+//Nature Safe 10-0-8 Label link
+
+test('Nature Safe 10-0-8 Label link', async({ page })=> {
+     const turfKingFertilizerPage=new TurfKingFertilizerPage(page);
+
+//learn more is visible
+    await expect(turfKingFertilizerPage.natureSafeLearnMoreLink).toBeVisible();
+
+//click on learn more, verify it takes you to the proper page
+    await page.getByRole("link", {name: 'Learn More'}).nth(4).click();
+
+
+//click on the label link, verify it takes you to the correct page  
+    await expect(turfKingFertilizerPage.natureSafe10KelpLabelLink).toBeVisible();
+    const expectedUrl='https://www.andreandson.com/_files/ugd/3bd49b_4218d88b406345779a83ee4a2b2c16c8.pdf'; 
+    await Promise.all([
+    page.waitForEvent('popup'),
+    turfKingFertilizerPage.natureSafe10KelpLabelLink.click(),
+    ]);
+});
+
+//Nature Safe 10-0-8 Spec Sheet link
+
+test('Nature Safe 10-0-8 Spec Sheet link', async({ page })=> {
+     const turfKingFertilizerPage=new TurfKingFertilizerPage(page);
+
+//learn more is visible
+    await expect(turfKingFertilizerPage.natureSafeLearnMoreLink).toBeVisible();
+
+//click on learn more, verify it takes you to the proper page
+    await page.getByRole("link", {name: 'Learn More'}).nth(4).click();
+
+
+//click on the spec sheet link, verify it takes you to the correct page  
+    await expect(turfKingFertilizerPage.natureSafe10KelpSpecSheetLink).toBeVisible();
+    const expectedUrl='https://www.andreandson.com/_files/ugd/3bd49b_4218d88b406345779a83ee4a2b2c16c8.pdf'; 
+    await Promise.all([
+    page.waitForEvent('popup'),
+    turfKingFertilizerPage.natureSafe10KelpSpecSheetLink.click(),
+    ]);
+  
+});
+
+//Nature Safe 10-2-8 Label link
+
+test('Nature Safe 10-2-8 Label link', async({ page })=> {
+     const turfKingFertilizerPage=new TurfKingFertilizerPage(page);
+
+//learn more is visible
+    await expect(turfKingFertilizerPage.natureSafeLearnMoreLink).toBeVisible();
+
+//click on learn more, verify it takes you to the proper page
+    await page.getByRole("link", {name: 'Learn More'}).nth(4).click();
+
+
+//click on the label link, verify it takes you to the correct page  
+    await expect(turfKingFertilizerPage.natureSafe1028LabelLink).toBeVisible();
+    const expectedUrl='https://www.andreandson.com/_files/ugd/3bd49b_f61076609b7949b0a3d114af96664ac9.pdf'; 
+    await Promise.all([
+    page.waitForEvent('popup'),
+    turfKingFertilizerPage.natureSafe1028LabelLink.click(),
+    ]);
+});
+
+//Nature Safe 10-2-8 Spec Sheet link
+
+test('Nature Safe 10-2-8 Spec Sheet link', async({ page })=> {
+     const turfKingFertilizerPage=new TurfKingFertilizerPage(page);
+
+//learn more is visible
+    await expect(turfKingFertilizerPage.natureSafeLearnMoreLink).toBeVisible();
+
+//click on learn more, verify it takes you to the proper page
+    await page.getByRole("link", {name: 'Learn More'}).nth(4).click();
+
+
+//click on the spec sheet link, verify it takes you to the correct page  
+    await expect(turfKingFertilizerPage.natureSafe1028SpecSheetLink).toBeVisible();
+    const expectedUrl='https://www.andreandson.com/_files/ugd/3bd49b_f61076609b7949b0a3d114af96664ac9.pdf'; 
+    await Promise.all([
+    page.waitForEvent('popup'),
+    turfKingFertilizerPage.natureSafe1028SpecSheetLink.click(),
+    ]);
+  
+});
+
+//Nature Safe 12-2-6 Label link
+
+test('Nature Safe 12-2-6 Label link', async({ page })=> {
+     const turfKingFertilizerPage=new TurfKingFertilizerPage(page);
+
+//learn more is visible
+    await expect(turfKingFertilizerPage.natureSafeLearnMoreLink).toBeVisible();
+
+//click on learn more, verify it takes you to the proper page
+    await page.getByRole("link", {name: 'Learn More'}).nth(4).click();
+
+
+//click on the label link, verify it takes you to the correct page  
+    await expect(turfKingFertilizerPage.natureSafe1226LabelLink).toBeVisible();
+    const expectedUrl='https://www.andreandson.com/_files/ugd/3bd49b_ebf1f46ad2c7499598fdba0556d34e4e.pdf'; 
+    await Promise.all([
+    page.waitForEvent('popup'),
+    turfKingFertilizerPage.natureSafe1226LabelLink.click(),
+    ]);
+});
+
+//Nature Safe 12-2-6 Spec Sheet link
+
+test('Nature Safe 12-2-6 Spec Sheet link', async({ page })=> {
+     const turfKingFertilizerPage=new TurfKingFertilizerPage(page);
+
+//learn more is visible
+    await expect(turfKingFertilizerPage.natureSafeLearnMoreLink).toBeVisible();
+
+//click on learn more, verify it takes you to the proper page
+    await page.getByRole("link", {name: 'Learn More'}).nth(4).click();
+
+
+//click on the spec sheet link, verify it takes you to the correct page  
+    await expect(turfKingFertilizerPage.natureSafe1226SpecSheetLink).toBeVisible();
+    const expectedUrl='https://www.andreandson.com/_files/ugd/3bd49b_ebf1f46ad2c7499598fdba0556d34e4e.pdf'; 
+    await Promise.all([
+    page.waitForEvent('popup'),
+    turfKingFertilizerPage.natureSafe1226SpecSheetLink.click(),
+    ]);
+  
+});
+
+//Nature Safe 27-0-2 Label link
+
+test('Nature Safe 27-0-2 Label link', async({ page })=> {
+     const turfKingFertilizerPage=new TurfKingFertilizerPage(page);
+
+//learn more is visible
+    await expect(turfKingFertilizerPage.natureSafeLearnMoreLink).toBeVisible();
+
+//click on learn more, verify it takes you to the proper page
+    await page.getByRole("link", {name: 'Learn More'}).nth(4).click();
+
+
+//click on the label link, verify it takes you to the correct page  
+    await expect(turfKingFertilizerPage.natureSafe27UflexxLabelLink).toBeVisible();
+    const expectedUrl='https://www.andreandson.com/_files/ugd/3bd49b_bd736c935fba49d9bba4f805663cacb5.pdf'; 
+    await Promise.all([
+    page.waitForEvent('popup'),
+    turfKingFertilizerPage.natureSafe27UflexxLabelLink.click(),
+    ]);
+});
+
+//Nature Safe 27-0-2 Spec Sheet link
+
+test('Nature Safe 27-0-2 Spec Sheet link', async({ page })=> {
+     const turfKingFertilizerPage=new TurfKingFertilizerPage(page);
+
+//learn more is visible
+    await expect(turfKingFertilizerPage.natureSafeLearnMoreLink).toBeVisible();
+
+//click on learn more, verify it takes you to the proper page
+    await page.getByRole("link", {name: 'Learn More'}).nth(4).click();
+
+
+//click on the spec sheet link, verify it takes you to the correct page  
+    await expect(turfKingFertilizerPage.natureSafe27UflexxSpecSheetLink).toBeVisible();
+    const expectedUrl='https://www.andreandson.com/_files/ugd/3bd49b_bd736c935fba49d9bba4f805663cacb5.pdf'; 
+    await Promise.all([
+    page.waitForEvent('popup'),
+    turfKingFertilizerPage.natureSafe27UflexxSpecSheetLink.click(),
+    ]);
+  
+});
+
+//Nature Safe 8-3-5 AQM Label link
+
+test('Nature Safe 8-3-5 AQM Label link', async({ page })=> {
+     const turfKingFertilizerPage=new TurfKingFertilizerPage(page);
+
+//learn more is visible
+    await expect(turfKingFertilizerPage.natureSafeLearnMoreLink).toBeVisible();
+
+//click on learn more, verify it takes you to the proper page
+    await page.getByRole("link", {name: 'Learn More'}).nth(4).click();
+
+
+//click on the label link, verify it takes you to the correct page  
+    await expect(turfKingFertilizerPage.natureSafe8AQMLabelLink).toBeVisible();
+    const expectedUrl='https://www.andreandson.com/_files/ugd/3bd49b_47b945f9114b4277a8db6cdab8e9f63e.pdf'; 
+    await Promise.all([
+    page.waitForEvent('popup'),
+    turfKingFertilizerPage.natureSafe8AQMLabelLink.click(),
+    ]);
+});
+
+//Nature Safe 8-3-5 AQM Spec Sheet link
+
+test('Nature Safe 8-3-5 AQM Spec Sheet link', async({ page })=> {
+     const turfKingFertilizerPage=new TurfKingFertilizerPage(page);
+
+//learn more is visible
+    await expect(turfKingFertilizerPage.natureSafeLearnMoreLink).toBeVisible();
+
+//click on learn more, verify it takes you to the proper page
+    await page.getByRole("link", {name: 'Learn More'}).nth(4).click();
+
+
+//click on the spec sheet link, verify it takes you to the correct page  
+    await expect(turfKingFertilizerPage.natureSafe8AQMSpecSheetLink).toBeVisible();
+    const expectedUrl='https://www.andreandson.com/_files/ugd/3bd49b_a66acefe4eb44edabe8ab1a90ab1d6ba.pdf'; 
+    await Promise.all([
+    page.waitForEvent('popup'),
+    turfKingFertilizerPage.natureSafe8AQMSpecSheetLink.click(),
+    ]);
+  
+});
+
+//Nature Safe 10-2-8 PBS Label link
+
+test('Nature Safe 10-2-8 PBS Label link', async({ page })=> {
+     const turfKingFertilizerPage=new TurfKingFertilizerPage(page);
+
+//learn more is visible
+    await expect(turfKingFertilizerPage.natureSafeLearnMoreLink).toBeVisible();
+
+//click on learn more, verify it takes you to the proper page
+    await page.getByRole("link", {name: 'Learn More'}).nth(4).click();
+
+
+//click on the label link, verify it takes you to the correct page  
+    await expect(turfKingFertilizerPage.natureSafe10PBSLabelLink).toBeVisible();
+    const expectedUrl='https://www.andreandson.com/_files/ugd/3bd49b_7d5507ebe6dc4e898052f841de111b19.pdf'; 
+    await Promise.all([
+    page.waitForEvent('popup'),
+    turfKingFertilizerPage.natureSafe10PBSLabelLink.click(),
+    ]);
+});
+
+//Nature Safe 10-2-8 PBS Spec Sheet link
+
+test('Nature Safe 10-2-8 PBS Spec Sheet link', async({ page })=> {
+     const turfKingFertilizerPage=new TurfKingFertilizerPage(page);
+
+//learn more is visible
+    await expect(turfKingFertilizerPage.natureSafeLearnMoreLink).toBeVisible();
+
+//click on learn more, verify it takes you to the proper page
+    await page.getByRole("link", {name: 'Learn More'}).nth(4).click();
+
+
+//click on the spec sheet link, verify it takes you to the correct page  
+    await expect(turfKingFertilizerPage.natureSafe10PBSSpecSheetLink).toBeVisible();
+    const expectedUrl='https://www.andreandson.com/_files/ugd/3bd49b_5ee3e169fd684ccfaacc29aad9cdbeae.pdf'; 
+    await Promise.all([
+    page.waitForEvent('popup'),
+    turfKingFertilizerPage.natureSafe10PBSSpecSheetLink.click(),
     ]);
   
 });

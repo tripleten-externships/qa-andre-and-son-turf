@@ -1,18 +1,26 @@
 import { test, Locator, expect } from '@playwright/test';
 import { TurfKingFertilizerPage } from '../pages/turfKingFertilizer';
 
+test.beforeEach(async ({ page }) => {
+
+// visit the website 
+    await page.goto('/');
+    
+//hover over 'Turf Products' in the header.
+    await page.getByRole('link', { name: 'TURF PRODUCTS' }).nth(0).hover();
+
+    if (await page.getByText('Turf King Fertilizer').nth(1).isVisible()){
+        
+    // click on 'Turf King Fertilizer'
+        await page.getByText('Turf King Fertilizer').nth(1).click();    
+    }
+    else {await page.goto('https://www.andreandson.com/turf-king-dry-fertilizer');}
+  
+})
+
 test('The Andersons title and text are visible', async ({ page }) => { 
     const turfKingFertilizerPage=new TurfKingFertilizerPage(page);
 
-    
-// visit the website 
-    await page.goto('/');
-
-//hover over 'Turf Products' in the header.
-    await page.getByRole('link', { name: 'TURF PRODUCTS' }).nth(0).hover();
- 
-// click on 'Turf King Fertilizer'
-    await page.getByText('Turf King Fertilizer').nth(1).click();
 
 //title is visible
     await expect(turfKingFertilizerPage.theAndersonsTitle).toBeVisible();
@@ -26,14 +34,7 @@ test('The Andersons title and text are visible', async ({ page }) => {
 
 test('The Andersons learn more link', async ({ page }) => { 
     const turfKingFertilizerPage=new TurfKingFertilizerPage(page);
-// visit the website 
-    await page.goto('/');
-
-//hover over 'Turf Products' in the header.
-    await page.getByRole('link', { name: 'TURF PRODUCTS' }).nth(0).hover();
- 
-// click on 'Turf King Fertilizer'
-    await page.getByText('Turf King Fertilizer').nth(1).click();
+    
 
 //learn more is visible
     await expect(turfKingFertilizerPage.theAndersonsLearnMoreLink).toBeVisible();

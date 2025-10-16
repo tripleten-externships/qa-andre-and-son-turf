@@ -1,22 +1,30 @@
 import { test, Locator, expect } from '@playwright/test';
 import { TurfKingFertilizerPage } from '../pages/turfKingFertilizer';
 
-test('Equipment in header is visible and takes you to designated page', async ({ page }) => { 
-    const turfKingFertilizerPage=new TurfKingFertilizerPage(page);
+test.beforeEach(async ({ page }) => {
 
-    
 // visit the website 
     await page.goto('/');
 
 //hover over 'Turf Products' in the header.
     await page.getByRole('link', { name: 'TURF PRODUCTS' }).nth(0).hover();
- 
-// click on 'Turf King Fertilizer'
-    await page.getByText('Turf King Fertilizer').nth(1).click();
+
+    if (await page.getByText('Turf King Fertilizer').nth(1).isVisible()){
+        
+    // click on 'Turf King Fertilizer'
+        await page.getByText('Turf King Fertilizer').nth(1).click();    
+    }
+    else {await page.goto('https://www.andreandson.com/turf-king-dry-fertilizer');}
+  
+})
+test('Equipment in header is visible and takes you to designated page', async ({ page }) => { 
+    const turfKingFertilizerPage=new TurfKingFertilizerPage(page);
+
+    
 
 //click on 'EQUIPMENT' in the header
 
- await turfKingFertilizerPage.equipmentHeader.isVisible();
- await turfKingFertilizerPage.equipmentHeader.click();
+    await turfKingFertilizerPage.equipmentHeader.isVisible();
+    await turfKingFertilizerPage.equipmentHeader.click();
 
 })
