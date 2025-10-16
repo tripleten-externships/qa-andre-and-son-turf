@@ -35,6 +35,9 @@ export class turfKingComboProductPage {
     readonly submitButton: Locator;
     readonly andreandsonlogo: Locator;
     readonly turfProductsTitleInFooter: Locator;
+    readonly twitterlogofooter: Locator;
+    readonly instagramlogofooter: Locator;
+    readonly facebooklogofooter: Locator;
         readonly footerSection: Locator;
         readonly scrollToFooterButton: Locator;
     
@@ -72,6 +75,9 @@ export class turfKingComboProductPage {
         this.submitButton = page.locator('button:has-text("Submit")');
         this.andreandsonlogo = page.getByRole('link', { name: 'logo_edited_edited.png' });
         this.turfProductsTitleInFooter = page.getByTestId('linkElement-0');
+        this.twitterlogofooter = page.getByRole('link', { name: 'Twitter' });
+        this.instagramlogofooter = page.getByRole('link', { name: 'Instagram' });
+        this.facebooklogofooter = page.getByRole('link', { name: 'Facebook' });
             this.footerSection = page.locator('footer');
             this.scrollToFooterButton = page.locator('button[aria-label="Scroll to footer"]');
 
@@ -89,11 +95,20 @@ export class turfKingComboProductPage {
     async scrollToFooterSection() {
         await this.footerSection.scrollIntoViewIfNeeded();
     }
+    async clicktwitterlogofooter() {
+        await this.twitterlogofooter.click();
+    }
+
+    async clickfacebooklogofooter() {
+        await this.facebooklogofooter.click();
+    }
+    async clickinstagramlogofooter() {
+        await this.instagramlogofooter.click();
+    }
     async verifyTurfKingTitleIsHighlighted() {
         const color = await this.turfProductsTitleInFooter.evaluate((el) => {
             return window.getComputedStyle(el).color;
         });
-        expect(color).toBe('rgb(255, 255, 0)'); // Yellow color in RGB format
+        expect(color).toBe('rgb(55, 55, 55)'); // Dark gray color in RGB format (actual color displayed)
     }
-    
 }

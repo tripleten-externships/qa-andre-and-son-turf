@@ -63,17 +63,17 @@ test.describe('Turf King Acelepryn Page Tests', () => {
         await expect(page).toHaveURL(/.*acelepryn/);
         await page.waitForTimeout(500);
 
-        // Test Turf King 15-0-3 with Acelepryn buttons
+        // Test Turf King 12-0-3 with Acelepryn buttons
         
         // Wait before testing product buttons
         await page.waitForTimeout(500);
         
         // Label button
-        await expect(turfkingaceleprynpage.turfking1503withaceleprynlabelbutton).toBeVisible();
+        await expect(turfkingaceleprynpage.turfking1203aceleprynlabelbutton).toBeVisible();
         await page.waitForTimeout(300);
         const [pdfPageLabel] = await Promise.all([
             page.context().waitForEvent('page'),
-            turfkingaceleprynpage.clickTurfKing1503withAceleprynLabelButton()
+            turfkingaceleprynpage.clickTurfKing1203AceleprynLabelButton()
         ]);
         try {
             await pdfPageLabel.waitForLoadState('load', { timeout: 5000 });
@@ -86,11 +86,11 @@ test.describe('Turf King Acelepryn Page Tests', () => {
         await page.waitForTimeout(500);
         
         // SDS button
-        await expect(turfkingaceleprynpage.turfking1503withaceleprynSDSbutton).toBeVisible();
+        await expect(turfkingaceleprynpage.turfking1203aceleprynSDSbutton).toBeVisible();
         await page.waitForTimeout(300);
         const [pdfPageSDS] = await Promise.all([
             page.context().waitForEvent('page'),
-            turfkingaceleprynpage.clickTurfKing1503withAceleprynSDSButton()
+            turfkingaceleprynpage.clickTurfKing1203AceleprynSDSButton()
         ]);
         try {
             await pdfPageSDS.waitForLoadState('load', { timeout: 5000 });
@@ -103,11 +103,11 @@ test.describe('Turf King Acelepryn Page Tests', () => {
         await page.waitForTimeout(500);
         
         // Spec sheet button
-        await expect(turfkingaceleprynpage.turfking1503withaceleprynspecsheetbutton).toBeVisible();
+        await expect(turfkingaceleprynpage.turfking1203aceleprynspecsheetbutton).toBeVisible();
         await page.waitForTimeout(300);
         const [pdfPageSpec] = await Promise.all([
             page.context().waitForEvent('page'),
-            turfkingaceleprynpage.clickTurfKing1503withAceleprynSpecSheetButton()
+            turfkingaceleprynpage.clickTurfKing1203AceleprynSpecSheetButton()
         ]);
         try {
             await pdfPageSpec.waitForLoadState('load', { timeout: 5000 });
@@ -118,34 +118,34 @@ test.describe('Turf King Acelepryn Page Tests', () => {
         await pdfPageSpec.close();
         await expect(page).toHaveURL(/.*acelepryn/);
 
-        // Test Turf King 19-0-6 with Acelepryn buttons
+        // Test Turf King 17-0-5 with Acelepryn buttons
         await page.waitForTimeout(500);
         
-        // Label button for 19-0-6
-        await expect(turfkingaceleprynpage.turfking1906withaceleprynlabelbutton).toBeVisible();
+        // Label button for 17-0-5
+        await expect(turfkingaceleprynpage.turfking1705aceleprynlabelbutton).toBeVisible();
         await page.waitForTimeout(300);
-        const [pdfPageLabel1906] = await Promise.all([
+        const [pdfPageLabel1705] = await Promise.all([
             page.context().waitForEvent('page'),
-            turfkingaceleprynpage.clickTurfKing1906withAceleprynLabelButton()
+            turfkingaceleprynpage.clickTurfKing1705AceleprynLabelButton()
         ]);
         try {
-            await pdfPageLabel1906.waitForLoadState('load', { timeout: 5000 });
-            await expect(pdfPageLabel1906).toHaveURL(/.*label/i);
+            await pdfPageLabel1705.waitForLoadState('load', { timeout: 5000 });
+            await expect(pdfPageLabel1705).toHaveURL(/.*label/i);
         } catch (error) {
-            console.log('1906 Label PDF URL:', await pdfPageLabel1906.url());
+            console.log('1705 Label PDF URL:', await pdfPageLabel1705.url());
         }
-        await pdfPageLabel1906.close();
+        await pdfPageLabel1705.close();
         await expect(page).toHaveURL(/.*acelepryn/);
 
         // Test Turf King 0-0-7 with Acelepryn buttons
         await page.waitForTimeout(500);
         
         // Label button for 0-0-7
-        await expect(turfkingaceleprynpage.turfking007withaceleprynlabelbutton).toBeVisible();
+        await expect(turfkingaceleprynpage.turfking007aceleprynlabelbutton).toBeVisible();
         await page.waitForTimeout(300);
         const [pdfPageLabel007] = await Promise.all([
             page.context().waitForEvent('page'),
-            turfkingaceleprynpage.clickTurfKing007withAceleprynLabelButton()
+            turfkingaceleprynpage.clickTurfKing007AceleprynLabelButton()
         ]);
         try {
             await pdfPageLabel007.waitForLoadState('load', { timeout: 5000 });

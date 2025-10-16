@@ -8,42 +8,42 @@ export class TurfKingBifenthrinPage {
     readonly turfkingbifenthrinlearnmorebutton: Locator;
     readonly turfkingbifenthrinheading: Locator;
     readonly turfkingbifenthrinpagedescription: Locator;
+    readonly bifenthrinimage: Locator;
     readonly bifenthrinimagealttext: Locator;
     readonly spreadersettingbutton: Locator;
-    readonly turfking1503withbifenthrinfertilizertitle: Locator;
-    readonly turfking1503withbifenthrinfertilizerlabelbutton: Locator;
-    readonly turfking1503withbifenthrinfertilizerSDSbutton: Locator;
-    readonly turfking1503withbifenthrinfertilizerspecsheetbutton: Locator;
-    readonly turfking1906withbifenthrinfertilizertitle: Locator;
-    readonly turfking1906withbifenthrinfertilizerlabelbutton: Locator;
-    readonly turfking1906withbifenthrinfertilizerSDSbutton: Locator;
-    readonly turfking1906withbifenthrinfertilizerspecsheetbutton: Locator;
-    readonly turfking007withbifenthrinfertilizertitle: Locator;
-    readonly turfking007withbifenthrinfertilizerlabelbutton: Locator;
-    readonly turfking007withbifenthrinfertilizerSDSbutton: Locator;
-    readonly turfking007withbifenthrinfertilizerspecsheetbutton: Locator;
+    readonly turfking007withbifenthrin: Locator;
+    readonly turfking007withbifenthrinlabelbutton: Locator;
+    readonly turfking007withbifenthrinSDSbutton: Locator;
+    readonly turfking007withbifenthrinspecsheetbutton: Locator;
+    readonly turfking1605withbifenthrin: Locator;
+    readonly turfking1605withbifenthrinlabelbutton: Locator;
+    readonly turfking1605withbifenthrinSDSbutton: Locator;
+    readonly turfking1605withbifenthrinspecsheetbutton: Locator;
+    
+
+
+
+    
 
     constructor(page: Page) {
         this.page = page;
         this.turfProductsTitle = page.locator('#comp-igauz7ee0').getByRole('link', { name: 'TURF PRODUCTS' });
         this.combinationProductLearnMoreButton = page.locator('#comp-kmctlbje__item1').getByRole('link', { name: 'Learn More' });
-        this.turfkingbifenthrinlearnmorebutton = page.locator('#comp-klsvc7ly__item-keuwv4tb').getByRole('link', { name: 'Learn More' });
+        this.turfkingbifenthrinlearnmorebutton = page.locator('#comp-klsvc7ly__item-klponhaa > .uUxqWY');
         this.turfkingbifenthrinheading = page.getByText('Turf King + Bifenthrin');
-        this.turfkingbifenthrinpagedescription = page.getByText('Bifenthrin is a broad-spectrum');
-        this.bifenthrinimagealttext = page.getByRole('img', { name: 'Bifenthrin product' });
+        this.turfkingbifenthrinpagedescription = page.getByText('Bifenthrin is an insecticide');
+        this.bifenthrinimage = page.getByRole('img', { name: 'Wet grass' });
+        this.bifenthrinimagealttext = page.getByRole('img', { name: 'Wet grass' });
         this.spreadersettingbutton = page.getByRole('link', { name: 'Spreader Settings' });
-        this.turfking1503withbifenthrinfertilizertitle = page.getByText('Turf King 15-0-3 with Bifenthrin');
-        this.turfking1503withbifenthrinfertilizerlabelbutton = page.getByRole('listitem').filter({ hasText: 'Turf King 15-0-3 with Bifenthrin' }).getByLabel('Label');
-        this.turfking1503withbifenthrinfertilizerSDSbutton = page.getByRole('listitem').filter({ hasText: 'Turf King 15-0-3 with Bifenthrin' }).getByLabel('SDS');
-        this.turfking1503withbifenthrinfertilizerspecsheetbutton = page.getByRole('listitem').filter({ hasText: 'Turf King 15-0-3 with Bifenthrin' }).getByLabel('Spec Sheet');
-        this.turfking1906withbifenthrinfertilizertitle = page.getByText('Turf King 19-0-6 with Bifenthrin');
-        this.turfking1906withbifenthrinfertilizerlabelbutton = page.getByRole('listitem').filter({ hasText: 'Turf King 19-0-6 with Bifenthrin' }).getByLabel('Label');
-        this.turfking1906withbifenthrinfertilizerSDSbutton = page.getByRole('listitem').filter({ hasText: 'Turf King 19-0-6 with Bifenthrin' }).getByLabel('SDS');
-        this.turfking1906withbifenthrinfertilizerspecsheetbutton = page.getByRole('listitem').filter({ hasText: 'Turf King 19-0-6 with Bifenthrin' }).getByLabel('Spec Sheet');
-        this.turfking007withbifenthrinfertilizertitle = page.getByText('Turf King 0-0-7 with Bifenthrin');
-        this.turfking007withbifenthrinfertilizerlabelbutton = page.getByRole('listitem').filter({ hasText: 'Turf King 0-0-7 with Bifenthrin' }).getByLabel('Label');
-        this.turfking007withbifenthrinfertilizerSDSbutton = page.getByRole('listitem').filter({ hasText: 'Turf King 0-0-7 with Bifenthrin' }).getByLabel('SDS');
-        this.turfking007withbifenthrinfertilizerspecsheetbutton = page.getByRole('listitem').filter({ hasText: 'Turf King 0-0-7 with Bifenthrin' }).getByLabel('Spec Sheet');
+        this.turfking007withbifenthrin = page.getByText('Turf King 0-0-7 with .069%');
+        this.turfking007withbifenthrinlabelbutton = page.getByRole('listitem').filter({ hasText: 'Turf King 0-0-7 with .069%' }).getByLabel('Label');
+        this.turfking007withbifenthrinSDSbutton = page.getByRole('listitem').filter({ hasText: 'Turf King 0-0-7 with .069%' }).getByLabel('SDS');
+        this.turfking007withbifenthrinspecsheetbutton = page.getByRole('listitem').filter({ hasText: 'Turf King 0-0-7 with .069%' }).getByLabel('Spec Sheet');
+        this.turfking1605withbifenthrin = page.getByText('Turf King 16-0-5 with .069%');
+        this.turfking1605withbifenthrinlabelbutton = page.getByRole('listitem').filter({ hasText: 'Turf King 16-0-5 with .069%' }).getByLabel('Label');
+        this.turfking1605withbifenthrinSDSbutton = page.getByRole('listitem').filter({ hasText: 'Turf King 16-0-5 with .069%' }).getByLabel('SDS');
+        this.turfking1605withbifenthrinspecsheetbutton = page.getByRole('listitem').filter({ hasText: 'Turf King 16-0-5 with .069%' }).getByLabel('Spec Sheet');
+
     }
 
     async goto() {
@@ -77,49 +77,23 @@ export class TurfKingBifenthrinPage {
     async clickSpreadersettingButton() {
         await this.spreadersettingbutton.click();
     }
-
-    async clickTurfKing1503withBifenthrinLabelButton() {
-        await this.turfking1503withbifenthrinfertilizerlabelbutton.click();
-    }
-
-    async clickTurfKing1503withBifenthrinSDSButton() {
-        await this.turfking1503withbifenthrinfertilizerSDSbutton.click();
-    }
-
-    async clickTurfKing1503withBifenthrinSpecSheetButton() {
-        await this.turfking1503withbifenthrinfertilizerspecsheetbutton.click();
-    }
-
-    async clickTurfKing1906withBifenthrinLabelButton() {
-        await this.turfking1906withbifenthrinfertilizerlabelbutton.click();
-    }
-
-    async clickTurfKing1906withBifenthrinSDSButton() {
-        await this.turfking1906withbifenthrinfertilizerSDSbutton.click();
-    }
-
-    async clickTurfKing1906withBifenthrinSpecSheetButton() {
-        await this.turfking1906withbifenthrinfertilizerspecsheetbutton.click();
-    }
-
     async clickTurfKing007withBifenthrinLabelButton() {
-        await this.turfking007withbifenthrinfertilizerlabelbutton.click();
+        await this.turfking007withbifenthrinlabelbutton.click();
     }
 
     async clickTurfKing007withBifenthrinSDSButton() {
-        await this.turfking007withbifenthrinfertilizerSDSbutton.click();
+        await this.turfking007withbifenthrinSDSbutton.click();
     }
-
     async clickTurfKing007withBifenthrinSpecSheetButton() {
-        await this.turfking007withbifenthrinfertilizerspecsheetbutton.click();
+        await this.turfking007withbifenthrinspecsheetbutton.click();
     }
-
-    async goBackToTurfKingBifenthrinPage() {
-        await this.page.goto('/turf-king-bifenthrin/');
+    async clickTurfKing1605withBifenthrinLabelButton() {
+        await this.turfking1605withbifenthrinlabelbutton.click();
     }
-
-    async goBackToPreviousPage() {
-        await this.page.goBack();
-        await this.page.waitForLoadState('networkidle');
+    async clickTurfKing1605withBifenthrinSDSButton() {
+        await this.turfking1605withbifenthrinSDSbutton.click();
+    }
+    async clickTurfKing1605withBifenthrinSpecSheetButton() {
+        await this.turfking1605withbifenthrinspecsheetbutton.click();
     }
 }

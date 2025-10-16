@@ -142,7 +142,13 @@ export default class TurfKingComboProductPage {
     async verifyTurfkingviperDescription() {
         await expect(this.turfkingviperDescription).toBeVisible();
         await expect(this.turfkingviperDescription).toHaveText(/Turf King + Viper/);
-
-        
-    
-    
+    }
+    async clicktwitterlogofooter() {
+        await this.twitterlogofooter.click();
+    }
+    async clickfacebooklogofooter() {
+        await this.facebooklogofooter.click();
+    }
+    async clickinstagramlogofooter() {
+        await this.instagramlogofooter.click();
+    }

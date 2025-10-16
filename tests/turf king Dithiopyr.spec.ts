@@ -63,17 +63,17 @@ test.describe('Turf King Dithiopyr Page Tests', () => {
         await expect(page).toHaveURL(/.*dithiopyr/);
         await page.waitForTimeout(500);
 
-        // Test Turf King 15-0-3 with Dithiopyr buttons
+        // Test Turf King 12-0-3 with Dithiopyr buttons
         
         // Wait before testing product buttons
         await page.waitForTimeout(500);
         
         // Label button
-        await expect(turfkingdithiopyrpage.turfking1503withdithiopyrlabelbutton).toBeVisible();
+        await expect(turfkingdithiopyrpage.turfking1203withdithiopyrlabelbutton).toBeVisible();
         await page.waitForTimeout(300);
         const [pdfPageLabel] = await Promise.all([
             page.context().waitForEvent('page'),
-            turfkingdithiopyrpage.clickTurfKing1503withDithiopyrLabelButton()
+            turfkingdithiopyrpage.clickTurfKing1203withDithiopyrLabelButton()
         ]);
         try {
             await pdfPageLabel.waitForLoadState('load', { timeout: 5000 });
@@ -86,11 +86,11 @@ test.describe('Turf King Dithiopyr Page Tests', () => {
         await page.waitForTimeout(500);
         
         // SDS button
-        await expect(turfkingdithiopyrpage.turfking1503withdithiopyrSDSbutton).toBeVisible();
+        await expect(turfkingdithiopyrpage.turfking1203withdithiopyrSDSbutton).toBeVisible();
         await page.waitForTimeout(300);
         const [pdfPageSDS] = await Promise.all([
             page.context().waitForEvent('page'),
-            turfkingdithiopyrpage.clickTurfKing1503withDithiopyrSDSButton()
+            turfkingdithiopyrpage.clickTurfKing1203withDithiopyrSDSButton()
         ]);
         try {
             await pdfPageSDS.waitForLoadState('load', { timeout: 5000 });
@@ -103,11 +103,11 @@ test.describe('Turf King Dithiopyr Page Tests', () => {
         await page.waitForTimeout(500);
         
         // Spec sheet button
-        await expect(turfkingdithiopyrpage.turfking1503withdithiopyrspecsheetbutton).toBeVisible();
+        await expect(turfkingdithiopyrpage.turfking1203withdithiopyrspecsheetbutton).toBeVisible();
         await page.waitForTimeout(300);
         const [pdfPageSpec] = await Promise.all([
             page.context().waitForEvent('page'),
-            turfkingdithiopyrpage.clickTurfKing1503withDithiopyrSpecSheetButton()
+            turfkingdithiopyrpage.clickTurfKing1203withDithiopyrSpecSheetButton()
         ]);
         try {
             await pdfPageSpec.waitForLoadState('load', { timeout: 5000 });
@@ -118,23 +118,23 @@ test.describe('Turf King Dithiopyr Page Tests', () => {
         await pdfPageSpec.close();
         await expect(page).toHaveURL(/.*dithiopyr/);
 
-        // Test Turf King 19-0-6 with Dithiopyr buttons
+        // Test Turf King 18-0-4 with Dithiopyr buttons
         await page.waitForTimeout(500);
         
-        // Label button for 19-0-6
-        await expect(turfkingdithiopyrpage.turfking1906withdithiopyrlabelbutton).toBeVisible();
+        // Label button for 18-0-4
+        await expect(turfkingdithiopyrpage.turfking1804withdithiopyrlabelbutton).toBeVisible();
         await page.waitForTimeout(300);
-        const [pdfPageLabel1906] = await Promise.all([
+        const [pdfPageLabel1804] = await Promise.all([
             page.context().waitForEvent('page'),
-            turfkingdithiopyrpage.clickTurfKing1906withDithiopyrLabelButton()
+            turfkingdithiopyrpage.clickTurfKing1804withDithiopyrLabelButton()
         ]);
         try {
-            await pdfPageLabel1906.waitForLoadState('load', { timeout: 5000 });
-            await expect(pdfPageLabel1906).toHaveURL(/.*label/i);
+            await pdfPageLabel1804.waitForLoadState('load', { timeout: 5000 });
+            await expect(pdfPageLabel1804).toHaveURL(/.*label/i);
         } catch (error) {
-            console.log('1906 Label PDF URL:', await pdfPageLabel1906.url());
+            console.log('1804 Label PDF URL:', await pdfPageLabel1804.url());
         }
-        await pdfPageLabel1906.close();
+        await pdfPageLabel1804.close();
         await expect(page).toHaveURL(/.*dithiopyr/);
 
         // Test Turf King 0-0-7 with Dithiopyr buttons
@@ -151,7 +151,7 @@ test.describe('Turf King Dithiopyr Page Tests', () => {
             await pdfPageLabel007.waitForLoadState('load', { timeout: 5000 });
             await expect(pdfPageLabel007).toHaveURL(/.*label/i);
         } catch (error) {
-            console.log('007 Label PDF URL:', await pdfPageLabel007.url());
+            console.log('007 Label PDF URL:', pdfPageLabel007.url());
         }
         await pdfPageLabel007.close();
         await expect(page).toHaveURL(/.*dithiopyr/);

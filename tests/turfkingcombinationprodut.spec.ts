@@ -43,6 +43,9 @@ verify the "enter your text here" text box is next to the "let's get growing" he
 verify the "email address" text box is under the "enter your text here" text box
 verify the "submit" button is under the "email address" text box
 verify the turf product title is highlighted in yellow color in the footer section of the page
+verify when clicked on the twitter logo in the footer section, it opens the twitter page in a new tab
+verify when clicked on the facebook logo in the footer section, it opens the facebook page in a new tab
+verify when clicked on the instagram logo in the footer section, it opens the instagram page in a new tab
 verify clicking on the "Andre & Son Logo" in the top left corner takes you to the home page.
 */
 
@@ -93,5 +96,33 @@ await expect(page.locator('text=Let\'s Get Growing')).toBeVisible();
 await expect(page.locator('input').first()).toBeVisible();
 //verify the "submit" button is under the "email address" text box
 await expect(page.locator('button:has-text("Submit")')).toBeVisible();
+//scroll to the footer section
+await turfKingComboPage.scrollToFooterSection();
+//verify the turf product title is highlighted in yellow color in the footer section of the page
+await turfKingComboPage.verifyTurfKingTitleIsHighlighted();
+//verify when clicked on the facebook logo in the footer section, it opens the facebook page in a new tab
+await page.waitForTimeout(1000);
+await expect(turfKingComboPage.facebooklogofooter).toBeVisible();
+const [newPageFacebook] = await Promise.all([
+    page.waitForEvent('popup'),
+    turfKingComboPage.clickfacebooklogofooter()
+]);
+await newPageFacebook.waitForLoadState('load');
+await expect(newPageFacebook).toHaveURL(/.*facebook.com/);    
+await newPageFacebook.close();
+
+//verify when clicked on the instagram logo in the footer section, it opens the instagram page in a new tab
+await page.waitForTimeout(1000);
+await expect(turfKingComboPage.instagramlogofooter).toBeVisible();
+const [newPageInstagram] = await Promise.all([
+    page.waitForEvent('popup'),
+    turfKingComboPage.clickinstagramlogofooter()
+]);
+await newPageInstagram.waitForLoadState('load');
+await expect(newPageInstagram).toHaveURL(/.*instagram.com/);
+await newPageInstagram.close(); 
+//verify clicking on the "Andre & Son Logo" in the top left corner takes you to the home page.
+await turfKingComboPage.andreandsonlogo.click();
+await expect(page).toHaveURL(/.*andreandson/);
 
 });

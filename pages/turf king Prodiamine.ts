@@ -138,7 +138,6 @@ export class turfkingprodiaminepage {
     async verifyWetGrassImageAltText() {
         await this.wetgrassimagealttext.isVisible();                                                     
     }
-    
     async clickSpreadersettingButton() {
         await this.spreadersettingbutton.click();
     }
@@ -240,13 +239,6 @@ export class turfkingprodiaminepage {
     }
     async clickTurfKing1800with58ProdiamineSpecSheetButton() {
         await this.turfking1800with58prodiaminespecsheetbutton.click();
-    }
-    async goBackToTurfKingProdiaminePage() {
-        await this.page.goto('/turf-king-prodiamine/');
-    }
-    async goBackToPreviousPage() {
-        await this.page.goBack();
-        await this.page.waitForLoadState('networkidle');
     }
 
 }
