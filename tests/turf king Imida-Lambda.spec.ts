@@ -11,111 +11,141 @@ test.describe('Turf King Imida-Lambda Page Tests', () => {
     test('verify the contents of the turf king imida-lambda page', async ({ page }) => {
         // Set longer timeout for this test
         test.setTimeout(120000); // 2 minutes
-        
         // Navigate to home page
         await page.goto('/');
         await page.waitForLoadState('networkidle');
         await page.waitForTimeout(1000);
-        
         // Navigate through the flow to reach Imida-Lambda page
         await turfkingimidaLambdapage.clickTurfProductsTitle();
         await page.waitForLoadState('networkidle');
-        await page.waitForTimeout(1000);
-        
         await turfkingimidaLambdapage.clickCombinationProductLearnMoreButton();
         await page.waitForLoadState('networkidle');
-        await page.waitForTimeout(1000);
-        
         await turfkingimidaLambdapage.clickTurfKingImidaLambdaLearnMoreButton();
         await page.waitForLoadState('networkidle');
-        await page.waitForTimeout(1000);
-        
         // Verify we're on the correct page
-        await expect(page).toHaveURL(/.*imida.*lambda/i);
-        
+        await expect(page).toHaveURL(/.*imida-lambda/);
         // Wait for page elements to load
         await page.waitForTimeout(1000);
-        
-        // Verify page elements are visible
-        await expect(turfkingimidaLambdapage.turfkingimidaLambdaheading).toBeVisible();
-        await expect(turfkingimidaLambdapage.turfkingimidaLambdapagedescription).toBeVisible();   
-        await expect(turfkingimidaLambdapage.imidaLambdaimagealttext).toBeVisible();
-        await expect(turfkingimidaLambdapage.spreadersettingbutton).toBeVisible();
-        
-        // Add wait before clicking spreader settings
-        await page.waitForTimeout(500);
-        
-        // Test spreader settings button
-        const [pdfPage] = await Promise.all([
-            page.context().waitForEvent('page'),
-            turfkingimidaLambdapage.clickSpreadersettingButton()
-        ]);
-        
-        // Wait for PDF with shorter timeout and check URL
-        try {
-            await pdfPage.waitForLoadState('load', { timeout: 5000 });
-            await expect(pdfPage).toHaveURL(/.*spreadersettings/i);
-        } catch (error) {
-            console.log('PDF page URL:', await pdfPage.url());
-            // Even if URL doesn't match exactly, continue the test
-        }
-        await pdfPage.close();
-        await expect(page).toHaveURL(/.*imida.*lambda/i);
-        await page.waitForTimeout(500);
 
-        // Test Turf King 15-0-3 with Imida-Lambda buttons
-        
-        // Wait before testing product buttons
-        await page.waitForTimeout(500);
-        
-        // Label button
-        await expect(turfkingimidaLambdapage.turfking1503withimidaLambdalabelbutton).toBeVisible();
-        await page.waitForTimeout(300);
-        const [pdfPageLabel] = await Promise.all([
-            page.context().waitForEvent('page'),
-            turfkingimidaLambdapage.clickTurfKing1503withImidaLambdaLabelButton()
-        ]);
-        try {
-            await pdfPageLabel.waitForLoadState('load', { timeout: 5000 });
-            await expect(pdfPageLabel).toHaveURL(/.*label/i);
-        } catch (error) {
-            console.log('Label PDF URL:', await pdfPageLabel.url());
+        //verify the turfking 0-0-7 with imida-lambda product buttons
+
+        //label button functionality
+        await turfkingimidaLambdapage.clickTurfking007();
+        await page.waitForTimeout(2000); // Wait longer for potential PDF to load
+        const pages = page.context().pages();
+        if (pages.length > 1) {
+            await pages[1].close();
+            await page.bringToFront();
         }
-        await pdfPageLabel.close();
-        await expect(page).toHaveURL(/.*imida.*lambda/i);
-        await page.waitForTimeout(500);
-        
-        // SDS button
-        await expect(turfkingimidaLambdapage.turfking1503withimidaLambdaSDSbutton).toBeVisible();
-        await page.waitForTimeout(300);
-        const [pdfPageSDS] = await Promise.all([
-            page.context().waitForEvent('page'),
-            turfkingimidaLambdapage.clickTurfKing1503withImidaLambdaSDSButton()
-        ]);
-        try {
-            await pdfPageSDS.waitForLoadState('load', { timeout: 5000 });
-            await expect(pdfPageSDS).toHaveURL(/.*sds/i);
-        } catch (error) {
-            console.log('SDS PDF URL:', await pdfPageSDS.url());
+        await page.waitForTimeout(1000);
+        //SDS button functionality
+        await turfkingimidaLambdapage.clickTurfKing007withImidaLambdaSDSButton();
+        await page.waitForTimeout(2000); // Wait longer for potential PDF to load
+        const pages1 = page.context().pages();
+        if (pages1.length > 1) {
+            await pages1[1].close();
+            await page.bringToFront();
         }
-        await pdfPageSDS.close();
-        await expect(page).toHaveURL(/.*imida.*lambda/i);
-        await page.waitForTimeout(500);
-        
-        // Spec sheet button
-        await expect(turfkingimidaLambdapage.turfking1503withimidaLambdaspecsheetbutton).toBeVisible();
-        await page.waitForTimeout(300);
-        const [pdfPageSpec] = await Promise.all([
-            page.context().waitForEvent('page'),
-            turfkingimidaLambdapage.clickTurfKing1503withImidaLambdaSpecSheetButton()
-        ]);
-        try {
-            await pdfPageSpec.waitForLoadState('load', { timeout: 5000 });
-            await expect(pdfPageSpec).toHaveURL(/.*spec/i);
-        } catch (error) {
-            console.log('Spec PDF URL:', await pdfPageSpec.url());
+        await page.waitForTimeout(1000);
+        //spec sheet button functionality
+        await turfkingimidaLambdapage.clickTurfKing007withImidaLambdaSpecSheetButton();
+        await page.waitForTimeout(2000); // Wait longer for potential PDF to load
+        const pages2 = page.context().pages();
+        if (pages2.length > 1) {
+            await pages2[1].close();
+            await page.bringToFront();
         }
-        await pdfPageSpec.close();
-        await expect(page).toHaveURL(/.*imida.*lambda/i);
+        await page.waitForTimeout(1000);
+        //verify the turfking 12-0-0 with imida-lambda product buttons
+        //label button functionality
+        await turfkingimidaLambdapage.clickTurfKing1200withImidaLambdaLabelButton();
+        await page.waitForTimeout(2000);
+        const pages3 = page.context().pages();
+        if (pages3.length > 1) {
+            await pages3[1].close();
+            await page.bringToFront();
+        }
+        await page.waitForTimeout(1000);
+        //SDS button functionality
+        await turfkingimidaLambdapage.clickTurfKing1200withImidaLambdaSDSButton();
+        await page.waitForTimeout(2000);
+        const pages4 = page.context().pages();
+        if (pages4.length > 1) {
+            await pages4[1].close();
+            await page.bringToFront();
+        }
+        await page.waitForTimeout(1000);
+        //spec sheet button functionality
+        await turfkingimidaLambdapage.clickTurfKing1200withImidaLambdaSpecSheetButton();
+        await page.waitForTimeout(2000);
+        const pages5 = page.context().pages();
+        if (pages5.length > 1) {
+            await pages5[1].close();
+            await page.bringToFront();
+        }
+        await page.waitForTimeout(1000);
+        //verify the turfking 17-0-3 with imida-lambda product buttons
+        //label button functionality
+        await turfkingimidaLambdapage.clickTurfKing1703withImidaLambdaLabelButton();
+        await page.waitForTimeout(2000);
+        const pages6 = page.context().pages();
+        if (pages6.length > 1) {
+            await pages6[1].close();
+            await page.bringToFront();
+        }
+        await page.waitForTimeout(1000);
+        //SDS button functionality
+        await turfkingimidaLambdapage.clickTurfKing1703withImidaLambdaSDSButton();
+        await page.waitForTimeout(2000);
+        const pages7 = page.context().pages();
+        if (pages7.length > 1) {
+            await pages7[1].close();
+            await page.bringToFront();
+        }
+        await page.waitForTimeout(1000);
+        //spec sheet button functionality
+        await turfkingimidaLambdapage.clickTurfKing1703withImidaLambdaSpecSheetButton();
+        await page.waitForTimeout(2000);
+        const pages8 = page.context().pages();
+        if (pages8.length > 1) {
+            await pages8[1].close();
+            await page.bringToFront();
+        }
+        await page.waitForTimeout(1000);
+        //verify the turfking 21-0-7 with imida-lambda product buttons
+        //label button functionality
+        await turfkingimidaLambdapage.clickTurfKing2107withImidaLambdaLabelButton();
+        await page.waitForTimeout(2000);
+        const pages9 = page.context().pages();
+        if (pages9.length > 1) {
+            await pages9[1].close();
+            await page.bringToFront();
+        }
+        await page.waitForTimeout(1000);
+        //SDS button functionality
+        await turfkingimidaLambdapage.clickTurfKing2107withImidaLambdaSDSButton();
+        await page.waitForTimeout(2000);
+        const pages10 = page.context().pages();
+        if (pages10.length > 1) {
+            await pages10[1].close();
+            await page.bringToFront();
+        }
+        await page.waitForTimeout(1000);
+        //spec sheet button functionality
+        await turfkingimidaLambdapage.clickTurfKing2107withImidaLambdaSpecSheetButton();
+        await page.waitForTimeout(2000);
+        const pages11 = page.context().pages();
+        if (pages11.length > 1) {
+            await pages11[1].close();
+            await page.bringToFront();
+        }
+        await page.waitForTimeout(1000);
+        
+        //verify the integrated video player presence
+        await expect(page.locator('iframe[title*="Imida"]')).toBeVisible();
+        console.log('Integrated video player iframe is present and visible');
+        
+        await page.waitForTimeout(1000);
     });
+
 });

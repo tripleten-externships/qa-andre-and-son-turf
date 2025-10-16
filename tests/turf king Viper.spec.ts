@@ -117,5 +117,57 @@ test.describe('Turf King Viper Page Tests', () => {
         }
         await pdfPageSpec.close();
         await expect(page).toHaveURL(/.*viper/);
+        await page.waitForTimeout(500);
+
+        //test Turf King 24-0-9 with Viper buttons
+        
+        // Label button
+        await expect(turfkingviperpage.turfking2409withviperlabelbutton).toBeVisible();
+        await page.waitForTimeout(300);
+        const [pdfPageLabel2409] = await Promise.all([
+            page.context().waitForEvent('page'),
+            turfkingviperpage.clickTurfKing2409withViperLabelButton()
+        ]);
+        try {
+            await pdfPageLabel2409.waitForLoadState('load', { timeout: 5000 });
+            await expect(pdfPageLabel2409).toHaveURL(/.*label/i);
+        } catch (error) {
+            console.log('Label PDF URL:', await pdfPageLabel2409.url());
+        }
+        await pdfPageLabel2409.close();
+        await expect(page).toHaveURL(/.*viper/);
+        await page.waitForTimeout(500);
+        // SDS button
+        await expect(turfkingviperpage.turfking2409withviperSDSbutton).toBeVisible();
+        await page.waitForTimeout(300);
+        const [pdfPageSDS2409] = await Promise.all([
+            page.context().waitForEvent('page'),
+            turfkingviperpage.clickTurfKing2409withViperSDSButton()
+        ]);
+        try {
+            await pdfPageSDS2409.waitForLoadState('load', { timeout: 5000 });
+            await expect(pdfPageSDS2409).toHaveURL(/.*sds/i);
+        } catch (error) {
+            console.log('SDS PDF URL:', await pdfPageSDS2409.url());
+        }
+        await pdfPageSDS2409.close();
+        await expect(page).toHaveURL(/.*viper/);
+        await page.waitForTimeout(500);
+        // Spec sheet button
+        await expect(turfkingviperpage.turfking2409withviperspecsheetbutton).toBeVisible();
+        await page.waitForTimeout(300);
+        const [pdfPageSpec2409] = await Promise.all([
+            page.context().waitForEvent('page'),
+            turfkingviperpage.clickTurfKing2409withViperSpecSheetButton()
+        ]);
+        try {
+            await pdfPageSpec2409.waitForLoadState('load', { timeout: 5000 });
+            await expect(pdfPageSpec2409).toHaveURL(/.*spec/i);
+        } catch (error) {
+            console.log('Spec PDF URL:', await pdfPageSpec2409.url());
+        }
+        await pdfPageSpec2409.close();
+        await expect(page).toHaveURL(/.*viper/);
+        await page.waitForTimeout(500);
     });
 });
