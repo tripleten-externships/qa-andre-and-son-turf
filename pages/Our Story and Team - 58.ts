@@ -1,5 +1,4 @@
 /* DO NOT EDIT — saved copy of working test
-   This file is a snapshot of the working test named 'waybackunderline'.
    Keep this file read-only to avoid accidental edits when creating new tests.
    Our Story and Team Test Case 58: Verify that the page title “Let’s go way back” is displayed with the word “way” fully underlined.
 */
