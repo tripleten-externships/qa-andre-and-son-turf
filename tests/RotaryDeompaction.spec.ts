@@ -47,6 +47,21 @@ test('Verify company info is visible', async ({ page }) => {
     await expect(nav.rotarytest.rotaryphone).toBeVisible();
 });
 
+
+test('Verify forms can be filled', async ({ page }) => {
+    const nav = new NavigationPage(page);
+    await page.goto('https://www.andreandson.com/rotary-decompaction');
+    // fill in the form boxes
+    await nav.rotarytest.firstnamebox.fill('Roger');
+    await nav.rotarytest.lastnamebox.fill('Pearson');
+    await nav.rotarytest.emailbox.fill('rmp7350@g.rit.edu')
+    await nav.rotarytest.messagebox.fill('Message to be verified')
+    // verify the form boxes
+    await expect(nav.rotarytest.firstnamebox).toHaveValue('Roger')
+    await expect(nav.rotarytest.lastnamebox).toHaveValue('Pearson')
+    await expect(nav.rotarytest.emailbox).toHaveValue('rmp7350@g.rit.edu')
+    await expect(nav.rotarytest.messagebox).toHaveValue('Message to be verified')
+});
 // about 12 tests or so on the page
 // need to test the image
 // test that a all the boxes to fill infomration are visable
