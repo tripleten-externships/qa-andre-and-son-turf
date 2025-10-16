@@ -130,6 +130,7 @@ test('Row 86: Verify Inquiries section text is visible on Contact page', async (
 });
 
 import { test, expect } from '@playwright/test';
+import { workerData } from 'worker_threads';
 
 test('Row 87: Verify Location and Employment sections display correct text', async ({ page }) => {
   // Step 1: Go to Contact page
@@ -348,4 +349,31 @@ const [newPage] = await Promise.all([
 await newPage.waitForLoadState('load');
 await expect(newPage).toHaveURL('https://www.andreandson.com/_files/ugd/3bd49b_e479a5344e4b467ea75381ab501e03a4.pdf');
 console.log('Navigated to employment application PDF successfully.');
+});
+
+test('Row 93: Verify that the email link (turf@andreandson.com) in the Careers section opens the user\'s default email client', async ({ page }) => {
+  
+  // Step 1: Go to the Careers page
+  await page.goto('https://www.andreandson.com/careers');
+  await page.getByRole('heading', { name: 'Careers' }).scrollIntoViewIfNeeded();
+  console.log('Navigated to Careers page');
+
+  // Step 2: Locate the email link using the scoped locator under "main content"
+  const emailLink = page.getByLabel('main content').getByRole('link', { name: 'turf@andreandson.com' });
+  await expect(emailLink).toBeVisible();
+  await expect(emailLink).toHaveAttribute('href', /^mailto:turf@andreandson\.com$/);
+  console.log('Email link is visible and uses correct mailto attribute.');
+
+   // Step 3: Try clicking it (no new tab expected)
+  try {
+    await emailLink.click({ trial: true }); // trial ensures no external navigation
+    console.log('Click action simulated successfully (mailto link valid).');
+  } catch (error) {
+    console.error('Click failed: ', error);
+    throw error;
+  }
+
+  // Optional: Log href manually for debugging
+  const mailtoHref = await emailLink.getAttribute('href');
+  console.log(`Mailto href confirmed as: ${mailtoHref}`);
 });
