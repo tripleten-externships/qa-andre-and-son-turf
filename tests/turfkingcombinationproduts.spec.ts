@@ -1,5 +1,5 @@
 import { test, expect } from "@playwright/test";
-import { turfKingComboProductPage } from "../pages/turfkingcomboproduct";
+import { turfKingComboProductPage } from "../pages/turfkingcomboproducts";
 
 //before running the test, navigate to the turf product page by clicking on the "turf products" title on the homepage
 //then clicking on the "learn more" button under the description of the combination products section

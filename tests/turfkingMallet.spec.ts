@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { TurfKingMalletPage } from '../pages/turf king Mallet';
+import { TurfKingMalletPage } from '../pages/turfkingMallet';
 
 test.describe('Turf King Mallet Page Tests', async () => {
     let turfkingmalletpage: TurfKingMalletPage;

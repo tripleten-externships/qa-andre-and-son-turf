@@ -1,5 +1,5 @@
 import { test, expect, Page } from '@playwright/test';
-import { turfkingprodiaminepage } from '../pages/turf king Prodiamine';
+import { turfkingprodiaminepage } from '../pages/turfkingProdiamine';
 
 // Configure tests to run in parallel
 test.describe.configure({ mode: 'parallel' });

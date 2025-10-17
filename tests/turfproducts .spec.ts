@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
-import { TurfProductPage } from '../pages/turf product ';
-import { turfProducthomePage } from '../pages/turfproduct home';
+import { TurfProductPage } from '../pages/turfproducts';
+import { turfProducthomePage } from '../pages/turfproducthome';
 
 //before running the test make sure to go to the "turf product" page by clicking on the "turf products" title on the home page
 

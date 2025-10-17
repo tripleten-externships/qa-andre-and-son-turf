@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { turfkingEscalade } from '../pages/turf king Escalade';
+import { turfkingEscalade } from '../pages/turfkingEscalade';
 
 test.describe('Turf King Escalade Page Tests', () => {
     let turfkingescaladepage: turfkingEscalade;

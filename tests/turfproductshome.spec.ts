@@ -1,5 +1,5 @@
 import {test, expect, Locator, Page} from '@playwright/test';
-import {turfProducthomePage} from '../pages/turfproduct home';
+import {turfProducthomePage} from '../pages/turfproducthome';
 
 /*
 verify a video is running on the homepage
