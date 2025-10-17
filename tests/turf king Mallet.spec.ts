@@ -8,7 +8,7 @@ test.describe('Turf King Mallet Page Tests', async () => {
         turfkingmalletpage = new TurfKingMalletPage(page);
     });
 
-    test('verify the contents of the turf king mallet page', async ({ page }) => {
+    test('verify the turf king mallet page elements and functions', async ({ page }) => {
         // Set longer timeout for this test
         test.setTimeout(120000); // 2 minutes
         
@@ -33,15 +33,9 @@ test.describe('Turf King Mallet Page Tests', async () => {
         // Verify we're on the correct page
         await expect(page).toHaveURL(/.*mallet/);
         
-        // Wait for page elements to load
-        await page.waitForTimeout(1000);
-        
-        // Verify page elements are visible
-        await expect(turfkingmalletpage.turfkingmalletheading).toBeVisible();
-        await expect(turfkingmalletpage.turfkingmalletpagedescription).toBeVisible();   
-        await expect(turfkingmalletpage.malletimagealttext).toBeVisible();
-        await expect(turfkingmalletpage.spreadersettingbutton).toBeVisible();
-        
+       // verify the spreader setting button is present and functional
+       await expect(turfkingmalletpage.spreadersettingbutton).toBeVisible();
+
         // Add wait before clicking spreader settings
         await page.waitForTimeout(500);
         

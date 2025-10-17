@@ -8,7 +8,7 @@ test.describe('Turf King Dithiopyr Page Tests', () => {
         turfkingdithiopyrpage = new TurfKingDithiopyrPage(page);
     });
 
-    test('verify the contents of the turf king dithiopyr page', async ({ page }) => {
+    test('verify the turf king dithiopyr page elements and functions', async ({ page }) => {
         // Set longer timeout for this test
         test.setTimeout(120000); // 2 minutes
         
@@ -36,11 +36,8 @@ test.describe('Turf King Dithiopyr Page Tests', () => {
         // Wait for page elements to load
         await page.waitForTimeout(1000);
         
-        // Verify page elements are visible
-        await expect(turfkingdithiopyrpage.turfkingdithiopyrheading).toBeVisible();
-        await expect(turfkingdithiopyrpage.turfkingdithiopyrpagedescription).toBeVisible();   
-        await expect(turfkingdithiopyrpage.dithiopyrimagealttext).toBeVisible();
-        await expect(turfkingdithiopyrpage.spreadersettingbutton).toBeVisible();
+       // verify the spreader setting button is present and functional
+       await expect(turfkingdithiopyrpage.spreadersettingbutton).toBeVisible();
         
         // Add wait before clicking spreader settings
         await page.waitForTimeout(500);

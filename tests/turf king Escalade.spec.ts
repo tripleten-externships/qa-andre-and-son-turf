@@ -8,7 +8,7 @@ test.describe('Turf King Escalade Page Tests', () => {
         turfkingescaladepage = new turfkingEscalade(page);
     });
 
-    test('verify the contents of the turf king escalade page', async ({ page }) => {
+    test('verify the turf king escalade page elements and functions', async ({ page }) => {
         // Set longer timeout for this test
         test.setTimeout(180000); // 3 minutes
         

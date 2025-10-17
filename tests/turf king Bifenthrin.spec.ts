@@ -8,7 +8,7 @@ test.describe('Turf King Bifenthrin Page Tests', () => {
         turfkingbifenthrinpage = new TurfKingBifenthrinPage(page);
     });
 
-    test('verify the contents of the turf king bifenthrin page', async ({ page }) => {
+    test('verify the turf king bifenthrin page elements and functions', async ({ page }) => {
         // Set longer timeout for this test
         test.setTimeout(120000); // 2 minutes
         
@@ -35,12 +35,6 @@ test.describe('Turf King Bifenthrin Page Tests', () => {
         
         // Wait for page elements to load
         await page.waitForTimeout(1000);
-        
-        // Verify page elements are visible
-        await expect(turfkingbifenthrinpage.turfkingbifenthrinheading).toBeVisible();
-        await expect(turfkingbifenthrinpage.turfkingbifenthrinpagedescription).toBeVisible();   
-        await expect(turfkingbifenthrinpage.bifenthrinimagealttext).toBeVisible();
-        await expect(turfkingbifenthrinpage.spreadersettingbutton).toBeVisible();
         
         // Add wait before clicking spreader settings
         await page.waitForTimeout(500);

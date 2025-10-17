@@ -8,7 +8,8 @@ test.describe('Turf King Viper Page Tests', () => {
         turfkingviperpage = new TurfKingViperPage(page);
     });
 
-    test('verify the contents of the turf king viper page', async ({ page }) => {
+    test('verify the turf king viper page elements and functions', async ({ page }) => {
+
         // Set longer timeout for this test
         test.setTimeout(120000); // 2 minutes
         
