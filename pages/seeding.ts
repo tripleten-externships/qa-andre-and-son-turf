@@ -22,7 +22,7 @@ export class SeedingPage{
         this.emailLink = page.locator('a[data-auto-recognition="true"]').first();
     }
 
-    async navigate() {
+    async navigateSeeding() {
         // Visit the home page
         await this.page.goto('/');
         
@@ -45,7 +45,7 @@ export class SeedingPage{
 
     }
 
-    async sendForm() {
+    async clickSendForm() {
         // Click the SEND button
         await expect(this.sendButton).toBeVisible();
         await this.sendButton.click();

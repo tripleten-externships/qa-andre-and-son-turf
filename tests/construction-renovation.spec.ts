@@ -8,7 +8,7 @@ test('Page loads successfully', async ({ page }) => {
     const constructionPage = new ConstructionAndRenovationPage(page);
     
     // Visit the home page
-    await constructionPage.navigate();
+    await constructionPage.navigateConstructionRenovation();
 
 });
 
@@ -19,7 +19,7 @@ test('Construction and Renovation page hero section', async ({ page }) => {
     const constructionPage = new ConstructionAndRenovationPage(page);
     
     //Visit the web application 
-    await constructionPage.navigate();
+    await constructionPage.navigateConstructionRenovation();
     
     // const headingText: Locator = page.locator('span.wixui-rich-text__text', { hasText: 'Construction and Renovation' }).first();
 
@@ -41,13 +41,13 @@ test('Send button validation with empty fields', async ({ page }) => {
     const constructionPage = new ConstructionAndRenovationPage(page);
     
     //Visit the web application 
-    await constructionPage.navigate();
+    await constructionPage.navigateConstructionRenovation();
 
     // Locate the email input field
     // const emailInput = page.locator('input[name="email"]');
 
     // Click the SEND button
-    await constructionPage.sendForm();
+    await constructionPage.clickSendForm();
 
     //check validation message
     const validationMessage = await constructionPage.emailInput.evaluate(el => (el as HTMLInputElement).validationMessage);
@@ -71,14 +71,14 @@ test('Email field with invalid format', async ({ page }) => {
     const constructionPage = new ConstructionAndRenovationPage(page);
 
     //Visit the web application
-    await constructionPage.navigate();
+    await constructionPage.navigateConstructionRenovation();
 
     //fill email input field with invalid email format
     // const emailInput = page.locator('input[name="email"]');
     await constructionPage.emailInput.fill('invalidemail');
 
     // Click the SEND button
-    await constructionPage.sendForm();
+    await constructionPage.clickSendForm();
 
     //check validation message
     const validationMessage = await constructionPage.emailInput.evaluate(el => (el as HTMLInputElement).validationMessage);
@@ -102,7 +102,7 @@ test('Email link verification', async ({ page }) => {
     const constructionPage = new ConstructionAndRenovationPage(page);
 
     //Visit the web application 
-    await constructionPage.navigate();
+    await constructionPage.navigateConstructionRenovation();
 
     // Locator for the link
     // const emailLink = page.locator('a[data-auto-recognition="true"]').first();

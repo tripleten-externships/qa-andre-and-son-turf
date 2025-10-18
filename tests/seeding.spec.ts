@@ -7,7 +7,7 @@ import { SeedingPage } from '../pages/seeding';
 test('Page loads successfully', async ({ page }) => {
     const seedingPage = new SeedingPage(page);
 
-    await seedingPage.navigate();
+    await seedingPage.navigateSeeding();
 
 });
 
@@ -18,7 +18,7 @@ test('Seeding page hero section', async ({ page }) => {
     const seedingPage = new SeedingPage(page);
 
     //Visit the web application 
-    await seedingPage.navigate();
+    await seedingPage.navigateSeeding();
 
     // const headingText: Locator = page.locator('span.wixui-rich-text__text', { hasText: 'Seeding' }).first();
 
@@ -42,13 +42,13 @@ test('Send button validation with empty fields', async ({ page }) => {
     const seedingPage = new SeedingPage(page);
     
     //Visit the web application 
-    await seedingPage.navigate();
+    await seedingPage.navigateSeeding();
 
     // Locate the email input field
     const emailInput = page.locator('input[name="email"]');
 
     // Click the SEND button
-    await seedingPage.sendForm();
+    await seedingPage.clickSendForm();
 
     //check validation message
     const validationMessage = await seedingPage.emailInput.evaluate(el => (el as HTMLInputElement).validationMessage);
@@ -73,14 +73,14 @@ test('Email field with invalid format', async ({ page }) => {
     const seedingPage = new SeedingPage(page);
     
     //Visit the web application 
-    await seedingPage.navigate();
+    await seedingPage.navigateSeeding();
 
     //fill email input field with invalid email format
     // const emailInput = page.locator('input[name="email"]');
     await seedingPage.emailInput.fill('invalidemail');
 
     // Click the SEND button
-    await seedingPage.sendForm();
+    await seedingPage.clickSendForm();
 
     //check validation message
     const validationMessage = await seedingPage.emailInput.evaluate(el => (el as HTMLInputElement).validationMessage);
@@ -103,7 +103,7 @@ test('Email link verification', async ({ page }) => {
     const seedingPage = new SeedingPage(page);
 
     //Visit the web application
-    await seedingPage.navigate();
+    await seedingPage.navigateSeeding();
 
     // Locator for the link
     // const emailLink = page.locator('a[data-auto-recognition="true"]').first();

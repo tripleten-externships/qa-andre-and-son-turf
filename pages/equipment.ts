@@ -104,7 +104,7 @@ export class EquipmentPage {
         this.emailLink = page.locator('text=turf@andreandson.com').first();
     }
 
-    async navigate() {
+    async navigateEquipment() {
         await this.page.goto('/');
         await this.equipmentLink.click();
         await expect(this.page).toHaveURL(/equipment/);
@@ -139,7 +139,7 @@ export class EquipmentPage {
         this.laterTime = await this.featureVideo.evaluate((v: HTMLVideoElement) => v.currentTime);
     }
 
-    async submitForm() {
+    async clickSubmitForm() {
         // Ensure the SUBMIT button is visible
         await expect(this.submitButton).toBeVisible();
 
