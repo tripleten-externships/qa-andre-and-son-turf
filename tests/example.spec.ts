@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-test.only('has title', async ({ page }) => {
+test('has title', async ({ page }) => {
     await page.goto('https://www.andreandson.com/contract-services');
     await page.getByText('Conventional Aerification').scrollIntoViewIfNeeded();
     await page.getByText('Conventional Aerification').click();
