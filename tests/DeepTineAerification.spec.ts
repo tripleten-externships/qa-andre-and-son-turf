@@ -13,7 +13,6 @@ test('Verify page loads successfully', async ({ page }) => {
   //visit the home page
   await page.goto('/');
   //Hover over to CONTRACT SERVICES
-  //await page.getByRole('link', { name: 'CONTRACT SERVICES' }).nth(0).hover();
   await deepTineAerification.hoverContractServices();
   //Click on DEEP TINE AERIFICATION
    await deepTineAerification.DEEPTINEAERIFICATION();

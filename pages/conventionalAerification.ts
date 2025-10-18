@@ -31,7 +31,7 @@ export class ConvAero{
         this.mainContentImages=this.mainContentRegion.locator('img');
         this.fairwaysAerificationImage=page.getByRole('img', { name: 'Fairways Aerification 3.jpg' });
         this.conventionalAercoreGreensImage=page.getByRole('img', { name: 'Conventional Aercore Greens 2' });
-        this.pageDescriptionText=page.getByText('Conventional aerification is the process of removing small cores of soil from the turf and soil profile to reduce compaction, improve water infiltration, and enhance overall turf health. This method is commonly used on golf courses, sports fields, and other high-traffic turf areas.');
+        this.pageDescriptionText = page.locator('text=Conventional aerification is the process');
         this.clickfirstName=page.getByLabel('First Name');
         this.fillfirstName=page.getByLabel('First Name');
         this.clicklastName=page.getByLabel('Last Name');
