@@ -41,9 +41,16 @@ readonly natureSafe8AQMSpecSheetLink: Locator;
 readonly natureSafe10PBSLabelLink: Locator;
 readonly natureSafe10PBSSpecSheetLink: Locator;
 
+readonly natureSafeTitle: Locator;
+readonly natureSafeText: Locator;
+readonly natureSafeLearnMoreLinkButton: Locator;
+
+
+
 constructor(page: Page){
     this.page=page;
-      this.natureSafe21CourseLabelLink=page.getByRole("link", {name: 'Label'}).nth(0);
+
+    this.natureSafe21CourseLabelLink=page.getByRole("link", {name: 'Label'}).nth(0);
     this.natureSafe21CourseSpecSheetLink=page.getByRole("link", {name: 'Spec Sheet'}).nth(0);
     this.natureSafe18FineLabelLink=page.getByRole("link",{name: 'Label'}).nth(1);
     this.natureSafe18FineSpecSheetLink=page.getByRole('link',{name: 'Spec Sheet'}).nth(1);
@@ -75,6 +82,11 @@ constructor(page: Page){
     this.natureSafe8AQMSpecSheetLink=page.getByRole("link",{name: 'Spec Sheet'}).nth(14);
     this.natureSafe10PBSLabelLink=page.getByRole("link",{name: 'Label'}).last();
     this.natureSafe10PBSSpecSheetLink=page.getByRole("link",{name: 'Spec Sheet'}).last();
+
+    
+    this.natureSafeTitle=page.getByText('Nature Safe', {exact: true});
+    this.natureSafeText=page.getByText('natural organic and fortified organic');
+    this.natureSafeLearnMoreLinkButton=page.getByRole('link', {name: 'Learn More'}).nth(4);
 }} 
 
 export const navigateToTurfKingFertilizerPage = async (page: Page): Promise<void> => {

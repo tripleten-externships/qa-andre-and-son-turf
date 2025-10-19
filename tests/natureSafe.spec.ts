@@ -8,30 +8,28 @@ test.beforeEach(async ({ page }) => {
 })
 
 test('Nature Safe title and text are visible', async ({ page }) => { 
-    const turfKingFertilizerPage=new TurfKingFertilizerPage(page);
+  const natureSafePage = new NatureSafePage(page);
 
+  // Title is visible
+  await expect(natureSafePage.natureSafeTitle).toBeVisible();
 
-//title is visible
-    await expect(turfKingFertilizerPage.natureSafeTitle).toBeVisible();
-
-//text is visible
-    await expect(turfKingFertilizerPage.natureSafeText).toBeVisible();
-
-})
+  // Text is visible
+  await expect(natureSafePage.natureSafeText).toBeVisible();
+});
 
 
 //learn more link
 
-test('Nature Safe learn more link', async ({ page }) => { 
-    const natureSafePage=new TurfKingFertilizerPage(page);
+test('Nature Safe Learn More link', async ({ page }) => { 
+      const turfKingFertilizerPage = new TurfKingFertilizerPage(page);
 
+  // Learn More link should be visible
+  await expect(turfKingFertilizerPage.natureSafeLearnMoreLink).toBeVisible();
 
-//learn more is visible
-    await expect(natureSafePage.natureSafeLearnMoreLink).toBeVisible();
+  // Click on Learn More
+  await turfKingFertilizerPage.natureSafeLearnMoreLink.click();
 
-//click on learn more, verify it takes you to the proper page
-    await natureSafePage.natureSafeLearnMoreLink.click();
-})
+});
 
 test.beforeEach(async ({ page }) => {
     await clickOnLearnMoreLink(page);

@@ -29,9 +29,7 @@ readonly turfkingMiniLearnMoreLink: Locator;
 readonly turfKingMicro90Title: Locator;
 readonly turfKingMicro90Text: Locator;
 readonly turfKingMicro90LearnMoreLink: Locator;
-readonly natureSafeTitle: Locator;
-readonly natureSafeText: Locator;
-readonly natureSafeLearnMoreLink: Locator;
+
 readonly theAndersonsTitle: Locator;
 readonly theAndersonsText: Locator;
 readonly theAndersonsLearnMoreLink: Locator;
@@ -41,6 +39,10 @@ readonly aboutHeader: Locator;
 readonly moreHeaderMenu: Locator;
 readonly equipmentHeader: Locator;
 readonly andreAndSonLogoHeader: Locator;
+
+readonly natureSafeTitle: Locator;
+readonly natureSafeText: Locator;
+readonly natureSafeLearnMoreLink: Locator;
 
 
 
@@ -71,9 +73,7 @@ constructor(page: Page){
     this.turfKingMicro90Title=page.getByText('Turf King Micro SGN 90', {exact: true});
     this.turfKingMicro90Text=page.getByText('Turf King SGN 90 is the smallest granular fertilizer');
     this.turfKingMicro90LearnMoreLink=page.getByRole("link", {name: 'Learn More'}).nth(3);
-    this.natureSafeTitle=page.getByText('Nature Safe', {exact: true});
-    this.natureSafeText=page.getByText('natural organic and fortified organic');
-    this.natureSafeLearnMoreLink=page.getByRole('link', {name: 'Learn More'}).nth(4);
+   
     this.theAndersonsTitle=page.getByText('The Andersons', {exact: true});
     this.theAndersonsText=page.getByText('We offer a full range of fertilizers,');
     this.theAndersonsLearnMoreLink=page.getByRole("link", {name: 'Learn More'}).last();
@@ -84,7 +84,9 @@ constructor(page: Page){
     this.equipmentHeader=page.getByRole('link', {name: 'EQUIPMENT'}).nth(0);
     this.andreAndSonLogoHeader=page.getByAltText('logo_edited_edited.png').nth(0);
 
-
+    this.natureSafeTitle=page.getByText('Nature Safe', {exact: true});
+    this.natureSafeText=page.getByText('natural organic and fortified organic');
+    this.natureSafeLearnMoreLink=page.getByRole('link', {name: 'Learn More'}).nth(4);
 }
 
 async clickOnLogo(){
