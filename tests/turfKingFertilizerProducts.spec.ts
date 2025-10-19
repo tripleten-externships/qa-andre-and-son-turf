@@ -1,29 +1,20 @@
 import { test, expect } from '@playwright/test';
 import { TurfKingFertilizerPage } from '../pages/turfKingFertilizer';
+import { NatureSafePage, navigateToTurfKingFertilizerPage } from '../pages/natureSafe'; 
 
 /* Verify text title 'Turf King Fertilizer Products' is visible and matches. */
 
 test.beforeEach(async ({ page }) => {
 
-// visit the website 
-    await page.goto('/');
-    
-//hover over 'Turf Products' in the header.
-    await page.getByRole('link', { name: 'TURF PRODUCTS' }).nth(0).hover();
-
-    if (await page.getByText('Turf King Fertilizer').nth(1).isVisible()){
-        
-    // click on 'Turf King Fertilizer'
-        await page.getByText('Turf King Fertilizer').nth(1).click();    
-    }
-    else {await page.goto('https://www.andreandson.com/turf-king-dry-fertilizer');}
+    await navigateToTurfKingFertilizerPage(page);
   
 })
 
 test('Turf King Fertilizer Products text matches', async ({ page }) => {  
+    const turfKingFertilizerPage=new TurfKingFertilizerPage(page);
 
 // verify that text 'Turf King Fertilizer Products' is visible 
-    await expect(page.getByText('Turf King Fertilizer Products')).toHaveText('Turf King Fertilizer Products');
+    await turfKingFertilizerPage.turfKingFertilizerProductsTitle.isVisible();
 
 });
 
@@ -32,12 +23,14 @@ test('Turf King Fertilizer Products text matches', async ({ page }) => {
 /*verify subtext exists and matches*/
 
 test('verify subtext exists and matches', async ({ page }) => { 
+  const turfKingFertilizerPage = new TurfKingFertilizerPage(page);
 
+  // Verify the hero subtext element is visible
+  await expect(turfKingFertilizerPage.heroSubtitleText).toBeVisible();
 
-/* verify subtext exists and matches */
-    await expect(page.getByText('We are the Turf King for a reason.')).toHaveText('We are the Turf King for a reason.'); 
-
-})
+  // Verify it matches the expected text
+  await expect(turfKingFertilizerPage.heroSubtitleText).toContainText('We are the Turf King for a reason.');
+});
 
 /* verify 'Turf King Fertilizer' image is visible */
 test('verify Turf King Fertilizer image is visible', async ({ page })=>{
