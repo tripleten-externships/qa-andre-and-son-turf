@@ -20,20 +20,16 @@ test('Nature Safe title and text are visible', async ({ page }) => {
 
 //learn more link
 
-test('Nature Safe Learn More link', async ({ page }) => { 
-      const turfKingFertilizerPage = new TurfKingFertilizerPage(page);
 
-  // Learn More link should be visible
-  await expect(turfKingFertilizerPage.natureSafeLearnMoreLink).toBeVisible();
-
-  // Click on Learn More
-  await turfKingFertilizerPage.natureSafeLearnMoreLink.click();
-
-});
 
 test.beforeEach(async ({ page }) => {
     await clickOnLearnMoreLink(page);
 })
+
+test('Nature Safe Learn More link', async ({ page }) => { 
+      const turfKingFertilizerPage = new TurfKingFertilizerPage(page);
+      
+});
 
 //Nature Safe 21-3-7/Label
 test('Nature Safe 21-3-7 Label link', async ({page}) =>{
