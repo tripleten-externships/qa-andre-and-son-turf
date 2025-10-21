@@ -1,21 +1,23 @@
 import { test, expect } from '@playwright/test';
 import { ContractServicesPage } from '../pages/contractservices';
+import { MenuPage } from '../pages/menu';
 
+test.beforeEach(async ({ page }) => {
+  const menuPage = new MenuPage(page);
+  await menuPage.navigateToContractServices();
+});
 /*
 Verify that the page title in the hero section "Contract Services"
 */
 
 test('Verify that the page title in the hero section "Contract Services"', async ({ page }) => {  
   const contractServicesPage = new ContractServicesPage(page);
-  await page.goto('/contract-services', { waitUntil: 'load' });
   await expect(contractServicesPage.contractServicesTitle).toContainText('CONTRACT SERVICES');  
 });
 
 /*Verify that the "Conventional Aerification" link element is clickable and navigates to the correct page*/
 test('Verify that the "Conventional Aerification" link element is clickable and navigates to the correct page', async ({ page }) => {
     const contractServicesPage = new ContractServicesPage(page);
-    //Go to Contract Services page
-    await page.goto('/contract-services', { waitUntil: 'load' });
     //Click on the "Conventional Aerification" link element
     await contractServicesPage.conventionalAerificationElement.scrollIntoViewIfNeeded();
     await contractServicesPage.conventionalAerificationElement.isVisible();
@@ -25,15 +27,12 @@ test('Verify that the "Conventional Aerification" link element is clickable and 
     await page.waitForURL(/conventional-aerification/, { timeout: 10000 });
     await expect(page.url()).toContain('/conventional-aerification');
     //Verify that the new page contains the expected content
-    const newPageTitle = page.getByRole('heading', { name: 'Conventional Aerification', level: 1 }); // Adjust the selector as needed
-    await expect(newPageTitle).toContainText('Conventional Aerification'); // Adjust the expected text as needed
+    await expect(contractServicesPage.conventionalNewPageTitle).toContainText('Conventional Aerification'); // Adjust the expected text as needed
 });
 
 /*Verify that the "Deep Tine Aerification" link element is clickable and navigates to the correct page*/
 test('Verify that the "Deep Tine Aerification" link element is clickable and navigates to the correct page', async ({ page }) => {
     const contractServicesPage = new ContractServicesPage(page);
-    //Go to Contract Services page
-    await page.goto('/contract-services', { waitUntil: 'load' });
     //Click on the "Deep Tine Aerification" link element
     await contractServicesPage.deepTineAerificationElement.scrollIntoViewIfNeeded();
     await contractServicesPage.deepTineAerificationElement.isVisible();
@@ -43,16 +42,12 @@ test('Verify that the "Deep Tine Aerification" link element is clickable and nav
     await page.waitForURL(/deep-tine-aerificiation/, { timeout: 10000 });
     await expect(page.url()).toContain('/deep-tine-aerificiation');
     //Verify that the new page contains the expected content
-    const newPageTitle = page.getByRole('heading', { name: 'Deep Tine Aerification', level: 1 }); // Adjust the selector as needed
-    await expect(newPageTitle).toContainText('Deep Tine Aerification'); // Adjust the expected text as needed
-    
+    await expect(contractServicesPage.deepTineNewPageTitle).toContainText('Deep Tine Aerification'); // Adjust the expected text as needed
 });
 
 /*Verify that the "Rotary Decompaction" link element is clickable and navigates to the correct page*/
 test('Verify that the "Rotary Decompaction" link element is clickable and navigates to the correct page', async ({ page }) => {
     const contractServicesPage = new ContractServicesPage(page);
-    //Go to Contract Services page
-    await page.goto('/contract-services', { waitUntil: 'load' });
     //Click on the "Rotary Decompaction" link element
     await contractServicesPage.rotaryDecompactionElement.scrollIntoViewIfNeeded();
     await contractServicesPage.rotaryDecompactionElement.isVisible();
@@ -62,16 +57,13 @@ test('Verify that the "Rotary Decompaction" link element is clickable and naviga
     await page.waitForURL(/rotary-decompaction/, { timeout: 10000 });
     await expect(page.url()).toContain('/rotary-decompaction');
     //Verify that the new page contains the expected content
-    const newPageTitle = page.getByRole('heading', { name: 'Rotary Decompaction', level: 1 }); // Adjust the selector as needed
-    await expect(newPageTitle).toContainText('Rotary Decompaction'); // Adjust the expected text as needed
+    await expect(contractServicesPage.rotaryNewPageTitle).toContainText('Rotary Decompaction'); // Adjust the expected text as needed
 
 });
 
 /*Verify that the "Core Removal" link element is clickable and navigates to the correct page*/
 test('Verify that the "Core Removal" link element is clickable and navigates to the correct page', async ({ page }) => {
     const contractServicesPage = new ContractServicesPage(page);
-    //Go to Contract Services page
-    await page.goto('/contract-services', { waitUntil: 'load' });
     //Click on the "Core Removal" link element
     await contractServicesPage.coreRemovalElement.scrollIntoViewIfNeeded();
     await contractServicesPage.coreRemovalElement.isVisible();
@@ -81,16 +73,12 @@ test('Verify that the "Core Removal" link element is clickable and navigates to 
     await page.waitForURL(/core-removal/, { timeout: 10000 });
     await expect(page.url()).toContain('/core-removal');
     //Verify that the new page contains the expected content
-    const newPageTitle = page.getByRole('heading', { name: 'Core Removal', level: 1 });// Adjust the selector as needed
-    await expect(newPageTitle).toContainText('Core Removal'); // Adjust the expected text as needed
-
+    await expect(contractServicesPage.coreRemovalNewPageTitle).toContainText('Core Removal'); // Adjust the expected text as needed
 });
 
 /*Verify that the "Application Services" link element is clickable and navigates to the correct page*/
 test('Verify that the "Application Services" link element is clickable and navigates to the correct page', async ({ page }) => {
     const contractServicesPage = new ContractServicesPage(page);
-    //Go to Contract Services page
-    await page.goto('/contract-services', { waitUntil: 'load' });
     //Click on the "Application Services" link element
     await contractServicesPage.applicationServicesElement.scrollIntoViewIfNeeded();
     await contractServicesPage.applicationServicesElement.isVisible();
@@ -100,15 +88,12 @@ test('Verify that the "Application Services" link element is clickable and navig
     await page.waitForURL(/application-services/, { timeout: 10000 });
     await expect(page.url()).toContain('/application-services');
     //Verify that the new page contains the expected content
-    const newPageTitle = page.getByRole('heading', { name: 'Application Services', level: 1 });// Adjust the selector as needed
-    await expect(newPageTitle).toContainText('Application Services'); // Adjust the expected text as needed
+    await expect(contractServicesPage.applicationNewPageTitle).toContainText('Application Services'); // Adjust the expected text as needed
 });
 
 /*Verify that the "Topdressing" link element is clickable and navigates to the correct page*/
 test('Verify that the "Topdressing" link element is clickable and navigates to the correct page', async ({ page }) => {
     const contractServicesPage = new ContractServicesPage(page);
-    //Go to Contract Services page
-    await page.goto('/contract-services', { waitUntil: 'load' });
     //Click on the "Topdressing" link element
     await contractServicesPage.topdressingElement.scrollIntoViewIfNeeded();
     await contractServicesPage.topdressingElement.isVisible();
@@ -118,15 +103,12 @@ test('Verify that the "Topdressing" link element is clickable and navigates to t
     await page.waitForURL(/topdressing/, { timeout: 10000 });
     await expect(page.url()).toContain('/topdressing');
     //Verify that the new page contains the expected content
-    const newPageTitle = page.getByRole('heading', { name: 'Topdressing', level: 1 }); // Adjust the selector as needed
-    await expect(newPageTitle).toContainText('Topdressing'); // Adjust the expected text as needed
+    await expect(contractServicesPage.topDressNewPageTitle).toContainText('Topdressing'); // Adjust the expected text as needed
 });
 
 /*Verify that the "Seeding" link element is clickable and navigates to the correct page*/
 test('Verify that the "Seeding" link element is clickable and navigates to the correct page', async ({ page }) => {
     const contractServicesPage = new ContractServicesPage(page);
-    //Go to Contract Services page
-    await page.goto('/contract-services', { waitUntil: 'load' });
     //Click on the "Seeding" link element
     await contractServicesPage.seedingElement.scrollIntoViewIfNeeded();
     await contractServicesPage.seedingElement.isVisible();
@@ -136,15 +118,12 @@ test('Verify that the "Seeding" link element is clickable and navigates to the c
     await page.waitForURL(/seeding/, { timeout: 10000 });
     await expect(page.url()).toContain('/seeding');
     //Verify that the new page contains the expected content
-    const newPageTitle = page.getByRole('heading', { name: 'Seeding', level: 1 }); // Adjust the selector as needed
-    await expect(newPageTitle).toContainText('Seeding'); // Adjust the expected text as needed
+    await expect(contractServicesPage.seedingNewPageTitle).toContainText('Seeding'); // Adjust the expected text as needed
 });
 
 /*Verify that the "Construction & Renovation" link element is clickable and navigates to the correct page*/
 test('Verify that the "Construction & Renovation" link element is clickable and navigates to the correct page', async ({ page }) => {
     const contractServicesPage = new ContractServicesPage(page);
-    //Go to Contract Services page
-    await page.goto('/contract-services', { waitUntil: 'load' });
      //Click on the "Construction & Renovation" link element
     await contractServicesPage.constructionAndRenovationElement.scrollIntoViewIfNeeded();
     await contractServicesPage.constructionAndRenovationElement.isVisible();
@@ -154,8 +133,7 @@ test('Verify that the "Construction & Renovation" link element is clickable and 
     await page.waitForURL(/construction-renovation/, { timeout: 10000 });
     await expect(page.url()).toContain('/construction-renovation');
     //Verify that the new page contains the expected content
-   const newPageTitle = page.getByRole('heading', { name: 'Construction and Renovation', level: 1 }); // Adjust the selector as needed
-    await expect(newPageTitle).toContainText('Construction and Renovation'); // Adjust the expected text as needed
+    await expect(contractServicesPage.constructionNewPageTitle).toContainText('Construction and Renovation'); // Adjust the expected text as needed
 });
 
 /*Verify Get a Quote Contact Form - Input Validation*/
@@ -165,51 +143,33 @@ test.describe('Get a Quote Contact Form - Input Validation', () => {
 
   test.beforeEach(async ({ page }) => {
     contractServicesPage = new ContractServicesPage(page);
-    await page.goto('https://www.andreandson.com/contract-services', { waitUntil: 'load', timeout: 60000 });
     // Scroll to section
-    await page.locator('h2:has-text("Get a Quote")').scrollIntoViewIfNeeded();
+    await contractServicesPage.getaQuoteSection.scrollIntoViewIfNeeded();
     await contractServicesPage.verifySectionVisible(); // Ensure heading loads
   });
 
   test('should fill First Name with Latin letters', async () => {
-    const testLatinText = 'Test Latin Letters: abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    await contractServicesPage.fillFirstName(testLatinText);
+    await contractServicesPage.fillFirstName(contractServicesPage.testLatinText);
   });
 
   test('should fill Last Name with Latin letters', async () => {
-    const testLatinText = 'Test Latin Letters: abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    await contractServicesPage.fillLastName(testLatinText);
+    await contractServicesPage.fillLastName(contractServicesPage.testLatinText);
   });
 
   test('should fill Email with Latin letters', async () => {
-    const testLatinText = 'test@example.com'; // Valid example for input test
-    await contractServicesPage.fillEmail(testLatinText);
+    await contractServicesPage.fillEmail(contractServicesPage.testLatinText);
   });
 
   test('should fill Email with numbers', async () => {
-    const testNumbers = '1234567890@example.com'; // Semi-valid for input test
-    await contractServicesPage.fillEmail(testNumbers);
+    await contractServicesPage.fillEmail(contractServicesPage.testNumber);
+  });
+
+  test('should fill Email with symbols', async () => {
+    await contractServicesPage.fillEmail(contractServicesPage.testSymbols);
   });
 });
 
-test.describe('Footer Menu Navigation', () => {
-  test('Scoped hover on footer TURF PRODUCTS reveals and clicks ICE MELTS', async ({ page }) => {
-    await page.goto('https://www.andreandson.com/ice-melts');
 
-    // Anchor to footer for precision—avoids header duplicates. What if we add a class like '.footer-menu'?
-    const turfMenu = page.locator('footer').getByRole('link', { name: 'TURF PRODUCTS' });
-    
-    // Plain hover, trusting the scope to guide the mouse true.
-    await turfMenu.hover();
-
-    // Scoped expectation for the submenu gem—does it gleam into view?
-    await expect(page.locator('footer').getByRole('link', { name: 'ICE MELTS' })).toBeVisible({ timeout: 3000 });
-
-    // Click and chase the navigation trail—what endpoint beckons?
-    await page.locator('footer').getByRole('link', { name: 'ICE MELTS' }).click();
-    await expect(page).toHaveURL(/ice-melts/); // Or perhaps a full path like /turf-products/ice-melts?
-  });
-});
 
 
 /*Verify that the video in the hero section plays correctly

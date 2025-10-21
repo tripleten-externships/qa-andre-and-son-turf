@@ -1,4 +1,4 @@
-import { Locator, Page, expect} from "@playwright/test";
+import test, { Locator, Page, expect} from "@playwright/test";
 export class ContractServicesPage{
 
  //variables
@@ -19,6 +19,18 @@ export class ContractServicesPage{
    readonly emailInput: Locator;
    readonly heroVideo: Locator;
    readonly heroPosterImg: Locator;
+   readonly conventionalNewPageTitle: Locator;
+   readonly deepTineNewPageTitle: Locator;
+   readonly rotaryNewPageTitle: Locator;
+   readonly coreRemovalNewPageTitle: Locator;
+   readonly applicationNewPageTitle: Locator;
+   readonly topDressNewPageTitle: Locator;
+   readonly seedingNewPageTitle: Locator;
+   readonly constructionNewPageTitle: Locator;
+   readonly getaQuoteSection: Locator;
+   readonly testLatinText: any;
+   readonly testNumber: any;
+   readonly testSymbols: any
 
  //constructor  
 
@@ -40,7 +52,20 @@ export class ContractServicesPage{
         this.emailInput = page.getByLabel('Email');
         this.heroVideo = page.locator('wix-video video').first();
         this.heroPosterImg = page.locator('wix-video wow-image img').first();
-   }
+        this.conventionalNewPageTitle = page.getByRole('heading', { name: 'Conventional Aerification', level: 1 });
+        this.deepTineNewPageTitle = page.getByRole('heading', { name: 'Deep Tine Aerification', level: 1 });
+        this.rotaryNewPageTitle = page.getByRole('heading', { name: 'Rotary Decompaction', level: 1 });
+        this.coreRemovalNewPageTitle = page.getByRole('heading', { name: 'Core Removal', level: 1 });
+        this.applicationNewPageTitle = page.getByRole('heading', { name: 'Application Services', level: 1 });
+        this.topDressNewPageTitle = page.getByRole('heading', { name: 'Topdressing', level: 1 });
+        this.seedingNewPageTitle = page.getByRole('heading', { name: 'Seeding', level: 1 });
+        this.constructionNewPageTitle = page.getByRole('heading', { name: 'Construction and Renovation', level: 1 });
+        this.getaQuoteSection = page.locator('h2:has-text("Get a Quote")');
+        this.testLatinText = "abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        this.testNumber = "1234567890";
+        this.testSymbols = "@._-!";
+    }
+
 // Method: Verify section visible
   async verifySectionVisible(): Promise<void> {
     await expect(this.getQuoteHeading).toBeVisible({ timeout: 10000 });
