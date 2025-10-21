@@ -361,7 +361,7 @@ test('Nature Safe 10-0-8 Spec Sheet link', async({ page })=> {
     page.waitForEvent('popup'),
     natureSafePage.natureSafe10KelpSpecSheetLink.click(),
     ]);
-  
+    
 });
 
 //Nature Safe 10-2-8 Label link
