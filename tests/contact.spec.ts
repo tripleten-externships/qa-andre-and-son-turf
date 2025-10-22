@@ -507,11 +507,11 @@ test('Row 98: Verify error handling when a sales rep email link is not correctly
   // Step 1: Go to the Sales Team page
   await page.goto('https://www.andreandson.com/sales-team');
   await expect(page).toHaveTitle(/Sales Team/i);
-  console.log('📄 Navigated to Sales Team page');
+  console.log('Navigated to Sales Team page');
 
   // Step 2: Locate all mailto links
   const emailLinks = await page.locator('a[href^="mailto:"]').all();
-  console.log(`🔍 Found ${emailLinks.length} email links on Sales Team page`);
+  console.log(`Found ${emailLinks.length} email links on Sales Team page`);
 
   // Step 3: Ensure there are email links to test
   expect(emailLinks.length).toBeGreaterThan(0);
@@ -520,7 +520,7 @@ test('Row 98: Verify error handling when a sales rep email link is not correctly
   for (const [index, emailLink] of emailLinks.entries()) {
     const hrefValue = await emailLink.getAttribute('href');
     const emailText = await emailLink.textContent();
-    console.log(`📧 Checking email link #${index + 1}: ${emailText}`);
+    console.log(`Checking email link #${index + 1}: ${emailText}`);
 
     // Verify href exists
     expect(hrefValue).not.toBeNull();
@@ -551,23 +551,23 @@ test('Row 98: Verify error handling when a sales rep email link is not correctly
 test('Row 99: Verify that Contact Us form submits successfully when both fields are valid', async ({ page }) => {
   // Step 1: Navigate to the Sales Team page where the form is located
   await page.goto('https://www.andreandson.com/sales-team');
-  console.log('🌐 Navigated to Sales Team page');
+  console.log('Navigated to Sales Team page');
 
   // Step 2: Scroll to Contact Us section to make sure the form is visible
   const contactSection = page.getByRole('heading', { name: 'Contact Us', exact: false });
   await contactSection.scrollIntoViewIfNeeded();
   await page.waitForTimeout(1000);
-  console.log('📜 Scrolled to Contact Us section');
+  console.log('Scrolled to Contact Us section');
 
   // Step 3: Fill in both form fields correctly
   await page.getByPlaceholder('Enter your text here').fill('This is a test message from Playwright automation.');
   await page.getByPlaceholder('Email Address*').fill('testuser@example.com');
-  console.log('✏️ Filled in both message and email fields successfully');
+  console.log('Filled in both message and email fields successfully');
 
   // Step 4: Click the Submit button
   const submitButton = page.getByRole('button', { name: /submit/i });
   await submitButton.click();
-  console.log('📩 Clicked the Submit button');
+  console.log('Clicked the Submit button');
 
   // Step 5: Wait for a success indication (either confirmation message or submission completion)
   // We'll check for common success patterns or network silence as fallback
@@ -577,12 +577,12 @@ test('Row 99: Verify that Contact Us form submits successfully when both fields 
   const successVisible = await successMessage.first().isVisible();
 
   if (successVisible) {
-    console.log('✅ Verified: Success message appeared after form submission');
+    console.log('Verified: Success message appeared after form submission');
   } else {
-    console.warn('⚠️ No visible success message detected — check backend or silent submission behavior');
+    console.warn('No visible success message detected — check backend or silent submission behavior');
   }
 
   // Step 6: Optional screenshot for record keeping
   await page.screenshot({ path: 'contact-form-success.png', fullPage: true });
-  console.log('📸 Screenshot captured after form submission');
+  console.log('Screenshot captured after form submission');
 });
