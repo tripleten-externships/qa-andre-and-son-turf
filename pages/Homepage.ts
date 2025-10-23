@@ -1,50 +1,40 @@
-import { Page, Locator } from '@playwright/test';
+import { Page, Locator, FrameLocator, expect } from '@playwright/test';
 
 export class HomePage {
   readonly page: Page;
-  readonly aboutButton: Locator;
-  readonly salesTeamLink: Locator;
-  readonly careersLink: Locator;
+  readonly contactSection: Locator;
+  readonly mapFrame: FrameLocator;
 
   constructor(page: Page) {
     this.page = page;
-    this.aboutButton = page.getByRole('button', { name: 'ABOUT', exact: true });
-    this.salesTeamLink = page.getByRole('link', { name: /Sales Team/i });
-    this.careersLink = page.getByRole('link', { name: /Careers/i });
+    this.contactSection = page.getByText('CONTACT').nth(2);
+    this.mapFrame = page.frameLocator('iframe[title="Google Maps"]');
   }
 
-  async navigate() {
-    await this.page.goto('https://www.andreandson.com/');
-    await this.page.waitForLoadState('domcontentloaded');
+  async scrollToContactSection() {
+    await this.contactSection.scrollIntoViewIfNeeded();
   }
 
-  async openAboutDropdown() {
-    // Try hovering multiple times in case of animation or delayed menu render
-    for (let i = 0; i < 3; i++) {
-      await this.aboutButton.hover();
-      await this.page.waitForTimeout(700);
-    }
+  async enableSatelliteView() {
+    const satelliteButton = this.mapFrame.getByRole('menuitemradio', { name: 'Show satellite imagery' });
 
-    // Ensure the dropdown itself appears
-    const dropdown = this.page.locator('ul.sub-menu, div.sub-menu, nav ul:has-text("Sales Team")');
-    await dropdown.first().waitFor({ state: 'visible', timeout: 10000 });
+    // Wait until the button is visible
+    await satelliteButton.waitFor({ state: 'visible', timeout: 20000 });
+    console.log('✅ Satellite button is visible.');
+
+    // Ensure it’s scrolled into view
+    await satelliteButton.scrollIntoViewIfNeeded();
+
+    // Optional small wait to ensure Google Maps is interactive
+    await this.page.waitForTimeout(2000);
+
+    // Click the Satellite button
+    await satelliteButton.click({ timeout: 10000 });
+    console.log('✅ Clicked Satellite button successfully.');
   }
 
-  async navigateToSalesTeam() {
-    await this.openAboutDropdown();
-    const link = this.salesTeamLink;
-    await link.waitFor({ state: 'visible', timeout: 10000 });
-    await link.scrollIntoViewIfNeeded();
-    await link.click({ force: true });
-    await this.page.waitForLoadState('domcontentloaded');
-  }
-
-  async navigateToCareers() {
-    await this.openAboutDropdown();
-    const link = this.careersLink;
-    await link.waitFor({ state: 'visible', timeout: 10000 });
-    await link.scrollIntoViewIfNeeded();
-    await link.click({ force: true });
-    await this.page.waitForLoadState('domcontentloaded');
+  async verifyMapCanvasVisible() {
+    const mapCanvas = this.page.locator('//div[@id="comp-ig69hlqz"]');
+    await expect(mapCanvas).toBeVisible({ timeout: 20000 });
   }
 }

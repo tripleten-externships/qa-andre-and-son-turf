@@ -15,15 +15,11 @@ test('Row 83: Verify Satellite option switches map view', async ({ page }) => {
   await home.scrollToContactSection();
   console.log('✅ Scrolled to Contact section');
 
-  // Step 3: Wait for Google Maps to load and enable Satellite view
-  // await home.enableSatelliteView();
-  // console.log('✅ Satellite view clicked successfully');
-
-  // Step 4: Verify that the map canvas is still visible
+  // Step 3: Verify that the map canvas is still visible
   await home.verifyMapCanvasVisible();
   console.log('✅ Map canvas visible after switching to Satellite view');
 
-  // Step 5: Optional screenshot for record keeping
+  // Step 4: Optional screenshot for record keeping
   await page.screenshot({ path: 'satellite-view-success.png', fullPage: true });
   console.log('📸 Screenshot captured successfully');
 });
