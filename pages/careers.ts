@@ -14,7 +14,9 @@ export class CareersPage {
       'We are always looking for qualified and motivated individuals to join our team'
     );
     this.learnMoreButton = page.getByRole('link', { name: 'Learn More' });
-    this.emailLink = page.getByRole('link', { name: 'turf@andreandson.com' });
+    this.emailLink = page
+      .getByLabel('main content')
+      .getByRole('link', { name: 'turf@andreandson.com' });
   }
 
   async navigate() {
@@ -22,7 +24,6 @@ export class CareersPage {
   }
 
   async verifyHeadingAndIntro() {
-    await this.careersHeading.scrollIntoViewIfNeeded();
     await this.page.waitForTimeout(500);
     await this.introText.scrollIntoViewIfNeeded();
   }
@@ -30,7 +31,7 @@ export class CareersPage {
   async openLearnMorePDF() {
     const [newPage] = await Promise.all([
       this.page.context().waitForEvent('page'),
-      this.learnMoreButton.click()
+      this.learnMoreButton.click(),
     ]);
     await newPage.waitForLoadState('load');
     return newPage;
@@ -38,6 +39,8 @@ export class CareersPage {
 
   async verifyEmailLink() {
     await this.emailLink.scrollIntoViewIfNeeded();
-    return await this.emailLink.getAttribute('href');
+    await this.emailLink.waitFor({ state: 'visible', timeout: 8000 });
+    const href = await this.emailLink.getAttribute('href');
+    return href;
   }
 }
