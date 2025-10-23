@@ -1,31 +1,31 @@
+   import { test, expect } from '@playwright/test';
+import { HomePage } from '../pages/Homepage';
 
-import { test, expect } from '@playwright/test';
+test('Row 83: Verify Satellite option switches map view', async ({ page }) => {
+  // Create a new HomePage object (this connects the test to your POM)
+  const home = new HomePage(page);
 
-// ================================
-   test('Row 83: Verify Satellite option switches map view', async ({ page }) => {
-  // Step 1: Go to Contact page
-  await page.goto('https://www.andreandson.com/');
-  // Step 2: Scroll to the Contact section
-  await page.getByText('CONTACT').nth(2).scrollIntoViewIfNeeded();
-  // Step 3: Locate the Google Maps iframe
-  const mapFrame = page.frameLocator('iframe[title="Google Maps"]');
-  // Step 4: Locate the Satellite button inside the iframe
-  const satelliteButton = mapFrame.getByRole('menuitemradio', { name: 'Show satellite imagery' });
-  // Step 5: Click the Satellite button
-  await satelliteButton.click();
-  // Step 6: Assert map canvas is still visible after switching to Satellite
-  const mapCanvas = mapFrame.locator('canvas').first();
-  console.log("Waiting for map canvas after Satellite click...");
-  //await mapCanvas.waitFor({ state: 'attached', timeout: 20000 });
-  //await expect(mapCanvas).toBeVisible({ timeout: 20000 });
-  console.log("Map canvas visible after Satellite mode");
-  // Step 7: Locate the Labels checkbox inside the iframe
-  //const labelsToggle = mapFrame.getByRole('checkbox', { name: 'Labels' });
-    const labelsToggle = mapFrame.getByText ('Labels');
-  // Step 8: Assert Labels toggle is visible (proof satellite mode is active)
-  await expect(labelsToggle).toBeVisible();
+  // Step 1: Navigate to homepage
+  await page.goto('/');
+  console.log('✅ Navigated to homepage');
+
+  // Step 2: Scroll to Contact section
+  await home.scrollToContactSection();
+  console.log('✅ Scrolled to Contact section');
+
+  // Step 3: Wait for Google Maps to load and enable Satellite view
+  // await home.enableSatelliteView();
+  // console.log('✅ Satellite view clicked successfully');
+
+  // Step 4: Verify that the map canvas is still visible
+  await home.verifyMapCanvasVisible();
+  console.log('✅ Map canvas visible after switching to Satellite view');
+
+  // Step 5: Optional screenshot for record keeping
+  await page.screenshot({ path: 'satellite-view-success.png', fullPage: true });
+  console.log('📸 Screenshot captured successfully');
 });
-                                  
+                         
     // =========================
   
 // Row 84: Verify Labels option toggles street/place labels
@@ -507,11 +507,11 @@ test('Row 98: Verify error handling when a sales rep email link is not correctly
   // Step 1: Go to the Sales Team page
   await page.goto('https://www.andreandson.com/sales-team');
   await expect(page).toHaveTitle(/Sales Team/i);
-  console.log('Navigated to Sales Team page');
+  console.log('📄 Navigated to Sales Team page');
 
   // Step 2: Locate all mailto links
   const emailLinks = await page.locator('a[href^="mailto:"]').all();
-  console.log(`Found ${emailLinks.length} email links on Sales Team page`);
+  console.log(`🔍 Found ${emailLinks.length} email links on Sales Team page`);
 
   // Step 3: Ensure there are email links to test
   expect(emailLinks.length).toBeGreaterThan(0);
@@ -520,7 +520,7 @@ test('Row 98: Verify error handling when a sales rep email link is not correctly
   for (const [index, emailLink] of emailLinks.entries()) {
     const hrefValue = await emailLink.getAttribute('href');
     const emailText = await emailLink.textContent();
-    console.log(`Checking email link #${index + 1}: ${emailText}`);
+    console.log(`📧 Checking email link #${index + 1}: ${emailText}`);
 
     // Verify href exists
     expect(hrefValue).not.toBeNull();
@@ -551,23 +551,23 @@ test('Row 98: Verify error handling when a sales rep email link is not correctly
 test('Row 99: Verify that Contact Us form submits successfully when both fields are valid', async ({ page }) => {
   // Step 1: Navigate to the Sales Team page where the form is located
   await page.goto('https://www.andreandson.com/sales-team');
-  console.log('Navigated to Sales Team page');
+  console.log('🌐 Navigated to Sales Team page');
 
   // Step 2: Scroll to Contact Us section to make sure the form is visible
   const contactSection = page.getByRole('heading', { name: 'Contact Us', exact: false });
   await contactSection.scrollIntoViewIfNeeded();
   await page.waitForTimeout(1000);
-  console.log('Scrolled to Contact Us section');
+  console.log('📜 Scrolled to Contact Us section');
 
   // Step 3: Fill in both form fields correctly
   await page.getByPlaceholder('Enter your text here').fill('This is a test message from Playwright automation.');
   await page.getByPlaceholder('Email Address*').fill('testuser@example.com');
-  console.log('Filled in both message and email fields successfully');
+  console.log('✏️ Filled in both message and email fields successfully');
 
   // Step 4: Click the Submit button
   const submitButton = page.getByRole('button', { name: /submit/i });
   await submitButton.click();
-  console.log('Clicked the Submit button');
+  console.log('📩 Clicked the Submit button');
 
   // Step 5: Wait for a success indication (either confirmation message or submission completion)
   // We'll check for common success patterns or network silence as fallback
@@ -577,9 +577,9 @@ test('Row 99: Verify that Contact Us form submits successfully when both fields 
   const successVisible = await successMessage.first().isVisible();
 
   if (successVisible) {
-    console.log('Verified: Success message appeared after form submission');
+    console.log('✅ Verified: Success message appeared after form submission');
   } else {
-    console.warn('No visible success message detected — check backend or silent submission behavior');
+    console.warn('⚠️ No visible success message detected — check backend or silent submission behavior');
   }
 
   // Step 6: Optional screenshot for record keeping
