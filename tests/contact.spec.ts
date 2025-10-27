@@ -20,8 +20,8 @@ test('Row 83: Verify Satellite option switches map view', async ({ page }) => {
   console.log('✅ Map canvas visible after switching to Satellite view');
 
   // Step 4: Optional screenshot for record keeping
-  await page.screenshot({ path: 'satellite-view-success.png', fullPage: true });
-  console.log('📸 Screenshot captured successfully');
+  // await page.screenshot({ path: 'satellite-view-success.png', fullPage: true });
+  // console.log('📸 Screenshot captured successfully');
 });
                          
     // =========================
@@ -330,6 +330,6 @@ test('Row 99 – Verify Contact Us form submits successfully when both fields ar
   }
 
   // Step 6: Optional screenshot for QA records
-  await page.screenshot({ path: 'contact-form-success.png', fullPage: true });
-  console.log('📸 Screenshot captured after submission');
+  // await page.screenshot({ path: 'contact-form-success.png', fullPage: true });
+  // console.log('📸 Screenshot captured after submission');
 });
