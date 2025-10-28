@@ -1,2 +1,1 @@
-//Sample file 
-
+//sample file
