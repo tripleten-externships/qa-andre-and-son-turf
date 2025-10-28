@@ -1,6 +1,1 @@
-import { Locator, Page} from "@playwright/test";
-
-export class {
-
-
-    }
+//sample file

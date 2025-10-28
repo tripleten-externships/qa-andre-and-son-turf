@@ -1,6 +1,4 @@
 import { test, expect } from '@playwright/test';
-import { IceMeltsPage } from '../pages/example';
-
 /*
 
 */
