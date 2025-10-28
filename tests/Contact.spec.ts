@@ -1,5 +1,5 @@
 import {test, expect} from '@playwright/test';
-import { NavigationPage } from '../pages/Locator';
+import { NavigationPage } from '../pages/navBar';
 
 
 test('Verify you can hover and click Contact and that page is accurate', async ({ page }) => {
