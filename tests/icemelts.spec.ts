@@ -197,7 +197,7 @@ test.describe('Let\'s Get Growing Container - Email Box Input Validation', () =>
 });
 
 /*Verify that "Ice Melt" is clickable under the "Turf Products" footer menu*/
-test.describe.only('Ice Melt is clickable under the Turf Products footer menu', () => {
+test.describe('Ice Melt is clickable under the Turf Products footer menu', () => {
   test.beforeEach(async ({ page }) => {
   const iceMeltsPage = new IceMeltsPage(page);
   await iceMeltsPage.footerSectionTurfProductsMenu.scrollIntoViewIfNeeded(); // Scroll to parent <li>
