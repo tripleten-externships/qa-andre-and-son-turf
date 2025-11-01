@@ -3,12 +3,22 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test": "npx playwright test",
+    "install-browsers": "npx playwright install",
+    "tests:chrome": "npx playwright test --project=chromium",
+    "tests:firefox": "npx playwright test --project=firefox",
+    "tests:safari": "npx playwright test --project=webkit",
+    "show-report": "npx playwright show-report"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@playwright/test": "^1.55.0",
+    "@playwright/test": "^1.56.0",
     "@types/node": "^24.5.2"
+  },
+  "dependencies": {
+    "playwright": "^1.55.1"
   }
 }
