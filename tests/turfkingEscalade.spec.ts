@@ -9,9 +9,6 @@ test.describe('Turf King Escalade Page Tests', () => {
     });
 
     test('verify the turf king escalade page elements and functions', async ({ page }) => {
-        // Set longer timeout for this test
-        test.setTimeout(180000); // 3 minutes
-        
         // Navigate to home page
         await page.goto('/');
         await page.waitForLoadState('networkidle');

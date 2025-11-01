@@ -9,8 +9,6 @@ test.describe('Turf King Imida-Lambda Page Tests', () => {
     });
 
     test('verify the contents of the turf king imida-lambda page', async ({ page }) => {
-        // Set longer timeout for this test
-        test.setTimeout(120000); // 2 minutes
         // Navigate to home page
         await page.goto('/');
         await page.waitForLoadState('networkidle');

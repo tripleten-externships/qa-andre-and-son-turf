@@ -9,9 +9,6 @@ test.describe('Turf King Mallet Page Tests', async () => {
     });
 
     test('verify the turf king mallet page elements and functions', async ({ page }) => {
-        // Set longer timeout for this test
-        test.setTimeout(120000); // 2 minutes
-        
         // Navigate to home page
         await page.goto('/');
         await page.waitForLoadState('networkidle');

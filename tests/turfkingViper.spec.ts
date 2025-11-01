@@ -9,10 +9,6 @@ test.describe('Turf King Viper Page Tests', () => {
     });
 
     test('verify the turf king viper page elements and functions', async ({ page }) => {
-
-        // Set longer timeout for this test
-        test.setTimeout(120000); // 2 minutes
-        
         // Navigate to home page
         await page.goto('/');
         await page.waitForLoadState('networkidle');

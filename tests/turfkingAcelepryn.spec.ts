@@ -9,8 +9,6 @@ test.describe('Turf King Acelepryn Page Tests', () => {
     });
 
     test('verify the contents of the turf king acelepryn page', async ({ page }) => {
-        // Set longer timeout for this test
-        test.setTimeout(300000); // 5 minutes
         
         // Navigate to home page
         await page.goto('/');

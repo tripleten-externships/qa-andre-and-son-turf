@@ -41,8 +41,6 @@ test.describe('Turf King Prodiamine Page Tests - Fixed Parallel', () => {
     }
 
     test('verify page basic elements and spreader settings', async ({ page }) => {
-        test.setTimeout(120000); // 2 minutes
-        
         await navigateToProdiaminePage(page, pageInstance);
         
         // Test spreader settings button
@@ -63,8 +61,6 @@ test.describe('Turf King Prodiamine Page Tests - Fixed Parallel', () => {
     });
 
     test('test Turf King 15-0-3 with .20% Prodiamine buttons', async ({ page }) => {
-        test.setTimeout(180000); // 3 minutes
-        
         await navigateToProdiaminePage(page, pageInstance);
         
         // Wait before testing product buttons
@@ -122,8 +118,6 @@ test.describe('Turf King Prodiamine Page Tests - Fixed Parallel', () => {
     });
 
     test('test Turf King 19-0-6 with .29% Prodiamine buttons', async ({ page }) => {
-        test.setTimeout(180000); // 3 minutes
-        
         await navigateToProdiaminePage(page, pageInstance);
         
         // Wait before testing product buttons
@@ -181,8 +175,6 @@ test.describe('Turf King Prodiamine Page Tests - Fixed Parallel', () => {
     });
 
     test('test Turf King 0-0-7 with .37% Prodiamine buttons', async ({ page }) => {
-        test.setTimeout(180000); // 3 minutes
-        
         await navigateToProdiaminePage(page, pageInstance);
         
         // Wait before testing product buttons
